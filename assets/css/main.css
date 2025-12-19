@@ -110,6 +110,15 @@ h1, .h1 {
     display: block;
   }
 }
+.nav-links {
+  display: none;
+  flex-direction: column;
+}
+
+.nav-links.show {
+  display: flex;
+}
+
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
