@@ -39,6 +39,54 @@
         </div>
     </div>
     <!--PreLoader Ends-->
+<style>
+nav.main-menu ul li.search-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.search-bar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar-icon i {
+  margin-right: 5px; /* فاصله بین آیکون و متن */
+}
+
+.search-text {
+  font-weight: 700;
+  color: #fff; /* رنگ متن مثل منوها */
+}
+nav.main-menu ul {
+  text-align: right;   /* همه منوها سمت راست */
+  padding-right: 0px; /* این مقدار رو زیاد/کم کن تا فاصله تنظیم بشه */
+}
+body {
+  font-size: 16px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+}
+.container {
+  width: 90%;   /* instead of 1200px */
+  max-width: 1200px;
+  margin: auto;
+}
+
+</style>
 <!-- header -->
 <div class="top-header-area" id="sticker">
   <div class="container">

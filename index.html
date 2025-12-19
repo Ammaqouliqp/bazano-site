@@ -53,6 +53,11 @@ nav.main-menu ul li.search-center {
 .search-bar-icon i {
   margin-right: 5px; /* فاصله بین آیکون و متن */
 }
+.container {
+  width: 90%;   /* instead of 1200px */
+  max-width: 1200px;
+  margin: auto;
+}
 
 .search-text {
   font-weight: 700;
@@ -61,6 +66,23 @@ nav.main-menu ul li.search-center {
 nav.main-menu ul {
   text-align: right;   /* همه منوها سمت راست */
   padding-right: 0px; /* این مقدار رو زیاد/کم کن تا فاصله تنظیم بشه */
+}
+body {
+  font-size: 16px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
 }
 
 </style>
