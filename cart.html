@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<!-- title -->
+	<title>سبد خرید</title>
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="assets/img/icon_bazano.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="assets/css/all.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="assets/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="assets/css/responsive.css">
+
+</head>
+<body>
+	
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+<style>
+nav.main-menu ul li.search-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.search-bar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar-icon i {
+  margin-right: 5px; /* فاصله بین آیکون و متن */
+}
+
+.search-text {
+  font-weight: 700;
+  color: #fff; /* رنگ متن مثل منوها */
+}
+nav.main-menu ul {
+  text-align: right;   /* همه منوها سمت راست */
+  padding-right: 0px; /* این مقدار رو زیاد/کم کن تا فاصله تنظیم بشه */
+}
+
+</style>
+<!-- header -->
+<div class="top-header-area" id="sticker">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12 text-center">
+        <div class="main-menu-wrap">
+          <!-- logo -->
+          <div class="site-logo">
+            <a href="index.html">
+              <img src="assets/img/bazano-text-logo.png" alt="لوگو">
+            </a>
+          </div>
+          <!-- logo -->
+
+          <!-- menu start -->
+          <nav class="main-menu">
+            <ul>
+              <!-- main menu -->
+              <li class="current-list-item">
+                <a href="#">صفحه اصلی</a>
+                <ul class="sub-menu">
+                  <li><a href="index.html">صفحه اصلی 1</a></li>
+                  <li><a href="index_2.html">صفحه اصلی 2</a></li>
+                </ul>
+              </li>
+
+              <!-- products -->
+              <li><a href="products.html">همکاران ما</a></li>
+
+              <!-- blog -->
+              <li>
+                <a href="news.html">بلاگ</a>
+                <ul class="sub-menu">
+                  <li><a href="news.html">لیست بلاگ</a></li>
+                  <li><a href="single-news.html">جزئیات بلاگ</a></li>
+                </ul>
+              </li>
+
+              <!-- about us-->
+              <li><a href="about.html">درباره ما</a></li>
+
+              <!-- contact us -->
+              <li><a href="contact.html">تماس با ما</a></li>
+
+              <!-- cart icon -->
+              <li class="menu-item-has-children">
+                <a class="shopping-cart" href="cart.html">
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <ul class="sub-menu">
+                  <li><a href="cart.html">سبد خرید</a></li>
+                  <li><a href="checkout.html">تکمیل سفارش</a></li>
+                </ul>
+              </li>
+
+              <!-- middle search icon-->
+              <li class="search-center">
+                <a class="search-bar-icon" href="#">
+                  <i class="fas fa-search"></i>
+                  <span class="search-text">جست‌وجو</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <a class="mobile-show search-bar-icon" href="#">
+            <i class="fas fa-search"></i>
+          </a>
+          <div class="mobile-menu"></div>
+          <!-- menu end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header --
+
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>جست و جو :</h3>
+							<input type="text" placeholder="کالا  ، محصول و ...">
+							<button type="submit">جست و جو <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search area -->
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>هوای خوبارو داریم</p>
+						<h1>سبد خرید</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- cart -->
+	<div class="cart-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12">
+					<div class="cart-table-wrap">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<tr class="table-head-row">
+									<th class="product-remove"></th>
+									<th class="product-image">محصول</th>
+									<th class="product-name">نام محصول</th>
+									<th class="product-price">قیمت</th>
+									<th class="product-quantity">تعداد</th>
+									<th class="product-total">تعداد کالاها</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="table-body-row">
+									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+									<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
+									<td class="product-name">Strawberry</td>
+									<td class="product-price">$85</td>
+									<td class="product-quantity"><input type="number" placeholder="0"></td>
+									<td class="product-total">1</td>
+								</tr>
+								<tr class="table-body-row">
+									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+									<td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
+									<td class="product-name">Berry</td>
+									<td class="product-price">$70</td>
+									<td class="product-quantity"><input type="number" placeholder="0"></td>
+									<td class="product-total">1</td>
+								</tr>
+								<tr class="table-body-row">
+									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+									<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
+									<td class="product-name">Lemon</td>
+									<td class="product-price">$35</td>
+									<td class="product-quantity"><input type="number" placeholder="0"></td>
+									<td class="product-total">1</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="total-section">
+						<table class="total-table">
+							<thead class="total-table-head">
+								<tr class="table-total-row">
+									<th>جمع</th>
+									<th>قیمت</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="total-data">
+									<td><strong>قیمت کالاها: </strong></td>
+									<td>$500</td>
+								</tr>
+								<tr class="total-data">
+									<td><strong>هزینه ارسال: </strong></td>
+									<td>$45</td>
+								</tr>
+								<tr class="total-data">
+									<td><strong>جمع سبد خرید: </strong></td>
+									<td>$545</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="cart-buttons">
+							<a href="cart.html" class="boxed-btn">به روزرسانی سبد</a>
+							<a href="checkout.html" class="boxed-btn black">پرداخت</a>
+						</div>
+					</div>
+
+					<div class="coupon-section">
+						<h3>کد تخفیف :</h3>
+						<div class="coupon-form-wrap">
+							<form action="index.html">
+								<p><input type="text" placeholder="کد"></p>
+								<p><input type="submit" value="ثبت"></p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end cart -->
+
+	<!-- logo carousel -->
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/1.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/2.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/3.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/4.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/5.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end logo carousel -->
+
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">در باره ما</h2>
+						<p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">تماس با ما</h2>
+						<ul>
+							<li>Bazano_address</li>
+							<li>officialbazano@gmail.com</li>
+							<li>شبکه رسمی بازانو+</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">منو ها</h2>
+						<ul>
+							<li><a href="index.html">صفحه اصلی </a></li>
+							<li><a href="about.html">درباره ما</a></li>
+							<li><a href="products.html">محصولات</a></li>
+							<li><a href="news.html">بلاگ</a></li>
+							<li><a href="contact.html">تماس با ما</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">!همراه ما باشید</h2>
+						<p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
+						<form action="index.html">
+							<input type="email" placeholder="Email">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+	
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<p>تمامی حقوق این سایت متعلق به بازانو است.</p>
+				</div>
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="https://www.instagram.com/officialbazano/" target="https://www.instagram.com/officialbazano/"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+	
+	<!-- jquery -->
+	<script src="assets/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="assets/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="assets/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="assets/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="assets/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="assets/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>

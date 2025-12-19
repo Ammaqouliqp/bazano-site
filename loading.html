@@ -1,0 +1,55 @@
+<div class="loader">
+  <div class="semi orange"></div>
+  <div class="semi yellow"></div>
+</div>
+
+<style>
+.loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+/* نیم‌دایره پایه */
+.semi {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  border: 5px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50px 50px 0 0; /* سر گرد */
+  transform-origin: 50% 100%; /* مرکز پایین نیم‌دایره */
+}
+
+/* نیم‌دایره نارنجی */
+.orange {
+  color: #FFA500;
+  top: 10px;
+  left: 10px;
+  transform: rotate(180deg);
+  animation: spinCW 6s infinite ease-in-out;
+}
+
+/* نیم‌دایره زرد */
+.yellow {
+  color: #FFD700;
+  top: 10px;
+  left: 10px;
+  transform: rotate(180deg); /* روبه‌روی نارنجی */
+  animation: spinCCW 6s infinite ease-in-out;
+}
+
+/* انیمیشن ساعتگرد */
+@keyframes spinCW {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(1080deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* انیمیشن پادساعتگرد */
+@keyframes spinCCW {
+  0%   { transform: rotate(540deg); }
+  50%  { transform: rotate(-540deg); }
+  100% { transform: rotate(540deg); }
+}
+</style>
