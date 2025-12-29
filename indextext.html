@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازانو - صفحه اصلی</title>
+
+    <link rel="shortcut icon" type="image/png" href="assets/img/icon_bazano.png">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Zain:wght@700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        /* استایل‌های hamburger بدون تداخل با main.css */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-left: 15px;
+        }
+
+        @media (max-width: 991px) {
+            .hamburger {
+                display: block !important;
+            }
+
+            .main-menu > ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1a1a1a;
+                z-index: 9999;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height 0.5s ease, opacity 0.4s ease;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            .main-menu > ul.active {
+                display: flex;
+                max-height: 800px;
+                opacity: 1;
+                padding: 1rem 0;
+            }
+
+            .main-menu > ul > li {
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .main-menu > ul > li:last-child {
+                border-bottom: none;
+            }
+
+            .main-menu .sub-menu {
+                position: static;
+                box-shadow: none;
+                background: rgba(255,255,255,0.05);
+                padding: 10px 0;
+            }
+
+            .main-menu-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .site-logo { order: 1; }
+            .main-menu { order: 2; }
+            .mobile-show.search-bar-icon {
+                order: 3;
+                display: block !important;
+                margin-left: 10px;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-menu > ul.active > li {
+            animation: fadeInDown 0.4s ease forwards;
+        }
+        .main-menu > ul.active > li:nth-child(1) { animation-delay: 0.05s; }
+        .main-menu > ul.active > li:nth-child(2) { animation-delay: 0.10s; }
+        .main-menu > ul.active > li:nth-child(3) { animation-delay: 0.15s; }
+        .main-menu > ul.active > li:nth-child(4) { animation-delay: 0.20s; }
+        .main-menu > ul.active > li:nth-child(5) { animation-delay: 0.25s; }
+        .main-menu > ul.active > li:nth-child(6) { animation-delay: 0.30s; }
+        .main-menu > ul.active > li:nth-child(7) { animation-delay: 0.35s; }
+    </style>
+</head>
+
+<body>
+
+    <!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+
+    <!-- header -->
+    <div class="top-header-area" id="sticker">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <div class="main-menu-wrap">
+
+                        <!-- logo -->
+                        <div class="site-logo">
+                            <a href="index.html">
+                                <img src="assets/img/bazano-text-logo.png" alt="لوگو">
+                            </a>
+                        </div>
+                        <!-- logo -->
+
+                        <!-- menu start -->
+                        <nav class="main-menu">
+                            <button class="hamburger" aria-label="باز کردن منو">☰</button>
+                            <ul>
+                                <li class="current-list-item">
+                                    <a href="#">صفحه اصلی</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="index.html">صفحه اصلی 1</a></li>
+                                        <li><a href="index_2.html">صفحه اصلی 2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="products.html">همکاران ما</a></li>
+                                <li>
+                                    <a href="news.html">بلاگ</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="news.html">لیست بلاگ</a></li>
+                                        <li><a href="single-news.html">جزئیات بلاگ</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">درباره ما</a></li>
+                                <li><a href="contact.html">تماس با ما</a></li>
+                                <li class="menu-item-has-children">
+                                    <a class="shopping-cart" href="cart.html">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li><a href="cart.html">سبد خرید</a></li>
+                                        <li><a href="checkout.html">تکمیل سفارش</a></li>
+                                    </ul>
+                                </li>
+                                <li class="search-center">
+                                    <a class="search-bar-icon" href="#">
+                                        <i class="fas fa-search"></i>
+                                        <span class="search-text">جست‌وجو</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <a class="mobile-show search-bar-icon" href="#">
+                            <i class="fas fa-search"></i>
+                        </a>
+
+                        <div class="mobile-menu"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header -->
+
+    <!-- search area -->
+    <div class="search-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                    <div class="search-bar">
+                        <div class="search-bar-tablecell">
+                            <h3>جست و جو :</h3>
+                            <input type="text" placeholder="کالا  ، محصول و ...">
+                            <button type="submit">جست و جو <i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end search area -->
+
+    <!-- hero area -->
+    <div class="hero-area hero-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 offset-lg-2 text-center">
+                    <div class="hero-text">
+                        <div class="hero-text-tablecell">
+                            <p class="subtitle">هوای خوبارو داریم</p>
+                            <h1>به بازانو خوش آمدید</h1>
+                            <div class="hero-btns">
+                                <a href="products.html" class="boxed-btn">همکاران ما</a>
+                                <a href="contact.html" class="bordered-btn">پشتیبانی</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end hero area -->
+
+    <!-- features list section -->
+    <div class="list-section pt-80 pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <div class="list-box d-flex align-items-center">
+                        <div class="content text-right" style="padding-right: 5px;">
+                            <h3>ارسال رایگان</h3>
+                            <p>به کل کشور</p>
+                        </div>
+                        <div class="list-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <div class="list-box d-flex align-items-center">
+                        <div class="content text-right" style="padding-right: 5px;">
+                            <h3>پشتیبانی سریع</h3>
+                            <p>به صورت همیشگی</p>
+                        </div>
+                        <div class="list-icon">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="list-box d-flex justify-content-start align-items-center">
+                        <div class="content text-right" style="padding-right: 5px;">
+                            <h3>امنیت سفارش</h3>
+                            <p>پیگیری سفارشات به صورت دقیق و مطمئن</p>
+                        </div>
+                        <div class="list-icon">
+                            <i class="fas fa-sync"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end features list section -->
+
+    <!-- product section -->
+    <div class="product-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">	
+                        <h3><span class="orange-text">محصولات</span></h3>
+                        <p>لیست محصولات نگاتو</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                        </div>
+                        <h3>Strawberry</h3>
+                        <p class="product-price"><span>Per Kg</span> 85$ </p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                        </div>
+                        <h3>Berry</h3>
+                        <p class="product-price"><span>Per Kg</span> 70$ </p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                        </div>
+                        <h3>Lemon</h3>
+                        <p class="product-price"><span>Per Kg</span> 35$ </p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end product section -->
+
+    <!-- latest news -->
+    <div class="latest-news pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">	
+                        <h3><span class="orange-text">بلاگ </span>ما</h3>
+                        <p>توضیحات</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-news">
+                        <a href="single-news.html"><div class="latest-news-bg news-bg-1"></div></a>
+                        <div class="news-text-box">
+                            <h3><a href="single-news.html">You will vainly look for fruit on it in autumn.</a></h3>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-news">
+                        <a href="single-news.html"><div class="latest-news-bg news-bg-2"></div></a>
+                        <div class="news-text-box">
+                            <h3><a href="single-news.html">A man's worth has its season, like tomato.</a></h3>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+                    <div class="single-latest-news">
+                        <a href="single-news.html"><div class="latest-news-bg news-bg-3"></div></a>
+                        <div class="news-text-box">
+                            <h3><a href="single-news.html">Good thoughts bear good fruit, bad thoughts bear bad fruit.</a></h3>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end latest news -->
+
+    <!-- footer و بقیه بخش‌ها اگر در کد اصلی بود اضافه کنید -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.hamburger').on('click', function() {
+                $('.main-menu > ul').toggleClass('active');
+                $(this).text( $('.main-menu > ul').hasClass('active') ? '✖' : '☰' );
+            });
+        });
+
+        // مخفی کردن لودینگ بعد از لود کامل صفحه
+        $(window).on('load', function() {
+            $('.loader').fadeOut(800);
+        });
+    </script>
+
+    <!-- اگر فایل‌های JS اصلی قالب (مثل jquery.meanmenu.js یا main.js) دارید، اینجا اضافه کنید -->
+
+</body>
+</html>
