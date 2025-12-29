@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8">
-	
+<head>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- title -->
@@ -11,7 +11,7 @@
 	<link rel="shortcut icon" type="image/png" href="assets/img/icon_bazano.png">
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&amp;display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="assets/css/all.min.css">
 	<!-- bootstrap -->
@@ -39,6 +39,7 @@
         </div>
     </div>
     <!--PreLoader Ends-->
+
 <style>
 nav.main-menu ul li.search-center {
   position: absolute;
@@ -52,16 +53,16 @@ nav.main-menu ul li.search-center {
 }
 
 .search-bar-icon i {
-  margin-right: 5px; /* فاصله بین آیکون و متن */
+  margin-right: 5px;
 }
 
 .search-text {
   font-weight: 700;
-  color: #fff; /* رنگ متن مثل منوها */
+  color: #fff;
 }
 nav.main-menu ul {
-  text-align: right;   /* همه منوها سمت راست */
-  padding-right: 0px; /* این مقدار رو زیاد/کم کن تا فاصله تنظیم بشه */
+  text-align: right;
+  padding-right: 0px;
 }
 body {
   font-size: 16px;
@@ -81,12 +82,12 @@ body {
   }
 }
 .container {
-  width: 90%;   /* instead of 1200px */
+  width: 90%;
   max-width: 1200px;
   margin: auto;
 }
-
 </style>
+
 <!-- header -->
 <div class="top-header-area" id="sticker">
   <div class="container">
@@ -104,7 +105,6 @@ body {
           <!-- menu start -->
           <nav class="main-menu">
             <ul>
-              <!-- main menu -->
               <li class="current-list-item">
                 <a href="#">صفحه اصلی</a>
                 <ul class="sub-menu">
@@ -113,10 +113,8 @@ body {
                 </ul>
               </li>
 
-              <!-- products -->
               <li><a href="products.html">همکاران ما</a></li>
 
-              <!-- blog -->
               <li>
                 <a href="news.html">بلاگ</a>
                 <ul class="sub-menu">
@@ -125,13 +123,10 @@ body {
                 </ul>
               </li>
 
-              <!-- about us-->
               <li><a href="about.html">درباره ما</a></li>
 
-              <!-- contact us -->
               <li><a href="contact.html">تماس با ما</a></li>
 
-              <!-- cart icon -->
               <li class="menu-item-has-children">
                 <a class="shopping-cart" href="cart.html">
                   <i class="fas fa-shopping-cart"></i>
@@ -142,7 +137,6 @@ body {
                 </ul>
               </li>
 
-              <!-- middle search icon-->
               <li class="search-center">
                 <a class="search-bar-icon" href="#">
                   <i class="fas fa-search"></i>
@@ -161,265 +155,271 @@ body {
     </div>
   </div>
 </div>
-<!-- end header --
+<!-- end header -->
 
-
-	<!-- search area -->
-	<div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>جست و جو :</h3>
-							<input type="text" placeholder="کالا  ، محصول و ...">
-							<button type="submit">جست و جو <i class="fas fa-search"></i></button>
-						</div>
+<!-- search area -->
+<div class="search-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<span class="close-btn"><i class="fas fa-window-close"></i></span>
+				<div class="search-bar">
+					<div class="search-bar-tablecell">
+						<h3>جست و جو :</h3>
+						<input type="text" placeholder="کالا  ، محصول و ...">
+						<button type="submit">جست و جو <i class="fas fa-search"></i></button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end search area -->
-	
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<p>هوای خوبارو داریم</p>
-						<h1>محصولات</h1>
-					</div>
+</div>
+<!-- end search area -->
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>هوای خوبارو داریم</p>
+					<h1>محصولات</h1>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end breadcrumb section -->
+</div>
+<!-- end breadcrumb section -->
 
-	<!-- products -->
-	<div class="product-section mt-150 mb-150">
-		<div class="container">
+<!-- products -->
+<div class="product-section mt-150 mb-150">
+	<div class="container">
 
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">همه</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
-                            <li data-filter=".lemon">Lemon</li>
-                        </ul>
-                    </div>
+		<!-- Category Filters (will be populated dynamically later if needed) -->
+		<div class="row">
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul>
+                        <li class="active" data-filter="*">همه</li>
+                        <!-- Real categories can be added here dynamically in the future -->
+                    </ul>
                 </div>
             </div>
+        </div>
 
-			<div class="row product-lists">
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center lemon">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-						</div>
-						<h3>Avocado</h3>
-						<p class="product-price"><span>Per Kg</span> 50$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-						</div>
-						<h3>Green Apple</h3>
-						<p class="product-price"><span>Per Kg</span> 45$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 80$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
+		<!-- Dynamic Product List -->
+		<div class="row product-lists" id="product-lists-container">
+			<!-- Products will be loaded here automatically from the database -->
+			<!-- If JavaScript is disabled or loading fails, you can add a fallback message -->
+			<div class="col-12 text-center">
+				<p>در حال بارگذاری محصولات...</p>
+			</div>
+		</div>
+
+		<!-- Pagination (can be made dynamic later) -->
+		<div class="row mt-50">
+			<div class="col-lg-12 text-center">
+				<div class="pagination-wrap">
+					<ul>
+						<!-- Pagination links can be added dynamically based on total products -->
+						<li><a href="#">بعدی</a></li>
+					</ul>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
+<!-- end products -->
 
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="pagination-wrap">
-						<ul>
-							<li><a href="#">قبلی</a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">بعدی</a></li>
-						</ul>
+<!-- logo carousel -->
+<div class="logo-carousel-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="logo-carousel-inner">
+					<div class="single-logo-item">
+						<img src="assets/img/company-logos/1.png" alt="">
+					</div>
+					<div class="single-logo-item">
+						<img src="assets/img/company-logos/2.png" alt="">
+					</div>
+					<div class="single-logo-item">
+						<img src="assets/img/company-logos/3.png" alt="">
+					</div>
+					<div class="single-logo-item">
+						<img src="assets/img/company-logos/4.png" alt="">
+					</div>
+					<div class="single-logo-item">
+						<img src="assets/img/company-logos/5.png" alt="">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end products -->
+</div>
+<!-- end logo carousel -->
 
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/1.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/2.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/3.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/4.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/5.png" alt="">
-						</div>
-					</div>
+<!-- footer -->
+<div class="footer-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-6">
+				<div class="footer-box about-widget">
+					<h2 class="widget-title">در باره ما</h2>
+					<p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="footer-box get-in-touch">
+					<h2 class="widget-title">تماس با ما</h2>
+					<ul>
+						<li>Bazano_address</li>
+						<li>officialbazano@gmail.com</li>
+						<li>شبکه رسمی بازانو+</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="footer-box pages">
+					<h2 class="widget-title">منو ها</h2>
+					<ul>
+						<li><a href="index.html">صفحه اصلی </a></li>
+						<li><a href="about.html">درباره ما</a></li>
+						<li><a href="products.html">محصولات</a></li>
+						<li><a href="news.html">بلاگ</a></li>
+						<li><a href="contact.html">تماس با ما</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="footer-box subscribe">
+					<h2 class="widget-title">!همراه ما باشید</h2>
+					<p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
+					<form action="index.html">
+						<input type="email" placeholder="Email">
+						<button type="submit"><i class="fas fa-paper-plane"></i></button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end logo carousel -->
+</div>
+<!-- end footer -->
 
-	<!-- footer -->
-	<div class="footer-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box about-widget">
-						<h2 class="widget-title">در باره ما</h2>
-						<p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">تماس با ما</h2>
-						<ul>
-							<li>Bazano_address</li>
-							<li>officialbazano@gmail.com</li>
-							<li>شبکه رسمی بازانو+</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box pages">
-						<h2 class="widget-title">منو ها</h2>
-						<ul>
-							<li><a href="index.html">صفحه اصلی </a></li>
-							<li><a href="about.html">درباره ما</a></li>
-							<li><a href="products.html">محصولات</a></li>
-							<li><a href="news.html">بلاگ</a></li>
-							<li><a href="contact.html">تماس با ما</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
-						<h2 class="widget-title">!همراه ما باشید</h2>
-						<p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
-						<form action="index.html">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
-					</div>
+<!-- copyright -->
+<div class="copyright">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-12">
+				<p>تمامی حقوق این سایت متعلق به بازانو است.</p>
+			</div>
+			<div class="col-lg-6 text-right col-md-12">
+				<div class="social-icons">
+					<ul>
+						<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+						<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+						<li><a href="https://www.instagram.com/officialbazano/" target="https://www.instagram.com/officialbazano/"><i class="fab fa-instagram"></i></a></li>
+						<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+						<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end footer -->
-	
-	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<p>تمامی حقوق این سایت متعلق به بازانو است.</p>
-				</div>
-				<div class="col-lg-6 text-right col-md-12">
-					<div class="social-icons">
-						<ul>
-							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="https://www.instagram.com/officialbazano/" target="https://www.instagram.com/officialbazano/"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end copyright -->
-	
-	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
-	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
-	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
-	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
-	<!-- main js -->
-	<script src="assets/js/main.js"></script>
+</div>
+<!-- end copyright -->
 
-	<script>
-	document.querySelector('.hamburger').addEventListener('click', () => {
-		document.querySelector('.nav-links').classList.toggle('show');
+<!-- jquery -->
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<!-- bootstrap -->
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- count down -->
+<script src="assets/js/jquery.countdown.js"></script>
+<!-- isotope -->
+<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+<!-- waypoints -->
+<script src="assets/js/waypoints.js"></script>
+<!-- owl carousel -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- magnific popup -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<!-- mean menu -->
+<script src="assets/js/jquery.meanmenu.min.js"></script>
+<!-- sticker js -->
+<script src="assets/js/sticker.js"></script>
+<!-- main js -->
+<script src="assets/js/main.js"></script>
+
+<script>
+	document.querySelector('.hamburger')?.addEventListener('click', () => {
+		document.querySelector('.nav-links')?.classList.toggle('show');
 	});
-	</script>
+</script>
+
+<!-- Dynamic Products Loading Script -->
+<script>
+	async function loadProductsFromDB() {
+		try {
+			const response = await fetch('/api/products');
+			if (!response.ok) throw new Error('خطا در دریافت اطلاعات');
+
+			const products = await response.json();
+
+			const container = document.getElementById('product-lists-container');
+			container.innerHTML = ''; // Clear loading message
+
+			if (products.length === 0) {
+				container.innerHTML = '<div class="col-12 text-center"><p>محصولی یافت نشد.</p></div>';
+				return;
+			}
+
+			products.forEach(product => {
+				// Determine filter class based on category (customize as needed)
+				let filterClass = '';
+				const cat = product.category?.toLowerCase() || '';
+				if (cat.includes('strawberry')) filterClass = 'strawberry';
+				else if (cat.includes('berry')) filterClass = 'berry';
+				else if (cat.includes('lemon')) filterClass = 'lemon';
+				// Add more categories here later if needed
+
+				const colDiv = document.createElement('div');
+				colDiv.className = `col-lg-4 col-md-6 text-center ${filterClass}`;
+
+				colDiv.innerHTML = `
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html?id=${product.id}">
+								<img src="${product.image}" alt="${product.full_title}">
+							</a>
+						</div>
+						<h3>${product.full_title}</h3>
+						<p class="product-price">
+							<span>قیمت</span> ${product.price_exit_formatted}
+						</p>
+						<a href="cart.html?add=${product.id}" class="cart-btn">
+							<i class="fas fa-shopping-cart"></i> افزودن به سبد
+						</a>
+					</div>
+				`;
+
+				container.appendChild(colDiv);
+			});
+
+			// Re-initialize Isotope for filtering (if your theme uses it)
+			if (typeof $.fn.isotope !== 'undefined') {
+				$('.product-lists').isotope('reloadItems').isotope();
+			}
+
+		} catch (err) {
+			console.error('خطا در بارگذاری محصولات:', err);
+			const container = document.getElementById('product-lists-container');
+			container.innerHTML = '<div class="col-12 text-center"><p>خطایی رخ داد. لطفاً دوباره تلاش کنید.</p></div>';
+		}
+	}
+
+	// Load products when page is ready
+	document.addEventListener('DOMContentLoaded', loadProductsFromDB);
+</script>
 
 </body>
-
 </html>
