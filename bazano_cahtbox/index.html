@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dark Liquid Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="chat-app">
+
+    <!-- Sidebar -->
+    <aside class="chat-sidebar glass" id="chatSidebar">
+      <div class="sidebar-header">
+        Chats
+        <button id="closeSidebar">×</button>
+      </div>
+      <div class="chat-list" id="chatList">
+        <div class="chat-item active" data-chat="general">General <span class="badge">0</span></div>
+        <div class="chat-item" data-chat="support">Support <span class="badge">0</span></div>
+        <div class="chat-item" data-chat="design">Design <span class="badge">0</span></div>
+      </div>
+    </aside>
+
+    <!-- Chat container -->
+    <section class="chat-container glass">
+      <!-- Header -->
+      <header class="chat-header glass">
+        <button id="toggleSidebar">☰</button>
+        <span class="chat-title" id="chatTitle">General</span>
+      </header>
+
+      <!-- Messages -->
+      <section class="chat-messages" id="chat"></section>
+
+      <!-- Input -->
+      <footer class="chat-input glass">
+        <input id="input" type="text" placeholder="Type a message…" autocomplete="off" />
+        <button id="sendBtn">Send</button>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
