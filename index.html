@@ -249,53 +249,33 @@ body {
 	</div>
 	<!-- end features list section -->
 
-	<!-- product section -->
-	<div class="product-section mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="section-title">	
-						<h3><span class="orange-text">محصولات</span></h3>
-						<p>لیست محصولات نگاتو</p>
-					</div>
-				</div>
-			</div>
+<!-- products -->
+<div class="product-section mt-150 mb-150">
+    <div class="container">
 
-			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end product section -->
+        <!-- Category Filters (will be populated dynamically later if needed) -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul>
+                        <li class="active" data-filter="*">همه</li>
+                        <!-- Real categories can be added here dynamically in the future -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Product List -->
+        <div class="row product-lists" id="product-lists-container">
+            <!-- Products will be loaded here automatically from the database -->
+            <!-- If JavaScript is disabled or loading fails, you can add a fallback message -->
+            <div class="col-12 text-center">
+                <p>در حال بارگذاری محصولات...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end products -->
 
 
 	
@@ -510,7 +490,69 @@ body {
 	});
 	</script>
 
+<script>
+	async function loadProductsFromDB() {
+		try {
+			const response = await fetch('/api/products');
+			if (!response.ok) throw new Error('خطا در دریافت اطلاعات');
 
+			const products = await response.json();
+
+			const container = document.getElementById('product-lists-container');
+			container.innerHTML = ''; // Clear loading message
+
+			if (products.length === 0) {
+				container.innerHTML = '<div class="col-12 text-center"><p>محصولی یافت نشد.</p></div>';
+				return;
+			}
+
+			products.forEach(product => {
+				// Determine filter class based on category (customize as needed)
+				let filterClass = '';
+				const cat = product.category?.toLowerCase() || '';
+				if (cat.includes('strawberry')) filterClass = 'strawberry';
+				else if (cat.includes('berry')) filterClass = 'berry';
+				else if (cat.includes('lemon')) filterClass = 'lemon';
+				// Add more categories here later if needed
+
+				const colDiv = document.createElement('div');
+				colDiv.className = `col-lg-4 col-md-6 text-center ${filterClass}`;
+
+				colDiv.innerHTML = `
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html?id=${product.id}">
+								<img src="${product.image}" alt="${product.full_title}">
+							</a>
+						</div>
+						<h3>${product.full_title}</h3>
+						<p class="product-price">
+							<span>قیمت</span> ${product.price_exit_formatted}
+						</p>
+						<a href="cart.html?add=${product.id}" class="cart-btn">
+							<i class="fas fa-shopping-cart"></i> افزودن به سبد
+						</a>
+					</div>
+				`;
+
+				container.appendChild(colDiv);
+			});
+
+			// Re-initialize Isotope for filtering (if your theme uses it)
+			if (typeof $.fn.isotope !== 'undefined') {
+				$('.product-lists').isotope('reloadItems').isotope();
+			}
+
+		} catch (err) {
+			console.error('خطا در بارگذاری محصولات:', err);
+			const container = document.getElementById('product-lists-container');
+			container.innerHTML = '<div class="col-12 text-center"><p>خطایی رخ داد. لطفاً دوباره تلاش کنید.</p></div>';
+		}
+	}
+
+	// Load products when page is ready
+	document.addEventListener('DOMContentLoaded', loadProductsFromDB);
+</script>
 </body>
 
 </html>
