@@ -2598,6 +2598,10 @@ table.cart-table {
   border: 1px solid #f9f9f9;
   width: 100%;
 }
+table.transactions-table {
+  border: 1px solid #f9f9f9;
+  width: 100%;
+}
 
 thead {
   border-bottom: 1px solid #eee;
@@ -2617,7 +2621,9 @@ tr.table-head-row th:last-child {
 .cart-table-wrap tbody tr td {
   text-align: center;
 }
-
+.transactions-table-wrap tbody tr td {
+  text-align: left;
+}
 td.product-image img {
   max-width: 50px;
   -webkit-box-shadow: none;
@@ -2631,7 +2637,17 @@ td.product-image img {
   color: #6a6f54;
 }
 
+.transactions-table-wrap tbody tr td {
+  border: 1px solid #ece6dc;
+  padding: 20px 0;
+  color: #6a6f54;
+}
+
 thead.cart-table-head tr {
+  background-color: #ece6dc;
+}
+
+thead.transactions-table-head tr {
   background-color: #ece6dc;
 }
 

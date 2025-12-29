@@ -153,7 +153,10 @@ table.cart-table {
   border: 1px solid #f9f9f9;
   width: 100%;
 }
-
+table.transactions-table {
+  border: 1px solid #f9f9f9;
+  width: 100%;
+}
 thead {
   border-bottom: 1px solid #eee;
 }
@@ -172,6 +175,16 @@ tr.table-head-row th {
 .cart-table-wrap tbody tr td {
   text-align: center;
 }
+.transactions-table-wrap tbody tr td {
+  text-align: left;
+}
+
+.cart-table-wrap tbody tr td {
+  text-align: center;
+}
+.transactions-table-wrap tbody tr td {
+  text-align: left;
+}
 
 td.product-image img {
   max-width: 50px;
@@ -184,11 +197,18 @@ td.product-image img {
   padding: 20px 0;
   color: $text-color;
 }
+.transactions-table-wrap tbody tr td {
+  border: 1px solid #ece6dc;
+  padding: 20px 0;
+  color: $text-color;
+}
 
 thead.cart-table-head tr {
   background-color: #ece6dc;
 }
-
+thead.transactions-table-head tr {
+  background-color: #ece6dc;
+}
 td.product-quantity input {
   margin-bottom: 0;
 }

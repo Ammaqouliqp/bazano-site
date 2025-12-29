@@ -61,6 +61,9 @@
 	table.cart-table {
 	    margin-bottom: 50px;
 	}
+		table.transactions-table {
+	    margin-bottom: 50px;
+	}
 	.order-details-wrap {
 	    margin-top: 50px;
 	}
@@ -485,7 +488,14 @@
 	    width: 100%;
 	    overflow-x: scroll;
 	}
+	transactions-table-wrap {
+	    width: 100%;
+	    overflow-x: scroll;
+	}
 	table.cart-table {
+		width: 690px;
+	}
+		table.transactions-table {
 		width: 690px;
 	}
 	.cart-buttons a:first-child {
