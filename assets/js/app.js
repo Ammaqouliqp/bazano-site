@@ -7,4 +7,5 @@ app.use(express.json());
 // Register routes
 app.use('/users', require('./routes/users'));
 app.use('/products', productsRouter);
-module.exports = app;
+
+module.exports = app;   
