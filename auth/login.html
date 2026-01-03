@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود - بازانو</title>
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+    <header class="header-area">
+        <!-- Your header/nav code, with links like href="../index.html" -->
+    </header>
+    
+    <section class="login-section pt-100 pb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label>شماره تلفن</label>
+                            <input type="text" id="phonenumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label>رمز عبور</label>
+                            <input type="password" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">ورود</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Your footer code -->
+    
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../assets/js/jquery.countdown.js"></script>
+    <script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/jquery.meanmenu.min.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/sticker.js"></script>
+    <script src="../assets/js/waypoints.js"></script>
+    <script src="../assets/js/form-validate.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script>
+        window.addEventListener('load', updateNav);
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const phonenumber = document.getElementById('phonenumber').value;
+            const password = document.getElementById('password').value;
+            try {
+                const { token } = await apiFetch('/login', 'POST', { phonenumber, password });
+                setToken(token);
+                const role = await getUserRole();
+                redirectToPanel(role);
+            } catch (err) {
+                alert('خطا در ورود: ' + err.message);
+            }
+        });
+    </script>
+</body>
+</html>
