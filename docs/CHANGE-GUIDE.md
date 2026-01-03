@@ -1,10 +1,16 @@
-```markdown
-# Bazano Website – Complete Change & Maintenance Documentation
+# Bazano Backend – Complete Change & Maintenance Documentation
 
-**Project Name:** Bazano (بازانو)  
-**Current State:** Fully dynamic products page with Node.js + SQLite backend  
-**Date:** December 29, 2025  
-**Purpose:** This document explains **exactly what developers must do** when making changes to the website — which files to edit, which parts **must never be changed**, and which parts are safe/flexible.
+**Project Name:**  
+Bazano (بازانو) Backend
+
+**Current State:**  
+Node.js server with SQLite database for dynamic data handling
+
+**Date:**  
+January 03, 2026
+
+**Purpose:**  
+This document explains exactly what developers must do when making changes to the backend — which files to edit, which parts must never be changed, and which parts are safe/flexible. Focus is on code, development, and server-side logic.
 
 ---
 
@@ -12,105 +18,90 @@
 
 | Rule | Description |
 |------|-------------|
-| **DO NOT DELETE** any original design elements (headers, footers, carousels, styles) | The visual design must stay 100% the same |
-| **DO NOT MOVE** the `code` folder or `assets` folder | Folder structure must remain exactly as shown |
-| **DO NOT CHANGE** file names of main pages (`products.html`, `index.html`, etc.) | Links in menu depend on these names |
-| **ALWAYS TEST** after changes: run `npm start` in `/code` and visit `http://localhost:3000/products.html` |
+| **DO NOT DELETE** any core backend modules or dependencies | The server functionality must stay intact |
+| **DO NOT MOVE** the `code` folder or its subfolders | Folder structure must remain exactly as shown |
+| **DO NOT CHANGE** core file names (`app.js`, `package.json`, etc.) | Scripts and dependencies rely on these names |
+| **ALWAYS TEST** after changes: run `npm start` in `/code` and query endpoints like `http://localhost:3000/api/products` | Use tools like Postman or curl for API testing |
 
-```
 ---
 
-![alt text](image.png)
 ## 2. Folder Structure (Never Change This Structure)
 
 ```
-Baza-no/                          ← Root folder
-├── products.html                 ← Products page (dynamic)
-├── index.html                    ← Home page
-├── about.html
-├── contact.html
-├── news.html
-├── single-product.html           ← Product detail page (future use)
-├── cart.html
-├── checkout.html
-├── assets/
-│   ├── img/
-│   │   └── products/             ← ALL product images here
-│   ├── css/
-│   ├── js/
-│   ├── bootstrap/
-│   ├── scss/
-│   └── webfonts/
-└── code/                         ← Backend – NEVER move or rename
-    ├── app.js                    ← Server code
-    ├── package.json
+Bazano/                           ← Root folder (backend lives in `code`)
+└── code/                         ← Backend root – NEVER move or rename
+    ├── app.js                    ← Main server code
+    ├── package.json              ← Dependencies and scripts
+    ├── package-lock.json         ← Lockfile for reproducible installs
+    ├── node_modules/             ← Installed packages (do not edit manually)
     └── data/
-        └── database.db           ← Main database
+        └── database.db           ← SQLite database file
 ```
 
 ---
 
 ## 3. What to Change & Where (By Feature)
 
-### A. Adding / Editing / Deleting Products
+### A. Adding / Editing / Deleting Data Models (e.g., Products)
 
 | Task | What to Do | Where to Change | Must NOT Change |
 |------|------------|-----------------|-----------------|
-| Add new product | 1. Add row in database<br>2. Add image file | 1. `code/data/database.db` (use DB Browser for SQLite)<br>2. `assets/img/products/product-img-[NEW_ID].jpg` | Do not change existing product IDs |
-| Edit product (name, price, brand) | Update the row in database | `code/data/database.db` | Image name stays the same (based on ID) |
-| Delete product | Delete the row in database<br>Optional: delete image | `code/data/database.db`<br>Optional: `assets/img/products/product-img-X.jpg` | Do not delete other products |
-| Change product image | Replace the image file | `assets/img/products/product-img-[ID].jpg` | File name must stay `product-img-[ID].jpg` |
+| Add new entity (e.g., new table like users) | 1. Create table in database 2. Add queries in app.js | 1. code/data/database.db (use DB Browser for SQLite) 2. Add new routes/endpoints | Do not alter existing table schemas without migration |
+| Edit entity fields (e.g., add discount to products) | 1. Alter table in database 2. Update SELECT/INSERT queries | code/data/database.db and app.js | Existing data integrity; add defaults if needed |
+| Delete entity | 1. Drop table or delete rows 2. Remove related queries | code/data/database.db and app.js | Do not delete core tables like products without backup |
+| Add relationships (e.g., foreign keys) | Add constraints in database schema | code/data/database.db | Ensure no data loss; test queries |
 
-**Important**: Product ID in database **must match** image filename:  
-ID = 15 → Image must be `product-img-15.jpg`
+**Important**: Always backup `database.db` before schema changes. Use SQL migrations for production.
 
-### B. Changing Text / Design (Header, Footer, Menu, etc.)
+### B. Changing API Endpoints and Routes
 
 | Area | Safe to Change? | Where | Notes |
 |------|-----------------|-------|-------|
-| Logo | Yes | `assets/img/bazano-text-logo.png` | Replace file, keep same name |
-| Menu items (text/links) | Yes | All HTML files (header section) | Keep class names like `main-menu` |
-| Footer text, address, email | Yes | Footer section in HTML files | Keep structure for responsiveness |
-| Main colors, fonts | Yes | `assets/css/main.css` or SCSS files | Do not delete existing rules |
-| Page titles, breadcrumb text | Yes | Inside `<h1>` and `<p>` in each HTML file | Example: `<h1>محصولات</h1>` |
+| Add new endpoint (e.g., /api/users) | Yes | app.js (add app.get/post/etc.) | Follow REST conventions; add error handling |
+| Modify existing endpoint (e.g., add filters to /api/products) | Yes | app.js (edit SQL query or logic) | Keep response format consistent for frontend compatibility |
+| Add authentication/middleware | Yes | app.js (use express middleware) | Install via npm if needed (e.g., jwt) |
+| Change HTTP methods (GET to POST) | Yes, with caution | app.js | Update frontend calls accordingly |
+| Error handling and logging | Yes | app.js (add try-catch, console.log) | Use libraries like winston for production logging |
 
-**Never delete**: Any `<div>`, `<section>`, or classes used by JavaScript (like `product-lists`, `single-product-item`)
+**Never delete**: Core routes like `/api/products` without alternatives.
 
-### C. Changing the Products Page Layout
+### C. Database Queries and Logic
 
 | Change | Can Do? | How |
-|-------|--------|-----|
-| Change grid (3 columns → 4 columns) | Yes | Edit `col-lg-4` to `col-lg-3` in the script (line: `colDiv.className = ...`) |
-| Add description under title | Yes | Add `<p class="product-desc">${product.description}</p>` inside script `innerHTML` |
-| Show quantity or stock | Yes | Add badge using `${product.quantity}` |
-| Change price text ("قیمت" → "قیمت فروش") | Yes | Edit `<span>قیمت</span>` in script |
-| Add sale badge or discount | Yes | Add logic in JavaScript using `price_entry` vs `price_exit` |
+|--------|---------|-----|
+| Optimize query (e.g., add indexes) | Yes | Alter database.db (e.g., CREATE INDEX) |
+| Add parameterized queries for security | Yes | Use ? placeholders in sqlite3 queries |
+| Implement transactions | Yes | Use db.serialize() or db.run() in batches |
+| Add views or triggers | Yes | Execute SQL in database.db |
+| Switch to another DB (e.g., PostgreSQL) | Yes, major change | Update package.json, app.js connection; migrate data |
 
-**Never delete**:
-- `<div id="product-lists-container">`
-- The entire `<script>` that loads products (at bottom of `products.html`)
+**Never delete**:  
+- Database connection code (`const db = new sqlite3.Database(...)`)  
+- Error handling in queries
 
-### D. Backend / Server Changes (`code` folder)
+### D. Dependencies and Configuration
 
 | Task | Where | Details |
-|------|-------|--------|
-| Add new API endpoint | `code/app.js` | Add new `app.get('/api/...')` |
-| Change database query | `code/app.js` | Edit the SQL in `/api/products` |
-| Add more fields (e.g., discount) | 1. Database<br>2. `app.js`<br>3. Script in HTML | 1. Add column to `products` table<br>2. SELECT it<br>3. Use in frontend |
-| Change port | `code/app.js` | Change `const PORT = 3000;` |
+|------|-------|---------|
+| Add new package (e.g., for CORS) | package.json | Run `npm install <package>`; update app.js to use it |
+| Update package versions | package.json | Run `npm update`; test thoroughly |
+| Change server port or env vars | app.js | Edit `const PORT = 3000;` or add process.env |
+| Add config file | code/config.js (new file) | Import and use in app.js |
+| Implement testing | Add tests/ folder | Use jest or mocha; add to package.json scripts |
 
-**Never delete**:
-- `app.use(express.static(...))` → this serves HTML and images
-- The database connection code
-- `/api/products` endpoint
+**Never delete**:  
+- `express` and `sqlite3` dependencies  
+- `app.listen(PORT)` line
 
-### E. Adding New Pages
+### E. Adding New Features (e.g., Authentication, Caching)
 
 | Task | Steps |
 |------|-------|
-| Create new page (e.g., `services.html`) | 1. Copy `products.html`<br>2. Rename to `services.html`<br>3. Change content<br>4. Add link in menu (all HTML files) |
+| Add user authentication | 1. Add users table 2. Add /api/login endpoint 3. Use middleware for protected routes |
+| Implement caching (e.g., Redis) | 1. Install redis package 2. Connect in app.js 3. Cache query results |
+| Add background jobs | 1. Install node-cron 2. Add scheduled tasks in app.js |
 
-Keep header and footer the same across all pages.
+Ensure new features don't break existing APIs.
 
 ---
 
@@ -118,12 +109,11 @@ Keep header and footer the same across all pages.
 
 | Part | Why It Must Not Change |
 |------|------------------------|
-| `code/app.js` static file serving line | Serves all HTML, CSS, images |
-| Image naming: `product-img-[ID].jpg` | Script depends on this exact pattern |
-| `id="product-lists-container"` in `products.html` | JavaScript finds this to inject products |
-| The dynamic loading `<script>` at bottom of `products.html` | Loads real products from database |
-| Header menu structure and classes | Mobile menu and sticky header depend on it |
-| Footer structure | Responsiveness and social icons |
+| `app.use(express.static(...))` | Serves static files if integrated with frontend |
+| Database file path (`./data/database.db`) | Connection depends on this |
+| Core query structures in endpoints | Frontend expects specific JSON formats |
+| Express app initialization | Base for all routes |
+| Package.json scripts (e.g., "start": "node app.js") | For running the server |
 
 ---
 
@@ -131,10 +121,11 @@ Keep header and footer the same across all pages.
 
 | Tool | Use |
 |------|-----|
-| DB Browser for SQLite (free) | Edit `database.db` safely |
-| Text editor (VS Code recommended) | Edit HTML, JS, CSS |
-| Node.js installed | Run the server |
-| Browser (Chrome/Firefox) | Test changes |
+| DB Browser for SQLite (free) | Edit and query `database.db` |
+| Text editor (VS Code recommended) | Edit JS, JSON files |
+| Node.js installed | Run and develop the server |
+| Postman or Insomnia | Test API endpoints |
+| npm or yarn | Manage dependencies |
 
 ---
 
@@ -142,14 +133,14 @@ Keep header and footer the same across all pages.
 
 | Safe Changes | Dangerous (Don't Do) |
 |--------------|-----------------------|
-| Add/edit products in database | Delete or rename `code` folder |
-| Replace images (keep name) | Delete the dynamic script |
-| Change text, colors, fonts | Change `product-lists-container` ID |
-| Add new fields to database + script | Delete static file serving line in `app.js` |
-| Create new pages | Move `node_modules` outside `code` |
+| Add new routes/endpoints | Delete core dependencies |
+| Update queries with parameters | Change database path without updates |
+| Install new packages | Remove error handling |
+| Add tests and logging | Alter schemas without backups |
+| Optimize performance | Delete connection code |
 
 ---
 
-**Your website is now professional, dynamic, and easy to maintain.**  
-Follow this document → any developer can update it safely without breaking anything.
+**Your backend is now robust, scalable, and easy to develop.**
 
+Follow this document → any developer can update the backend safely without breaking functionality.
