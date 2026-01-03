@@ -3,34 +3,31 @@
 <head><head><meta charset="utf-8">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-
 
 	<!-- title -->
-	<title>سبد خرید</title>
+	<title>Check Out</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/icon_bazano.png">
+	<link rel="shortcut icon" type="image/png" href="../assets/img/icon_bazano.png">
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
-	<link rel="stylesheet" href="assets/css/all.min.css">
+	<link rel="stylesheet" href="../assets/css/all.min.css">
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 	<!-- owl carousel -->
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<link rel="stylesheet" href="../assets/css/owl.carousel.css">
 	<!-- magnific popup -->
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="../assets/css/magnific-popup.css">
 	<!-- animate css -->
-	<link rel="stylesheet" href="assets/css/animate.css">
+	<link rel="stylesheet" href="../assets/css/animate.css">
 	<!-- mean menu css -->
-	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+	<link rel="stylesheet" href="../assets/css/meanmenu.min.css">
 	<!-- main style -->
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 	<!-- responsive -->
-	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link rel="stylesheet" href="../assets/css/responsive.css">
 
 </head>
 <body>
@@ -99,7 +96,7 @@ body {
           <!-- logo -->
           <div class="site-logo">
             <a href="index.html">
-              <img src="assets/img/bazano-text-logo.png" alt="لوگو">
+              <img src="../assets/img/bazano-text-logo.png" alt="لوگو">
             </a>
           </div>
           <!-- logo -->
@@ -117,14 +114,14 @@ body {
               </li>
 
               <!-- products -->
-              <li><a href="products.html">همکاران ما</a></li>
+              <li><a href="products/products.html">همکاران ما</a></li>
 
               <!-- blog -->
               <li>
-                <a href="news.html">بلاگ</a>
+                <a href="news/news.html">بلاگ</a>
                 <ul class="sub-menu">
-                  <li><a href="news.html">لیست بلاگ</a></li>
-                  <li><a href="single-news.html">جزئیات بلاگ</a></li>
+                  <li><a href="news/news.html">لیست بلاگ</a></li>
+                  <li><a href="news/single-news.html">جزئیات بلاگ</a></li>
                 </ul>
               </li>
 
@@ -136,12 +133,12 @@ body {
 
               <!-- cart icon -->
               <li class="menu-item-has-children">
-                <a class="shopping-cart" href="cart.html">
+                <a class="shopping-cart" href="cart/cart.html">
                   <i class="fas fa-shopping-cart"></i>
                 </a>
                 <ul class="sub-menu">
-                  <li><a href="cart.html">سبد خرید</a></li>
-                  <li><a href="checkout.html">تکمیل سفارش</a></li>
+                  <li><a href="cart/cart.html">سبد خرید</a></li>
+                  <li><a href="cart/checkout.html">تکمیل سفارش</a></li>
                 </ul>
               </li>
 
@@ -165,6 +162,7 @@ body {
   </div>
 </div>
 <!-- end header --
+
 
 	<!-- search area -->
 	<div class="search-area">
@@ -192,7 +190,7 @@ body {
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>هوای خوبارو داریم</p>
-						<h1>سبد خرید</h1>
+						<h1>Check Out Product</h1>
 					</div>
 				</div>
 			</div>
@@ -200,97 +198,122 @@ body {
 	</div>
 	<!-- end breadcrumb section -->
 
-	<!-- cart -->
-	<div class="cart-section mt-150 mb-150">
+	<!-- check out section -->
+	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-md-12">
-					<div class="cart-table-wrap">
-						<table class="cart-table">
-							<thead class="cart-table-head">
-								<tr class="table-head-row">
-									<th class="product-remove"></th>
-									<th class="product-image">محصول</th>
-									<th class="product-name">نام محصول</th>
-									<th class="product-price">قیمت</th>
-									<th class="product-quantity">تعداد</th>
-									<th class="product-total">تعداد کالاها</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-									<td class="product-name">Strawberry</td>
-									<td class="product-price">$85</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-2.jpg" alt=""></td>
-									<td class="product-name">Berry</td>
-									<td class="product-price">$70</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/product-img-3.jpg" alt=""></td>
-									<td class="product-name">Lemon</td>
-									<td class="product-price">$35</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-							</tbody>
-						</table>
+				<div class="col-lg-8">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+						  <div class="card single-accordion">
+						    <div class="card-header" id="headingOne">
+						      <h5 class="mb-0">
+						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						          Billing Address
+						        </button>
+						      </h5>
+						    </div>
+
+						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						      <div class="card-body">
+						        <div class="billing-address-form">
+						        	<form action="index.html">
+						        		<p><input type="text" placeholder="Name"></p>
+						        		<p><input type="email" placeholder="Email"></p>
+						        		<p><input type="text" placeholder="Address"></p>
+						        		<p><input type="tel" placeholder="Phone"></p>
+						        		<p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
+						        	</form>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						  <div class="card single-accordion">
+						    <div class="card-header" id="headingTwo">
+						      <h5 class="mb-0">
+						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						          Shipping Address
+						        </button>
+						      </h5>
+						    </div>
+						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						      <div class="card-body">
+						        <div class="shipping-address-form">
+						        	<p>Your shipping address form is here.</p>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						  <div class="card single-accordion">
+						    <div class="card-header" id="headingThree">
+						      <h5 class="mb-0">
+						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						          Card Details
+						        </button>
+						      </h5>
+						    </div>
+						    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+						      <div class="card-body">
+						        <div class="card-details">
+						        	<p>Your card details goes here.</p>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
 					</div>
 				</div>
 
 				<div class="col-lg-4">
-					<div class="total-section">
-						<table class="total-table">
-							<thead class="total-table-head">
-								<tr class="table-total-row">
-									<th>جمع</th>
-									<th>قیمت</th>
+					<div class="order-details-wrap">
+						<table class="order-details">
+							<thead>
+								<tr>
+									<th>Your order Details</th>
+									<th>Price</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr class="total-data">
-									<td><strong>قیمت کالاها: </strong></td>
-									<td>$500</td>
+							<tbody class="order-details-body">
+								<tr>
+									<td>Product</td>
+									<td>Total</td>
 								</tr>
-								<tr class="total-data">
-									<td><strong>هزینه ارسال: </strong></td>
-									<td>$45</td>
+								<tr>
+									<td>Strawberry</td>
+									<td>$85.00</td>
 								</tr>
-								<tr class="total-data">
-									<td><strong>جمع سبد خرید: </strong></td>
-									<td>$545</td>
+								<tr>
+									<td>Berry</td>
+									<td>$70.00</td>
+								</tr>
+								<tr>
+									<td>Lemon</td>
+									<td>$35.00</td>
+								</tr>
+							</tbody>
+							<tbody class="checkout-details">
+								<tr>
+									<td>Subtotal</td>
+									<td>$190</td>
+								</tr>
+								<tr>
+									<td>Shipping</td>
+									<td>$50</td>
+								</tr>
+								<tr>
+									<td>Total</td>
+									<td>$240</td>
 								</tr>
 							</tbody>
 						</table>
-						<div class="cart-buttons">
-							<a href="cart.html" class="boxed-btn">به روزرسانی سبد</a>
-							<a href="checkout.html" class="boxed-btn black">پرداخت</a>
-						</div>
-					</div>
-
-					<div class="coupon-section">
-						<h3>کد تخفیف :</h3>
-						<div class="coupon-form-wrap">
-							<form action="index.html">
-								<p><input type="text" placeholder="کد"></p>
-								<p><input type="submit" value="ثبت"></p>
-							</form>
-						</div>
+						<a href="#" class="boxed-btn">Place Order</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end cart -->
+	<!-- end check out section -->
 
 	<!-- logo carousel -->
 	<div class="logo-carousel-section">
@@ -299,19 +322,19 @@ body {
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/1.png" alt="">
+							<img src="../assets/img/company-logos/1.png" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/2.png" alt="">
+							<img src="../assets/img/company-logos/2.png" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/3.png" alt="">
+							<img src="../assets/img/company-logos/3.png" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/4.png" alt="">
+							<img src="../assets/img/company-logos/4.png" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/5.png" alt="">
+							<img src="../assets/img/company-logos/5.png" alt="">
 						</div>
 					</div>
 				</div>
@@ -346,8 +369,8 @@ body {
 						<ul>
 							<li><a href="index.html">صفحه اصلی </a></li>
 							<li><a href="about.html">درباره ما</a></li>
-							<li><a href="products.html">محصولات</a></li>
-							<li><a href="news.html">بلاگ</a></li>
+							<li><a href="products/products.html">محصولات</a></li>
+							<li><a href="news/news.html">بلاگ</a></li>
 							<li><a href="contact.html">تماس با ما</a></li>
 						</ul>
 					</div>
@@ -391,25 +414,25 @@ body {
 	<!-- end copyright -->
 	
 	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
+	<script src="../assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
+	<script src="../assets/js/jquery.countdown.js"></script>
 	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
 	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
+	<script src="../assets/js/waypoints.js"></script>
 	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="../assets/js/owl.carousel.min.js"></script>
 	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="../assets/js/jquery.magnific-popup.min.js"></script>
 	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
+	<script src="../assets/js/jquery.meanmenu.min.js"></script>
 	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
+	<script src="../assets/js/sticker.js"></script>
 	<!-- main js -->
-	<script src="assets/js/main.js"></script>
+	<script src="../assets/js/main.js"></script>
 
 	<script>
 	document.querySelector('.hamburger').addEventListener('click', () => {
