@@ -175,3 +175,156 @@ Functions:
 5. Wallets updated → `creditWallet` for seller, buyer, partners
 6. Log entries created → `logAction`
 7. Admin queries `transaction_calculations` and `partner_calculations` for reports
+
+--- 
+## Diagram
+users
+  • id (INTEGER)
+  • firstname (TEXT)
+  • lastname (TEXT)
+  • phonenumber (TEXT)
+  • password (TEXT)
+
+sqlite_sequence
+  • name ()
+  • seq ()
+
+user_roles
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • role (TEXT)
+  ↳ FK: user_id → users.id
+
+profiles
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • email (TEXT)
+  • address (TEXT)
+  • avatar (TEXT)
+  • extra_info (TEXT)
+  ↳ FK: user_id → users.id
+
+wallets
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • balance (REAL)
+  • last_update (DATETIME)
+  ↳ FK: user_id → users.id
+
+products
+  • id (INTEGER)
+  • seller_id (INTEGER)
+  • brand (TEXT)
+  • name (TEXT)
+  • description (TEXT)
+  • manufacture_date (DATE)
+  • expire_date (DATE)
+  • quantity (INTEGER)
+  • price_entry (REAL)
+  • price_exit (REAL)
+  • category (TEXT)
+  ↳ FK: seller_id → users.id
+
+transactions
+  • id (INTEGER)
+  • transaction_code (TEXT)
+  • buyer_id (INTEGER)
+  • seller_id (INTEGER)
+  • transaction_record_date (DATETIME)
+  • status (TEXT)
+  • total_price (REAL)
+  • profit (REAL)
+  • fee (REAL)
+  • sector (TEXT)
+  • buyer_is_member (INTEGER)
+  ↳ FK: seller_id → users.id
+  ↳ FK: buyer_id → users.id
+
+transaction_items
+  • id (INTEGER)
+  • transaction_id (INTEGER)
+  • product_id (INTEGER)
+  • quantity (INTEGER)
+  • price (REAL)
+  ↳ FK: product_id → products.id
+  ↳ FK: transaction_id → transactions.id
+
+partners
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • details (TEXT)
+  ↳ FK: user_id → users.id
+
+partner_calculations
+  • id (INTEGER)
+  • transaction_id (INTEGER)
+  • partner_id (INTEGER)
+  • deal_index (INTEGER)
+  • base_share (REAL)
+  • percentage_applied (REAL)
+  • partner_credit (REAL)
+  • remaining (REAL)
+  ↳ FK: partner_id → partners.id
+  ↳ FK: transaction_id → transactions.id
+
+transaction_calculations
+  • id (INTEGER)
+  • transaction_id (INTEGER)
+  • net_profit (REAL)
+  • seller_profit (REAL)
+  • buyer_credit (REAL)
+  • partners_credit (REAL)
+  • dev_total (REAL)
+  • fixed_development (REAL)
+  • temporary_ip (REAL)
+  • temporary_manager (REAL)
+  • team_total (REAL)
+  • fixed_team (REAL)
+  • temporary_head (REAL)
+  • temporary_selfdev (REAL)
+  • temporary_consult (REAL)
+  • payout_type (TEXT)
+  ↳ FK: transaction_id → transactions.id
+
+requests
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • subject (TEXT)
+  • message (TEXT)
+  • date (DATETIME)
+  • status (TEXT)
+  ↳ FK: user_id → users.id
+
+support
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • message (TEXT)
+  • date (DATETIME)
+  • status (TEXT)
+  ↳ FK: user_id → users.id
+
+feedbacks
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • transaction_id (INTEGER)
+  • rating (INTEGER)
+  • message (TEXT)
+  • date (DATETIME)
+  ↳ FK: transaction_id → transactions.id
+  ↳ FK: user_id → users.id
+
+suggestions
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • message (TEXT)
+  • date (DATETIME)
+  ↳ FK: user_id → users.id
+
+logs
+  • id (INTEGER)
+  • user_id (INTEGER)
+  • action (TEXT)
+  • details (TEXT)
+  • date (DATETIME)
+  • ip_address (TEXT)
+  ↳ FK: user_id → users.id
