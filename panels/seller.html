@@ -1,0 +1,98 @@
+<!-- Same head/header/footer/JS as above -->
+<section class="seller-dashboard pt-100 pb-100">
+    <div class="container">
+        <h2>محصولات شما</h2>
+        <div id="seller-products" class="row"></div>
+        <h3>افزودن محصول</h3>
+        <form id="add-product-form">
+            <div class="form-group"><input type="text" id="brand" placeholder="برند"></div>
+            <div class="form-group"><input type="text" id="name" placeholder="نام" required></div>
+            <div class="form-group"><textarea id="description" placeholder="توضیحات"></textarea></div>
+            <div class="form-group"><input type="date" id="manufacture_date" placeholder="تاریخ تولید"></div>
+            <div class="form-group"><input type="date" id="expire_date" placeholder="تاریخ انقضا"></div>
+            <div class="form-group"><input type="number" id="quantity" placeholder="تعداد"></div>
+            <div class="form-group"><input type="number" id="price_entry" placeholder="قیمت ورودی"></div>
+            <div class="form-group"><input type="number" id="price_exit" placeholder="قیمت خروجی" required></div>
+            <div class="form-group"><input type="text" id="category" placeholder="دسته‌بندی"></div>
+            <button type="submit" class="btn btn-primary">افزودن</button>
+        </form>
+        <h3>وارد کردن اکسل</h3>
+        <input type="file" id="excel-file" accept=".xlsx">
+        <h3>تراکنش‌ها</h3>
+        <div id="seller-transactions"></div>
+        <!-- Add sections for wallet, partners, etc. -->
+    </div>
+</section>
+<script>
+    window.addEventListener('load', () => { updateNav(); loadSellerData(); });
+    async function loadSellerData() {
+        try {
+            const products = await apiFetch('/products?seller=true');
+            const container = document.getElementById('seller-products');
+            container.innerHTML = '';
+            products.forEach(p => {
+                const col = document.createElement('div');
+                col.className = 'col-lg-4 col-md-6';
+                col.innerHTML = `
+                    <div class="single-product-item">
+                        <h4>${p.name}</h4>
+                        <p>قیمت: ${p.price_exit}</p>
+                        <button onclick="editProduct(${p.id})">ویرایش</button>
+                        <button onclick="deleteProduct(${p.id})">حذف</button>
+                    </div>`;
+                container.appendChild(col);
+            });
+
+            const txs = await apiFetch('/transactions?seller=true');
+            // Similar rendering for transactions in #seller-transactions
+        } catch (err) {
+            if (err.message.includes('401')) window.location.href = '../auth/login.html';
+        }
+    }
+
+    document.getElementById('add-product-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+            brand: document.getElementById('brand').value,
+            name: document.getElementById('name').value,
+            description: document.getElementById('description').value,
+            manufacture_date: document.getElementById('manufacture_date').value,
+            expire_date: document.getElementById('expire_date').value,
+            quantity: parseInt(document.getElementById('quantity').value) || 0,
+            price_entry: parseFloat(document.getElementById('price_entry').value) || 0,
+            price_exit: parseFloat(document.getElementById('price_exit').value),
+            category: document.getElementById('category').value
+        };
+        try {
+            await apiFetch('/products', 'POST', data);
+            loadSellerData();
+        } catch (err) {
+            alert('خطا در افزودن محصول');
+        }
+    });
+
+    // Edit/Delete functions
+    async function editProduct(id) {
+        // Fetch product, populate form, PUT to /products/:id
+    }
+    async function deleteProduct(id) {
+        if (confirm('حذف؟')) {
+            await apiFetch(`/products/${id}`, 'DELETE');
+            loadSellerData();
+        }
+    }
+
+    // Excel import (add <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script> to head if needed)
+    document.getElementById('excel-file').addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+            const workbook = XLSX.read(event.target.result, { type: 'binary' });
+            // Parse and format data from sheets, then POST to /products/import
+            const data = []; // Extract rows to product objects
+            await apiFetch('/products/import', 'POST', { products: data });
+            loadSellerData();
+        };
+        reader.readAsBinaryString(file);
+    });
+</script>

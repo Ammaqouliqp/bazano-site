@@ -95,8 +95,8 @@ body {
         <div class="main-menu-wrap">
           <!-- logo -->
           <div class="site-logo">
-            <a href="index.html">
-              <img src="../assets/img/bazano-text-logo.png" alt="لوگو">
+            <a href="../index.html">
+              <img src="../assets/img/bazano-text-logo.png" alt="بازانو">
             </a>
           </div>
           <!-- logo -->
@@ -104,53 +104,40 @@ body {
           <!-- menu start -->
           <nav class="main-menu">
             <ul>
-              <!-- main menu -->
-              <li class="current-list-item">
-                <a href="#">صفحه اصلی</a>
-                <ul class="sub-menu">
-                  <li><a href="index.html">صفحه اصلی 1</a></li>
-                  <li><a href="index_2.html">صفحه اصلی 2</a></li>
-                </ul>
+              <!-- Notification (only when logged in) -->
+              <li class="notification d-none d-lg-block" id="notif-li" style="display:none;">
+                <a href="#" id="notif-btn">
+                  <i class="fas fa-bell"></i>
+                  <span class="badge" id="notif-count">0</span>
+                </a>
               </li>
 
-
-
-              <!-- products -->
-              <li>
-                <a href="products/products.html">محصولات</a>
-                <ul class="sub-menu">
-                  <li><a href="products/products.html">همکاران ما</a></li>
-                  <li><a href="cart/cart.html">سبد خرید</a></li>
-                  <li><a href="cart/checkout.html">تکمیل سفارش</a></li>
-                  <!-- اگر لازم شد: <li><a href="products/single-product.html">جزئیات محصول</a></li> -->
-                </ul>
+              <!-- Profile / Login (only desktop) -->
+              <li class="profile d-none d-lg-block" id="profile-li">
+                <!-- Filled by JS -->
               </li>
 
-              <!-- blog -->
-              <li>
-                <a href="news/news.html">بلاگ</a>
-                <ul class="sub-menu">
-                  <li><a href="news/news.html">لیست بلاگ</a></li>
-                  <li><a href="news/single-news.html">جزئیات بلاگ</a></li>
-                </ul>
+              <!-- Cart Icon (only desktop) -->
+              <li class="shopping-cart d-none d-lg-block">
+                <a href="../cart/cart.html">
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
               </li>
-              <!-- about us-->
-              <li><a href="about.html">درباره ما</a></li>
-			  
-              <!-- contact us -->
-              <li><a href="contact.html">تماس با ما</a></li>
 
-              <!-- آیکون‌ها -->
-              <li>
-                <div class="header-icons">
-                  <a class="shopping-cart" href="cart/cart.html"><i class="fas fa-shopping-cart"></i></a>
-                  <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                </div>
+              <!-- Search Icon (Desktop - center) -->
+              <li class="search-center d-none d-lg-block">
+                <a class="search-bar-icon" href="#">
+                  <i class="fas fa-search"></i>
+                </a>
               </li>
             </ul>
           </nav>
-          <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-          <div class="mobile-menu"></div>
+
+          <!-- Mobile: Only Search Icon (shown on mobile) -->
+          <a class="mobile-show search-bar-icon" href="#">
+            <i class="fas fa-search"></i>
+          </a>
+
           <!-- menu end -->
         </div>
       </div>
@@ -158,26 +145,31 @@ body {
   </div>
 </div>
 <!-- end header -->
+<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
+<div class="mobile-bottom-nav d-lg-none">
+  <a href="#" id="mobile-profile-bottom"> |  <i class="fas fa-user"></i> |  </a>
+  <a href="#" id="mobile-notif-bottom"> |   <i class="fas fa-bell"></i><span class="badge" id="mobile-notif-count">0</span> |  </a>
+  <a href="../cart/cart.html"> |  <i class="fas fa-shopping-cart"></i> |  </a>
+</div>
 
-
-	<!-- search area -->
-	<div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>جست و جو :</h3>
-							<input type="text" placeholder="کالا  ، محصول و ...">
-							<button type="submit">جست و جو <i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end search area -->
+<!-- Full-Screen Search Overlay (your original - keep exactly) -->
+<div class="search-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <span class="close-btn"><i class="fas fa-window-close"></i></span>
+        <div class="search-bar">
+          <div class="search-bar-tablecell">
+            <h3>جست و جو :</h3>
+            <input type="text" placeholder="کالا  ، محصول و ...">
+            <button type="submit">جست و جو <i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end search area -->
 	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
@@ -209,10 +201,10 @@ body {
 						<p class="single-product-pricing"><span>Per Kg</span> $50</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
 						<div class="single-product-form">
-							<form action="index.html">
+							<form action="../index.html">
 								<input type="number" placeholder="0">
 							</form>
-							<a href="cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
+							<a href="../cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
 							<p><strong>Categories: </strong>Fruits, Organic</p>
 						</div>
 						<h4>Share:</h4>
@@ -244,31 +236,31 @@ body {
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="products/single-product.html"><img src="../assets/img/products/product-img-1.jpg" alt=""></a>
+							<a href="../products/single-product.html"><img src="../assets/img/products/product-img-1.jpg" alt=""></a>
 						</div>
 						<h3>Strawberry</h3>
 						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
+						<a href="../cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="products/single-product.html"><img src="../assets/img/products/product-img-2.jpg" alt=""></a>
+							<a href="../products/single-product.html"><img src="../assets/img/products/product-img-2.jpg" alt=""></a>
 						</div>
 						<h3>Berry</h3>
 						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
+						<a href="../cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="products/single-product.html"><img src="../assets/img/products/product-img-3.jpg" alt=""></a>
+							<a href="../products/single-product.html"><img src="../assets/img/products/product-img-3.jpg" alt=""></a>
 						</div>
 						<h3>Lemon</h3>
 						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
+						<a href="../cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
 					</div>
 				</div>
 			</div>
@@ -328,11 +320,11 @@ body {
 					<div class="footer-box pages">
 						<h2 class="widget-title">منو ها</h2>
 						<ul>
-							<li><a href="index.html">صفحه اصلی </a></li>
-							<li><a href="about.html">درباره ما</a></li>
-							<li><a href="products/products.html">محصولات</a></li>
-							<li><a href="news/news.html">بلاگ</a></li>
-							<li><a href="contact.html">تماس با ما</a></li>
+							<li><a href="../index.html">صفحه اصلی </a></li>
+							<li><a href="../about.html">درباره ما</a></li>
+							<li><a href="../products/products.html">محصولات</a></li>
+							<li><a href="../news/news.html">بلاگ</a></li>
+							<li><a href="../contact.html">تماس با ما</a></li>
 						</ul>
 					</div>
 				</div>
@@ -340,7 +332,7 @@ body {
 					<div class="footer-box subscribe">
 						<h2 class="widget-title">!همراه ما باشید</h2>
 						<p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
-						<form action="index.html">
+						<form action="../index.html">
 							<input type="email" placeholder="Email">
 							<button type="submit"><i class="fas fa-paper-plane"></i></button>
 						</form>

@@ -112,8 +112,8 @@ body {
         <div class="main-menu-wrap">
           <!-- logo -->
           <div class="site-logo">
-            <a href="index.html">
-              <img src="../assets/img/bazano-text-logo.png" alt="لوگو">
+            <a href="../index.html">
+              <img src="../assets/img/bazano-text-logo.png" alt="بازانو">
             </a>
           </div>
           <!-- logo -->
@@ -121,57 +121,40 @@ body {
           <!-- menu start -->
           <nav class="main-menu">
             <ul>
-              <!-- main menu -->
-              <li class="current-list-item">
-                <a href="#">صفحه اصلی</a>
-                <ul class="sub-menu">
-                  <li><a href="index.html">صفحه اصلی 1</a></li>
-                  <li><a href="index_2.html">صفحه اصلی 2</a></li>
-                </ul>
+              <!-- Notification (only when logged in) -->
+              <li class="notification d-none d-lg-block" id="notif-li" style="display:none;">
+                <a href="#" id="notif-btn">
+                  <i class="fas fa-bell"></i>
+                  <span class="badge" id="notif-count">0</span>
+                </a>
               </li>
 
-              <!-- products -->
-              <li><a href="products/products.html">همکاران ما</a></li>
-
-              <!-- blog -->
-              <li>
-                <a href="news/news.html">بلاگ</a>
-                <ul class="sub-menu">
-                  <li><a href="news/news.html">لیست بلاگ</a></li>
-                  <li><a href="news/single-news.html">جزئیات بلاگ</a></li>
-                </ul>
+              <!-- Profile / Login (only desktop) -->
+              <li class="profile d-none d-lg-block" id="profile-li">
+                <!-- Filled by JS -->
               </li>
 
-              <!-- about us-->
-              <li><a href="about.html">درباره ما</a></li>
-
-              <!-- contact us -->
-              <li><a href="contact.html">تماس با ما</a></li>
-
-              <!-- cart icon -->
-              <li class="menu-item-has-children">
-                <a class="shopping-cart" href="cart/cart.html">
+              <!-- Cart Icon (only desktop) -->
+              <li class="shopping-cart d-none d-lg-block">
+                <a href="../cart/cart.html">
                   <i class="fas fa-shopping-cart"></i>
                 </a>
-                <ul class="sub-menu">
-                  <li><a href="cart/cart.html">سبد خرید</a></li>
-                  <li><a href="cart/checkout.html">تکمیل سفارش</a></li>
-                </ul>
               </li>
 
-              <!-- middle search icon-->
-              <li class="search-center">
+              <!-- Search Icon (Desktop - center) -->
+              <li class="search-center d-none d-lg-block">
                 <a class="search-bar-icon" href="#">
                   <i class="fas fa-search"></i>
-                  <span class="search-text">جست‌وجو</span>
                 </a>
               </li>
             </ul>
           </nav>
+
+          <!-- Mobile: Only Search Icon (shown on mobile) -->
           <a class="mobile-show search-bar-icon" href="#">
             <i class="fas fa-search"></i>
           </a>
-          <div class="mobile-menu"></div>
+
           <!-- menu end -->
         </div>
       </div>
@@ -179,26 +162,31 @@ body {
   </div>
 </div>
 <!-- end header -->
+<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
+<div class="mobile-bottom-nav d-lg-none">
+  <a href="#" id="mobile-profile-bottom"> |  <i class="fas fa-user"></i> |  </a>
+  <a href="#" id="mobile-notif-bottom"> |   <i class="fas fa-bell"></i><span class="badge" id="mobile-notif-count">0</span> |  </a>
+  <a href="../cart/cart.html"> |  <i class="fas fa-shopping-cart"></i> |  </a>
+</div>
 
-
-	<!-- search area -->
-	<div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>جست و جو :</h3>
-							<input type="text" placeholder="کالا  ، محصول و ...">
-							<button type="submit">جست و جو <i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end search area -->
+<!-- Full-Screen Search Overlay (your original - keep exactly) -->
+<div class="search-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <span class="close-btn"><i class="fas fa-window-close"></i></span>
+        <div class="search-bar">
+          <div class="search-bar-tablecell">
+            <h3>جست و جو :</h3>
+            <input type="text" placeholder="کالا  ، محصول و ...">
+            <button type="submit">جست و جو <i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end search area -->
 
 		<!-- breadcrumb-section -->
 		<div class="breadcrumb-section breadcrumb-bg">
@@ -224,7 +212,7 @@ body {
 								<i class="far fa-sad-cry"></i>
 								<h1>Oops! Not Found.</h1>
 								<p>The page you requested for is not found.</p>
-								<a href="index.html" class="boxed-btn">Back to Home</a>
+								<a href="../index.html" class="boxed-btn">Back to Home</a>
 							</div>
 						</div>
 					</div>
@@ -284,11 +272,11 @@ body {
 					<div class="footer-box pages">
 						<h2 class="widget-title">منو ها</h2>
 						<ul>
-							<li><a href="index.html">صفحه اصلی </a></li>
-							<li><a href="about.html">درباره ما</a></li>
-							<li><a href="products/products.html">محصولات</a></li>
-							<li><a href="news/news.html">بلاگ</a></li>
-							<li><a href="contact.html">تماس با ما</a></li>
+							<li><a href="../index.html">صفحه اصلی </a></li>
+							<li><a href="../about.html">درباره ما</a></li>
+							<li><a href="../products/products.html">محصولات</a></li>
+							<li><a href="../news/news.html">بلاگ</a></li>
+							<li><a href="../contact.html">تماس با ما</a></li>
 						</ul>
 					</div>
 				</div>
@@ -296,7 +284,7 @@ body {
 					<div class="footer-box subscribe">
 						<h2 class="widget-title">!همراه ما باشید</h2>
 						<p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
-						<form action="index.html">
+						<form action="../index.html">
 							<input type="email" placeholder="Email">
 							<button type="submit"><i class="fas fa-paper-plane"></i></button>
 						</form>
