@@ -1,0 +1,92 @@
+.login-section {
+  background: #2d3b2d; /* سبز تیره */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 30px;
+  padding: 50px 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.user-icon-circle {
+  width: 100px;
+  height: 100px;
+  background: #ff6f00; /* نارنجی */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.user-icon-circle i {
+  font-size: 50px;
+  color: white;
+}
+
+.login-card h3 {
+  color: #2d3b2d;
+  font-weight: bold;
+}
+
+.text-muted {
+  color: #888 !important;
+}
+
+.method-tabs {
+  margin-bottom: 30px;
+}
+
+.method-btn {
+  padding: 12px 30px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.method-btn.active {
+  background: #ff6f00;
+  color: white;
+}
+
+.form-control {
+  height: 55px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  padding: 0 25px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.otp-input {
+  font-size: 32px;
+  letter-spacing: 15px;
+  text-align: center;
+}
+
+.btn.boxed-btn {
+  height: 55px;
+  border-radius: 30px;
+  background: #ff6f00;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.timer {
+  color: #ff6f00;
+  font-weight: bold;
+}

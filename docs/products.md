@@ -165,7 +165,7 @@ Replace the old products section with this:
             <div class="col-md-12">
                 <div class="product-filters">
                     <ul>
-                        <li class="active" data-filter="*">همه</li>
+                        <a href="products/products.html" class="boxed-btn">همه محصولات</a>
                         <!-- Add real categories here later -->
                     </ul>
                 </div>

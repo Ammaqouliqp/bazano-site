@@ -7,27 +7,28 @@
 	<!-- title -->
 	<title>Check Out</title>
 
-	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="../assets/img/icon_bazano.png">
-	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-	<!-- fontawesome -->
-	<link rel="stylesheet" href="../assets/css/all.min.css">
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-	<!-- owl carousel -->
-	<link rel="stylesheet" href="../assets/css/owl.carousel.css">
-	<!-- magnific popup -->
-	<link rel="stylesheet" href="../assets/css/magnific-popup.css">
-	<!-- animate css -->
-	<link rel="stylesheet" href="../assets/css/animate.css">
-	<!-- mean menu css -->
-	<link rel="stylesheet" href="../assets/css/meanmenu.min.css">
-	<!-- main style -->
-	<link rel="stylesheet" href="../assets/css/main.css">
-	<!-- responsive -->
-	<link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/img/icon_bazano.png">
+    <!-- فونت فارسی -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+	<!-- فونت فارسی Zain -->
+	<link href="https://fonts.googleapis.com/css2?family=Zain:wght@700&display=swap" rel="stylesheet"/>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="../assets/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
+    <!-- main style -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9BWb3k3J4qT7f5Z4f2r4C6o4iV6f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
@@ -90,86 +91,109 @@ body {
 <!-- header -->
 <div class="top-header-area" id="sticker">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-sm-12 text-center">
-        <div class="main-menu-wrap">
-          <!-- logo -->
-          <div class="site-logo">
-            <a href="../index.html">
-              <img src="../assets/img/bazano-text-logo.png" alt="بازانو">
-            </a>
-          </div>
-          <!-- logo -->
-
-          <!-- menu start -->
-          <nav class="main-menu">
-            <ul>
-              <!-- Notification (only when logged in) -->
-              <li class="notification d-none d-lg-block" id="notif-li" style="display:none;">
-                <a href="#" id="notif-btn">
-                  <i class="fas fa-bell"></i>
-                  <span class="badge" id="notif-count">0</span>
-                </a>
-              </li>
-
-              <!-- Profile / Login (only desktop) -->
-              <li class="profile d-none d-lg-block" id="profile-li">
-                <!-- Filled by JS -->
-              </li>
-
-              <!-- Cart Icon (only desktop) -->
-              <li class="shopping-cart d-none d-lg-block">
-                <a href="../cart/cart.html">
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-              </li>
-
-              <!-- Search Icon (Desktop - center) -->
-              <li class="search-center d-none d-lg-block">
-                <a class="search-bar-icon" href="#">
-                  <i class="fas fa-search"></i>
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          <!-- Mobile: Only Search Icon (shown on mobile) -->
-          <a class="mobile-show search-bar-icon" href="#">
-            <i class="fas fa-search"></i>
+    <div class="row align-items-center">
+      <!-- Logo -->
+      <div class="col-6 col-lg-3 text-right">
+        <div class="site-logo">
+          <a href="../index.html">
+            <img src="../assets/img/bazano-text-logo.png" alt="بازانو">
           </a>
-
-          <!-- menu end -->
         </div>
+      </div>
+
+      <!-- Icons -->
+      <div class="col-6 col-lg-9 text-left">
+        <nav class="main-menu">
+          <ul>
+            <!-- Notification Bell - Desktop only -->
+            <li class="notification d-none d-lg-inline-block" id="notif-desktop">
+              <a href="#" id="notif-desktop-btn">
+                <i class="fas fa-bell"></i>
+                <span class="badge" id="notif-count">0</span>
+              </a>
+            </li>
+
+            <!-- Cart - Desktop only -->
+            <li class="shopping-cart d-none d-lg-inline-block">
+              <a href="#" id="cart-desktop-btn">
+                <i class="fas fa-shopping-cart"></i>
+              </a>
+            </li>
+
+            <!-- Profile / Login - Desktop only -->
+            <li class="profile-login d-none d-lg-inline-block" id="profile-desktop">
+              <!-- Filled by JS -->
+            </li>
+
+            <!-- Search Icon - Desktop middle -->
+            <li class="search-center d-none d-lg-block">
+              <a class="search-bar-icon" href="#">
+                <i class="fas fa-search"></i>
+              </a>
+            </li>
+
+            <!-- Search Icon - Mobile top -->
+<!-- Mobile Search Icon - ALWAYS visible on mobile -->
+			<li class="search-mobile d-lg-none">
+			<a class="search-bar-icon" href="#">
+				<i class="fas fa-search"></i>
+			</a>
+			</li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
 </div>
 <!-- end header -->
-<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
-<div class="mobile-bottom-nav d-lg-none">
-  <a href="#" id="mobile-profile-bottom"> |  <i class="fas fa-user"></i> |  </a>
-  <a href="#" id="mobile-notif-bottom"> |   <i class="fas fa-bell"></i><span class="badge" id="mobile-notif-count">0</span> |  </a>
-  <a href="../cart/cart.html"> |  <i class="fas fa-shopping-cart"></i> |  </a>
-</div>
 
-<!-- Full-Screen Search Overlay (your original - keep exactly) -->
-<div class="search-area">
+<!-- Mobile Bottom Fixed Bar (always shown, same for logged in/not) -->
+<div class="mobile-bottom-bar d-lg-none">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <span class="close-btn"><i class="fas fa-window-close"></i></span>
-        <div class="search-bar">
-          <div class="search-bar-tablecell">
-            <h3>جست و جو :</h3>
-            <input type="text" placeholder="کالا  ، محصول و ...">
-            <button type="submit">جست و جو <i class="fas fa-search"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ul>
+      <!-- Mobile Profile -->
+      <li id="mobile-profile">
+        <!-- Filled by JS (always profile icon, click behavior changes) -->
+      </li>
+
+      <!-- Mobile Notification -->
+      <li id="mobile-notif">
+        <a href="#" id="mobile-notif-btn">
+          <i class="fas fa-bell"></i>
+          <span class="badge" id="mobile-notif-count">0</span>
+        </a>
+      </li>
+
+      <!-- Mobile Cart -->
+      <li>
+        <a href="#" id="mobile-cart-btn">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
-<!-- end search area -->
+<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
+ 
+<!-- Full-Screen Search Overlay (your original) -->
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>جست و جو :</h3>
+							<input type="text" placeholder="کالا  ، محصول و ...">
+							<button type="submit">جست و جو <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search area -->
 	
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
@@ -421,7 +445,9 @@ body {
 	<script src="../assets/js/sticker.js"></script>
 	<!-- main js -->
 	<script src="../assets/js/main.js"></script>
-
+	
+	<script src="../assets/js/utils.js"></script>
+	
 	<script>
 	document.querySelector('.hamburger').addEventListener('click', () => {
 		document.querySelector('.nav-links').classList.toggle('show');

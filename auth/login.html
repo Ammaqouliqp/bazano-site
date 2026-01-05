@@ -4,67 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ورود - بازانو</title>
+
+    <link rel="shortcut icon" type="image/png" href="../assets/img/icon_bazano.png">
+    <!-- فونت فارسی -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+	<!-- فونت فارسی Zain -->
+	<link href="https://fonts.googleapis.com/css2?family=Zain:wght@700&display=swap" rel="stylesheet"/>
+    <!-- fontawesome -->
     <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/animate.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <!-- owl carousel -->
     <link rel="stylesheet" href="../assets/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
+    <!-- main style -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <!-- responsive -->
     <link rel="stylesheet" href="../assets/css/responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9BWb3k3J4qT7f5Z4f2r4C6o4iV6f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom OTP Login CSS (سبک سبز دقیق) -->
+    <link rel="stylesheet" href="css/otp-login.css">
 </head>
 <body>
-    <header class="header-area">
-        <!-- Your header/nav code, with links like href="../index.html" -->
-    </header>
-    
-    <section class="login-section pt-100 pb-100">
+
+    <!-- PreLoader -->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <!-- Header (کپی از index.html) -->
+     
+    <!-- هدر نهایی که درست کردیم رو اینجا بذار -->
+
+    <!-- OTP Login Section -->
+    <section class="login-section pt-150 pb-150">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <form id="login-form">
-                        <div class="form-group">
-                            <label>شماره تلفن</label>
-                            <input type="text" id="phonenumber" required>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="login-card">
+                        <div class="text-center mb-4">
+                            <div class="user-icon-circle">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 class="mt-3">ورود به حساب</h3>
+                            <p class="text-muted">شماره تلفن یا ایمیل خود را وارد کنید</p>
                         </div>
-                        <div class="form-group">
-                            <label>رمز عبور</label>
-                            <input type="password" id="password" required>
+
+                        <!-- Step 1: انتخاب روش و ورود اطلاعات -->
+                        <div id="step1">
+                            <div class="method-tabs text-center mb-4">
+                                <button type="button" class="method-btn active" data-method="phone">تلفن</button>
+                                <button type="button" class="method-btn" data-method="email">ایمیل</button>
+                            </div>
+
+                            <form id="send-otp-form">
+                                <div class="form-group mb-4">
+                                    <label id="input-label">شماره تلفن</label>
+                                    <input type="text" class="form-control" id="identifier" placeholder="09123456789" required>
+                                </div>
+
+                                <button type="submit" class="btn boxed-btn w-100" id="send-btn">
+                                    <span class="btn-text">دریافت کد</span>
+                                    <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> در حال ارسال...</span>
+                                </button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">ورود</button>
-                    </form>
+
+                        <!-- Step 2: ورود کد -->
+                        <div id="step2" style="display:none;">
+                            <h4 class="text-center mb-3">کد تأیید را وارد کنید</h4>
+                            <p class="text-center text-muted mb-4" id="sent-to"></p>
+
+                            <form id="verify-otp-form">
+                                <div class="form-group mb-4">
+                                    <input type="text" class="form-control text-center otp-input" id="otp-code" placeholder="— — — — — —" maxlength="6" required>
+                                </div>
+
+                                <button type="submit" class="btn boxed-btn w-100" id="verify-btn">
+                                    <span class="btn-text">ورود</span>
+                                    <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> در حال بررسی...</span>
+                                </button>
+
+                                <div class="text-center mt-3">
+                                    <span class="timer" id="timer">۲:۰۰</span> | 
+                                    <a href="#" id="resend-code" class="text-muted">ارسال مجدد</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="otp-error" class="text-danger text-center mt-3" style="display:none;"></div>
+
+                        <div class="text-center mt-4">
+                            <a href="../index.html" class="text-muted small">بازگشت به خانه</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Your footer code -->
-    
+
+    <!-- Footer (کپی از index.html) -->
+
+    <!-- Scripts -->
     <script src="../assets/js/jquery-1.11.3.min.js"></script>
-    <script src="../assets/js/jquery.countdown.js"></script>
-    <script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
     <script src="../assets/js/jquery.magnific-popup.min.js"></script>
     <script src="../assets/js/jquery.meanmenu.min.js"></script>
-    <script src="../assets/js/owl.carousel.min.js"></script>
     <script src="../assets/js/sticker.js"></script>
-    <script src="../assets/js/waypoints.js"></script>
-    <script src="../assets/js/form-validate.js"></script>
     <script src="../assets/js/main.js"></script>
+
+    <!-- utils.js -->
     <script src="../assets/js/utils.js"></script>
-    <script>
-        window.addEventListener('load', updateNav);
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const phonenumber = document.getElementById('phonenumber').value;
-            const password = document.getElementById('password').value;
-            try {
-                const { token } = await apiFetch('/login', 'POST', { phonenumber, password });
-                setToken(token);
-                const role = await getUserRole();
-                redirectToPanel(role);
-            } catch (err) {
-                alert('خطا در ورود: ' + err.message);
-            }
-        });
-    </script>
+
+    <!-- Custom OTP Login JS -->
+    <script src="js/otp-login.js"></script>
 </body>
 </html>
