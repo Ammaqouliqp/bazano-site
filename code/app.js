@@ -327,3 +327,107 @@ app.get('/api/messages', authenticate, (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server on port ${PORT}`));
+// In-memory OTP store (for testing)
+const otpStore = {};
+
+// Send OTP - check if user exists
+app.post('/api/auth/send-otp', (req, res) => {
+  const { identifier } = req.body;
+  if (!identifier) return res.status(400).json({ error: 'شناسه لازم است' });
+
+  // Normalize identifier (remove spaces, etc.)
+  const normalized = identifier.trim();
+
+  db.get('SELECT id FROM users WHERE phonenumber = ? OR email = ?', [normalized, normalized], (err, user) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'خطا در سرور' });
+    }
+
+    const testCode = '123456'; // In production: Math.floor(100000 + Math.random() * 900000).toString()
+
+    otpStore[normalized] = {
+      code: testCode,
+      exists: !!user,
+      userId: user ? user.id : null
+    };
+
+    console.log(`OTP sent to ${normalized}: ${testCode} (exists: ${!!user})`);
+
+    res.json({ 
+      message: 'کد ارسال شد', 
+      testCode // Remove in production
+    });
+  });
+});
+
+// Verify OTP
+app.post('/api/auth/verify-otp', (req, res) => {
+  const { identifier, code } = req.body;
+  if (!identifier || !code) return res.status(400).json({ error: 'اطلاعات ناقص' });
+
+  const normalized = identifier.trim();
+  const stored = otpStore[normalized];
+
+  if (!stored || stored.code !== code) {
+    return res.status(400).json({ error: 'کد اشتباه یا منقضی شده' });
+  }
+
+  if (stored.exists) {
+    // Existing user → login
+    const token = jwt.sign({ id: stored.userId }, JWT_SECRET, { expiresIn: '24h' });
+    delete otpStore[normalized];
+    res.json({ token, action: 'login' });
+  } else {
+    // New user → go to register
+    delete otpStore[normalized];
+    res.json({ action: 'register', identifier: normalized });
+  }
+});
+
+// Register new user
+app.post('/api/register', async (req, res) => {
+  const { firstname, lastname, phonenumber, email, password } = req.body;
+
+  if (!firstname || !lastname || !password || (!phonenumber && !email)) {
+    return res.status(400).json({ error: 'اطلاعات ناقص' });
+  }
+
+  try {
+    const hashed = await bcrypt.hash(password, 10);
+
+    db.run(
+      'INSERT INTO users (firstname, lastname, phonenumber, email, password) VALUES (?, ?, ?, ?, ?)',
+      [firstname, lastname, phonenumber || null, email || null, hashed],
+      function(err) {
+        if (err) {
+          if (err.message.includes('UNIQUE')) {
+            return res.status(400).json({ error: 'کاربر با این شماره یا ایمیل قبلاً ثبت شده' });
+          }
+          return res.status(500).json({ error: 'خطا در ثبت نام' });
+        }
+
+        // Create default role (buyer)
+        db.run('INSERT INTO user_roles (user_id, role) VALUES (?, ?)', [this.lastID, 'buyer']);
+
+        const token = jwt.sign({ id: this.lastID }, JWT_SECRET, { expiresIn: '24h' });
+        res.json({ token, message: 'ثبت نام موفق' });
+      }
+    );
+  } catch (err) {
+    res.status(500).json({ error: 'خطا در سرور' });
+  }
+});
+app.get('/api/users/me', authenticate, (req, res) => {
+  db.get('SELECT firstname, lastname, phonenumber, email FROM users WHERE id = ?', [req.user.id], (err, row) => {
+    if (err || !row) return res.status(404).json({ error: 'کاربر یافت نشد' });
+    res.json(row);
+  });
+});
+
+app.get('/api/wallets/me', authenticate, (req, res) => {
+  db.get('SELECT balance FROM wallets WHERE user_id = ?', [req.user.id], (err, row) => {
+    if (err || !row) return res.json({ balance: 0 });
+    res.json(row);
+  });
+});
