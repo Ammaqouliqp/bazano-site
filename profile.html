@@ -31,216 +31,295 @@
 </head>
 <body>
 
-    <!-- PreLoader -->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
+<!-- PreLoader -->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
     </div>
-    <!-- PreLoader Ends -->
+</div>
+<!-- PreLoader Ends -->
 
-    <!-- Include your header (copy from index.html or use the final one we fixed) -->
-    <!-- header -->
-    <div class="top-header-area" id="sticker">
-      <div class="container">
-        <div class="row align-items-center">
-          <!-- Logo + Mobile Search -->
-          <div class="col-12 col-lg-3 d-flex justify-content-between align-items-center">
-            <a class="search-bar-icon d-lg-none mr-3" href="#">
-              <i class="fas fa-search" style="font-size: 28px; color: #333;"></i>
-            </a>
-            <div class="site-logo mx-auto">
-              <a href="index.html">
-                <img src="assets/img/bazano-text-logo.png" alt="بازانو">
+<!-- header -->
+<div class="top-header-area" id="sticker">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Logo -->
+      <div class="col-6 col-lg-3 text-right">
+        <div class="site-logo">
+          <a href="../index.html">
+            <img src="../assets/img/bazano-text-logo.png" alt="بازانو">
+          </a>
+        </div>
+      </div>
+
+      <!-- Icons -->
+      <div class="col-6 col-lg-9 text-left">
+        <nav class="main-menu">
+          <ul>
+            <!-- Notification Bell - Desktop only -->
+            <li class="notification d-none d-lg-inline-block" id="notif-desktop">
+              <a href="#" id="notif-desktop-btn">
+                <i class="fas fa-bell"></i>
+                <span class="badge" id="notif-count">0</span>
               </a>
-            </div>
-            <div class="d-lg-none" style="width: 40px;"></div>
+            </li>
+
+            <!-- Cart - Desktop only -->
+            <li class="shopping-cart d-none d-lg-inline-block">
+              <a href="#" id="cart-desktop-btn">
+                <i class="fas fa-shopping-cart"></i>
+              </a>
+            </li>
+
+            <!-- Profile / Login - Desktop only -->
+            <li class="profile-login d-none d-lg-inline-block" id="profile-desktop">
+              <!-- Filled by JS -->
+            </li>
+
+            <!-- Search Icon - Desktop middle -->
+            <li class="search-center d-none d-lg-block">
+              <a class="search-bar-icon" href="#">
+                <i class="fas fa-search"></i>
+              </a>
+            </li>
+
+            <!-- Search Icon - Mobile top -->
+<!-- Mobile Search Icon - ALWAYS visible on mobile -->
+			<li class="search-mobile d-lg-none">
+			<a class="search-bar-icon" href="#">
+				<i class="fas fa-search"></i>
+			</a>
+			</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+
+<!-- Mobile Bottom Fixed Bar (always shown, same for logged in/not) -->
+<div class="mobile-bottom-bar d-lg-none">
+  <div class="container">
+    <ul>
+      <!-- Mobile Profile -->
+      <li id="mobile-profile">
+        <!-- Filled by JS (always profile icon, click behavior changes) -->
+      </li>
+
+      <!-- Mobile Notification -->
+      <li id="mobile-notif">
+        <a href="#" id="mobile-notif-btn">
+          <i class="fas fa-bell"></i>
+          <span class="badge" id="mobile-notif-count">0</span>
+        </a>
+      </li>
+
+      <!-- Mobile Cart -->
+      <li>
+        <a href="#" id="mobile-cart-btn">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
+ 
+<!-- Full-Screen Search Overlay (your original) -->
+<!-- search area -->
+<div class="search-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<span class="close-btn"><i class="fas fa-window-close"></i></span>
+				<div class="search-bar">
+					<div class="search-bar-tablecell">
+						<h3>جست و جو :</h3>
+						<input type="text" placeholder="کالا  ، محصول و ...">
+						<button type="submit">جست و جو <i class="fas fa-search"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end search area -->
+
+<!-- Profile Page Content -->
+<div class="hero-area hero-bg" style="padding: 100px 0; min-height: 80vh;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card bordered-btn" style="padding: 40px; border-radius: 15px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          <div class="text-center mb-4">
+            <i class="fas fa-user-circle" style="font-size: 100px; color: #ff6f00;"></i>
+            <h2 class="mt-3" id="user-name">کاربر عزیز</h2>
+            <p id="user-phone">در حال بارگذاری...</p>
           </div>
 
-          <!-- Desktop Icons -->
-          <div class="col-lg-9 d-none d-lg-block">
-            <nav class="main-menu">
-              <ul>
-                <li class="notification" id="notif-desktop">
-                  <a href="#" id="notif-desktop-btn">
-                    <i class="fas fa-bell"></i>
-                    <span class="badge" id="notif-count">0</span>
-                  </a>
-                </li>
-                <li class="shopping-cart">
-                  <a href="#" id="cart-desktop-btn">
-                    <i class="fas fa-shopping-cart"></i>
-                  </a>
-                </li>
-                <li class="profile-login" id="profile-desktop">
-                  <!-- Filled by JS -->
-                </li>
-                <li class="search-center">
-                  <a class="search-bar-icon" href="#">
-                    <i class="fas fa-search"></i>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+          <div class="list-section">
+            <h4 class="mb-4">اطلاعات پروفایل</h4>
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between">
+                <span>نام</span>
+                <strong id="profile-firstname">-</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>نام خانوادگی</span>
+                <strong id="profile-lastname">-</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>شماره تلفن</span>
+                <strong id="profile-phonenumber">-</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>ایمیل</span>
+                <strong id="profile-email">-</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>اعتبار کیف پول</span>
+                <strong id="profile-wallet">0 تومان</strong>
+              </li>
+            </ul>
+          </div>
+
+          <div class="text-center mt-5">
+            <a href="index.html" class="boxed-btn mr-3">بازگشت به خانه</a>
+            <a href="#" id="logout-btn" class="bordered-btn">خروج از حساب</a>
           </div>
         </div>
       </div>
     </div>
-    <!-- end header -->
+  </div>
+</div>
 
-    <!-- Mobile Bottom Bar -->
-    <div class="mobile-bottom-bar d-lg-none">
-      <div class="container">
-        <ul>
-          <li id="mobile-profile">
-            <!-- Filled by JS -->
-          </li>
-          <li id="mobile-notif">
-            <a href="#" id="mobile-notif-btn">
-              <i class="fas fa-bell"></i>
-              <span class="badge" id="mobile-notif-count">0</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" id="mobile-cart-btn">
-              <i class="fas fa-shopping-cart"></i>
-            </a>
-          </li>
-        </ul>
+<!-- footer -->
+<div class="footer-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-box about-widget ">
+          <h2 class="widget-title ">در باره ما</h2>
+          <p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
+        </div>
       </div>
-    </div>
-
-    <!-- Full-Screen Search Overlay -->
-    <div class="search-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <span class="close-btn"><i class="fas fa-window-close"></i></span>
-            <div class="search-bar">
-              <div class="search-bar-tablecell">
-                <h3>جست و جو :</h3>
-                <input type="text" placeholder="کالا  ، محصول و ...">
-                <button type="submit">جست و جو <i class="fas fa-search"></i></button>
-              </div>
-            </div>
-          </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-box get-in-touch">
+          <h2 class="widget-title">تماس با ما</h2>
+          <ul>
+            <li>Bazano_address</li>
+            <li>officialbazano@gmail.com</li>
+            <li>شبکه رسمی بازانو+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-box pages">
+          <h2 class="widget-title">منو ها</h2>
+          <ul>
+            <li><a href="../index.html">صفحه اصلی </a></li>
+            <li><a href="../products/products.html">محصولات</a></li>
+            <li><a href="../news/news.html">بلاگ</a></li>
+            <li><a href="../about.html">درباره ما</a></li>
+            <li><a href="../contact.html">تماس با ما</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-box subscribe">
+          <h2 class="widget-title">!همراه ما باشید</h2>
+          <p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
+          <form action="index.html">
+            <input type="email" placeholder="Email">
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<!-- end footer -->
 
-    <!-- Profile Page Content -->
-    <div class="hero-area hero-bg" style="padding: 100px 0; min-height: 80vh;">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 col-md-10">
-            <div class="card bordered-btn" style="padding: 40px; border-radius: 15px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-              <div class="text-center mb-4">
-                <i class="fas fa-user-circle" style="font-size: 100px; color: #ff6f00;"></i>
-                <h2 class="mt-3" id="user-name">کاربر عزیز</h2>
-                <p id="user-phone">در حال بارگذاری...</p>
-              </div>
-
-              <div class="list-section">
-                <h4 class="mb-4">اطلاعات پروفایل</h4>
-                <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between">
-                    <span>نام</span>
-                    <strong id="profile-firstname">-</strong>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between">
-                    <span>نام خانوادگی</span>
-                    <strong id="profile-lastname">-</strong>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between">
-                    <span>شماره تلفن</span>
-                    <strong id="profile-phonenumber">-</strong>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between">
-                    <span>ایمیل</span>
-                    <strong id="profile-email">-</strong>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between">
-                    <span>اعتبار کیف پول</span>
-                    <strong id="profile-wallet">0 تومان</strong>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="text-center mt-5">
-                <a href="index.html" class="boxed-btn mr-3">بازگشت به خانه</a>
-                <a href="#" id="logout-btn" class="bordered-btn">خروج از حساب</a>
-              </div>
-            </div>
-          </div>
+<!-- copyright -->
+<div class="copyright">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <p>تمامی حقوق این سایت متعلق به بازانو است.</p>
+      </div>
+      <div class="col-lg-6 text-right col-md-12">
+        <div class="social-icons">
+          <ul>
+            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com/officialbazano/" target="https://www.instagram.com/officialbazano/"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+          </ul>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<!-- end copyright -->
 
-    <!-- Footer (copy from index.html) -->
-    <div class="footer-area">
-      <!-- Your footer code from index.html -->
-    </div>
+<!-- Scripts -->
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.countdown.js"></script>
+<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+<script src="assets/js/waypoints.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.meanmenu.min.js"></script>
+<script src="assets/js/sticker.js"></script>
+<script src="assets/js/main.js"></script>
 
-    <div class="copyright">
-      <!-- Your copyright code -->
-    </div>
+<!-- utils.js for header and token -->
+<script src="../assets/js/utils.js"></script>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery-1.11.3.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.countdown.js"></script>
-    <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-    <script src="assets/js/waypoints.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <script src="assets/js/sticker.js"></script>
-    <script src="assets/js/main.js"></script>
+<!-- Profile Protection + Data Load -->
+<script>
+  // Redirect if not logged in
+  document.addEventListener('DOMContentLoaded', async function () {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'auth/login.html';
+      return;
+    }
 
-    <!-- utils.js for header and token -->
-    <script src="../assets/js/utils.js"></script>
+    // Load user data from backend
+    try {
+      const user = await fetch('/api/users/me', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      }).then(res => res.json());
 
-    <!-- Profile Protection + Data Load -->
-    <script>
-      // Redirect if not logged in
-      document.addEventListener('DOMContentLoaded', async function () {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          window.location.href = 'auth/login.html';
-          return;
-        }
+      document.getElementById('user-name').textContent = `${user.firstname || ''} ${user.lastname || ''}`.trim() || 'کاربر عزیز';
+      document.getElementById('user-phone').textContent = user.phonenumber || 'نامشخص';
+      document.getElementById('profile-firstname').textContent = user.firstname || '-';
+      document.getElementById('profile-lastname').textContent = user.lastname || '-';
+      document.getElementById('profile-phonenumber').textContent = user.phonenumber || '-';
+      document.getElementById('profile-email').textContent = user.email || '-';
 
-        // Load user data from backend
-        try {
-          const user = await fetch('/api/users/me', {
-            headers: { 'Authorization': `Bearer ${token}` }
-          }).then(res => res.json());
+      // Load wallet (example endpoint - adjust if different)
+      const wallet = await fetch('/api/wallets/me', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      }).then(res => res.json());
+      document.getElementById('profile-wallet').textContent = (wallet.balance || 0) + ' تومان';
 
-          document.getElementById('user-name').textContent = `${user.firstname || ''} ${user.lastname || ''}`.trim() || 'کاربر عزیز';
-          document.getElementById('user-phone').textContent = user.phonenumber || 'نامشخص';
-          document.getElementById('profile-firstname').textContent = user.firstname || '-';
-          document.getElementById('profile-lastname').textContent = user.lastname || '-';
-          document.getElementById('profile-phonenumber').textContent = user.phonenumber || '-';
-          document.getElementById('profile-email').textContent = user.email || '-';
+    } catch (err) {
+      console.error('Error loading profile:', err);
+      alert('خطا در بارگذاری اطلاعات پروفایل');
+    }
 
-          // Load wallet (example endpoint - adjust if different)
-          const wallet = await fetch('/api/wallets/me', {
-            headers: { 'Authorization': `Bearer ${token}` }
-          }).then(res => res.json());
-          document.getElementById('profile-wallet').textContent = (wallet.balance || 0) + ' تومان';
-
-        } catch (err) {
-          console.error('Error loading profile:', err);
-          alert('خطا در بارگذاری اطلاعات پروفایل');
-        }
-
-        // Logout button
-        document.getElementById('logout-btn').addEventListener('click', function(e) {
-          e.preventDefault();
-          localStorage.removeItem('token');
-          window.location.href = 'index.html';
-        });
-      });
-    </script>
+    // Logout button
+    document.getElementById('logout-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('token');
+      window.location.href = 'index.html';
+    });
+  });
+</script>
 </body>
 </html>
