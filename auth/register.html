@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <!-- Same head as login.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ثبت نام - بازانو</title>
-    <link rel="stylesheet" href="css/otp-login.css"> <!-- Reuse style -->
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="../assets/img/icon_bazano.png">
+
+    <!-- Persian Fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Zain:wght@700&display=swap" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Bootstrap & Theme CSS -->
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <!-- Same style as login (green card) -->
+    <link rel="stylesheet" href="css/otp-login.css">
 </head>
 <body>
-    <!-- Header -->
 
+    <!-- PreLoader -->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <!-- Header (کپی از index.html) -->
+
+    <!-- Register Section -->
     <section class="login-section pt-150 pb-150">
         <div class="container">
             <div class="row justify-content-center">
@@ -31,14 +63,26 @@
                                 <input type="text" class="form-control" id="lastname" required>
                             </div>
                             <div class="form-group mb-3">
-                                <label id="identifier-label">شماره تلفن / ایمیل</label>
-                                <input type="text" class="form-control" id="identifier" readonly>
+                                <label>شماره تلفن</label>
+                                <input type="text" class="form-control" id="phonenumber" readonly>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label>ایمیل (اختیاری)</label>
+                                <input type="email" class="form-control" id="email" placeholder="اختیاری">
                             </div>
                             <div class="form-group mb-4">
                                 <label>رمز عبور</label>
                                 <input type="password" class="form-control" id="password" required>
                             </div>
-                            <button type="submit" class="btn boxed-btn w-100">ثبت نام</button>
+
+                            <button type="submit" class="btn boxed-btn w-100">
+                                <span class="btn-text">ثبت نام</span>
+                                <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> در حال ثبت...</span>
+                            </button>
+
+                            <div class="text-center mt-3">
+                                <a href="../index.html" class="text-muted small">بازگشت به خانه</a>
+                            </div>
                         </form>
 
                         <div id="register-error" class="text-danger text-center mt-3" style="display:none;"></div>
@@ -50,7 +94,18 @@
 
     <!-- Footer -->
 
+    <!-- Scripts -->
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/jquery.meanmenu.min.js"></script>
+    <script src="../assets/js/sticker.js"></script>
+    <script src="../assets/js/main.js"></script>
+
     <script src="../assets/js/utils.js"></script>
+
+    <!-- Custom Register JS -->
     <script src="js/register.js"></script>
 </body>
 </html>

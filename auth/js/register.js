@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Pre-fill identifier from URL
+  // Get phone from URL (from OTP step)
   const params = new URLSearchParams(window.location.search);
-  const identifier = params.get('identifier');
-  if (identifier) {
-    document.getElementById('identifier').value = identifier;
-    document.getElementById('identifier-label').textContent = identifier.includes('@') ? 'ایمیل' : 'شماره تلفن';
+  const phonenumber = params.get('identifier');
+
+  if (phonenumber) {
+    document.getElementById('phonenumber').value = phonenumber;
+  } else {
+    alert('خطا: شماره تلفن یافت نشد');
+    window.location.href = 'login.html';
   }
 
   document.getElementById('register-form').addEventListener('submit', async (e) => {
@@ -12,14 +15,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const firstname = document.getElementById('firstname').value.trim();
     const lastname = document.getElementById('lastname').value.trim();
-    const identifier = document.getElementById('identifier').value.trim();
+    const phonenumber = document.getElementById('phonenumber').value.trim();
+    const email = document.getElementById('email').value.trim(); // Optional
     const password = document.getElementById('password').value;
 
+    if (!firstname || !lastname || !password) {
+      alert('لطفاً نام، نام خانوادگی و رمز عبور را وارد کنید');
+      return;
+    }
+
     try {
-      const response = await fetch('http://localhost:3000/api/register', {
+      const response = await fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstname, lastname, phonenumber: identifier.includes('@') ? null : identifier, email: identifier.includes('@') ? identifier : null, password })
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          phonenumber,
+          email: email || null, // Save empty if not filled
+          password
+        })
       });
 
       const data = await response.json();
@@ -31,8 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = '../index.html';
 
     } catch (err) {
-      document.getElementById('register-error').textContent = err.message;
-      document.getElementById('register-error').style.display = 'block';
+      alert(err.message);
     }
   });
-}); 
+});

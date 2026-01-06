@@ -1,6 +1,6 @@
 // assets/js/utils.js - Complete fixed version (based on your original + new header logic added)
 
-const API_BASE = 'http://localhost:3000/api'; // Change to your deployment URL later
+const API_BASE = '/api'; // Change to your deployment URL later
 
 function getToken() {
   return localStorage.getItem('token');

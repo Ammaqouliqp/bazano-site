@@ -158,7 +158,7 @@
             <p id="user-phone">در حال بارگذاری...</p>
           </div>
 
-          <div class="list-section">
+          <div class="list-section text-center">
             <h4 class="mb-4">اطلاعات پروفایل</h4>
             <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between">
@@ -280,42 +280,6 @@
 <script src="../assets/js/utils.js"></script>
 
 <!-- Profile Protection + Data Load -->
-<script>
-  // Redirect if not logged in
-  document.addEventListener('DOMContentLoaded', async function () {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      window.location.href = 'auth/login.html';
-      return;
-    }
-
-    // Load user data from backend
-    try {
-      const user = await apiFetch('/users/me'); // Use your utils.js apiFetch for token
-
-      document.getElementById('user-name').textContent = `${user.firstname || ''} ${user.lastname || ''}`.trim() || 'کاربر عزیز';
-      document.getElementById('profile-firstname').textContent = user.firstname || '-';
-      document.getElementById('profile-lastname').textContent = user.lastname || '-';
-      document.getElementById('profile-phonenumber').textContent = user.phonenumber || '-';
-      document.getElementById('profile-email').textContent = user.email || '-';
-
-      // Wallet
-      const wallet = await apiFetch('/wallets/me');
-      document.getElementById('profile-wallet').textContent = (wallet.balance || 0) + ' تومان';
-
-    } catch (err) {
-      console.error(err);
-      alert('خطا در بارگذاری پروفایل - لطفاً دوباره وارد شوید');
-      window.location.href = 'auth/login.html';
-    }
-
-    // Logout button
-    document.getElementById('logout-btn').addEventListener('click', function(e) {
-      e.preventDefault();
-      localStorage.removeItem('token');
-      window.location.href = 'index.html';
-    });
-  });
-</script>
+<script src="../profile/js/profile.js"></script>
 </body>
 </html>

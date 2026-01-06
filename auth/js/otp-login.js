@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtnLoading.style.display = 'flex';
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/send-otp', {
+      const response = await fetch('/api/auth/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identifier })
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     verifyBtnLoading.style.display = 'flex';
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/verify-otp', {
+      const response = await fetch('/api/auth/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code })
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!identifier) return;
 
     try {
-      const res = await fetch('http://localhost:3000/api/auth/send-otp', {
+      const res = await fetch('/api/auth/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identifier })
@@ -165,31 +165,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Verify OTP
-  document.getElementById('verify-otp-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const identifier = identifierInput.value.trim();
-    const code = document.getElementById('otp-code').value.trim();
+// Verify OTP
+document.getElementById('verify-otp-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const code = document.getElementById('otp-code').value.trim();
+  const identifier = document.getElementById('identifier').value.trim(); // این رو نگه دار
 
-    try {
-      const res = await fetch('http://localhost:3000/api/auth/verify-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ identifier, code })
-      });
+  if (!code) {
+    alert('لطفاً کد را وارد کنید');
+    return;
+  }
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'کد اشتباه');
+  try {
+    const response = await fetch('http://localhost:3000/api/auth/verify-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ identifier, code }) // حتما identifier رو بفرست
+    });
 
-      if (data.action === 'login') {
-        localStorage.setItem('token', data.token);
-        window.location.href = '../index.html';
-      } else if (data.action === 'register') {
-        window.location.href = `register.html?identifier=${encodeURIComponent(identifier)}`;
-      }
+    const data = await response.json();
 
-    } catch (err) {
-      alert(err.message);
+    if (!response.ok) {
+      alert(data.error || 'کد اشتباه است');
+      return;
     }
+
+    if (data.action === 'login' && data.token) {
+      localStorage.setItem('token', data.token);
+      alert('ورود موفق! خوش آمدید');
+      window.location.href = '../index.html';
+    } else if (data.action === 'register') {
+      // فقط اگر واقعاً کاربر جدید باشه
+      window.location.href = `register.html?identifier=${encodeURIComponent(identifier)}`;
+    } else {
+      alert('خطای ناشناخته');
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert('خطا در ارتباط با سرور');
+  }
   });
 });
