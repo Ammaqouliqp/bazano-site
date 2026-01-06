@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <!-- Same head as login.html -->
+    <title>ثبت نام - بازانو</title>
+    <link rel="stylesheet" href="css/otp-login.css"> <!-- Reuse style -->
+</head>
+<body>
+    <!-- Header -->
+
+    <section class="login-section pt-150 pb-150">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="login-card">
+                        <div class="text-center mb-4">
+                            <div class="user-icon-circle">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h3 class="mt-3">ثبت نام</h3>
+                            <p class="text-muted">اطلاعات خود را وارد کنید</p>
+                        </div>
+
+                        <form id="register-form">
+                            <div class="form-group mb-3">
+                                <label>نام</label>
+                                <input type="text" class="form-control" id="firstname" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>نام خانوادگی</label>
+                                <input type="text" class="form-control" id="lastname" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label id="identifier-label">شماره تلفن / ایمیل</label>
+                                <input type="text" class="form-control" id="identifier" readonly>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label>رمز عبور</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn boxed-btn w-100">ثبت نام</button>
+                        </form>
+
+                        <div id="register-error" class="text-danger text-center mt-3" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+
+    <script src="../assets/js/utils.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

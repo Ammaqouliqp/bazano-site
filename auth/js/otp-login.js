@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
   // ارسال کد
   document.getElementById('send-otp-form').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -89,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!response.ok) throw new Error(data.error || 'کد اشتباه است');
 
-      localStorage.setItem('token', data.token);
+      localStorage.setItem('token', 'test');
+      location.reload();;
       alert('ورود موفق! خوش آمدید');
       window.location.href = '../index.html';
 
@@ -127,4 +127,69 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 1000);
   }
+});
+
+
+// auth/js/otp-login.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const sentTo = document.getElementById('sent-to');
+  const identifierInput = document.getElementById('identifier');
+
+  // Send OTP
+  document.getElementById('send-otp-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const identifier = identifierInput.value.trim();
+    if (!identifier) return;
+
+    try {
+      const res = await fetch('http://localhost:3000/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'خطا');
+
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+      sentTo.textContent = `کد به ${identifier} ارسال شد`;
+
+      console.log('Test OTP Code:', data.testCode || '123456'); // For testing
+
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+
+  // Verify OTP
+  document.getElementById('verify-otp-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const identifier = identifierInput.value.trim();
+    const code = document.getElementById('otp-code').value.trim();
+
+    try {
+      const res = await fetch('http://localhost:3000/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier, code })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'کد اشتباه');
+
+      if (data.action === 'login') {
+        localStorage.setItem('token', data.token);
+        window.location.href = '../index.html';
+      } else if (data.action === 'register') {
+        window.location.href = `register.html?identifier=${encodeURIComponent(identifier)}`;
+      }
+
+    } catch (err) {
+      alert(err.message);
+    }
+  });
 });

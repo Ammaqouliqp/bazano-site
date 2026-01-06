@@ -153,7 +153,7 @@
       <div class="col-lg-8 col-md-10">
         <div class="card bordered-btn" style="padding: 40px; border-radius: 15px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
           <div class="text-center mb-4">
-            <i class="fas fa-user-circle" style="font-size: 100px; color: #ff6f00;"></i>
+            <i class="fas fa-user-circle" style="font-size: 100px; color: #db8b27;"></i>
             <h2 class="mt-3" id="user-name">کاربر عزیز</h2>
             <p id="user-phone">در حال بارگذاری...</p>
           </div>
@@ -186,7 +186,7 @@
 
           <div class="text-center mt-5">
             <a href="index.html" class="boxed-btn mr-3">بازگشت به خانه</a>
-            <a href="#" id="logout-btn" class="bordered-btn">خروج از حساب</a>
+            <a href="#" id="logout-btn" class="boxed-btn mr-3">خروج از حساب</a>
           </div>
         </div>
       </div>
@@ -291,26 +291,22 @@
 
     // Load user data from backend
     try {
-      const user = await fetch('/api/users/me', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      }).then(res => res.json());
+      const user = await apiFetch('/users/me'); // Use your utils.js apiFetch for token
 
       document.getElementById('user-name').textContent = `${user.firstname || ''} ${user.lastname || ''}`.trim() || 'کاربر عزیز';
-      document.getElementById('user-phone').textContent = user.phonenumber || 'نامشخص';
       document.getElementById('profile-firstname').textContent = user.firstname || '-';
       document.getElementById('profile-lastname').textContent = user.lastname || '-';
       document.getElementById('profile-phonenumber').textContent = user.phonenumber || '-';
       document.getElementById('profile-email').textContent = user.email || '-';
 
-      // Load wallet (example endpoint - adjust if different)
-      const wallet = await fetch('/api/wallets/me', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      }).then(res => res.json());
+      // Wallet
+      const wallet = await apiFetch('/wallets/me');
       document.getElementById('profile-wallet').textContent = (wallet.balance || 0) + ' تومان';
 
     } catch (err) {
-      console.error('Error loading profile:', err);
-      alert('خطا در بارگذاری اطلاعات پروفایل');
+      console.error(err);
+      alert('خطا در بارگذاری پروفایل - لطفاً دوباره وارد شوید');
+      window.location.href = 'auth/login.html';
     }
 
     // Logout button
