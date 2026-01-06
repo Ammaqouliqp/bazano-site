@@ -94,22 +94,8 @@ h1, .h1 {
     line-height: 2.75rem;
   }
 }
-.hamburger {
-  display: none;
-  font-size: 24px;
-  background: none;
-  border: none;
-}
 
-@media (max-width: 600px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-  }
-  .hamburger {
-    display: block;
-  }
-}
+
 .nav-links {
   display: none;
   flex-direction: column;
@@ -1031,6 +1017,28 @@ h2.widget-title:after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: #db8b27;
+}
+.copyright .social-icons ul li a.bale-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease; 
+}
+
+.copyright .social-icons ul li a.bale-icon img {
+  width: 15px;           
+  height: 15px;
+  filter: invert(100%);
+  position: relative;
+  top: 2px;
+  transition: filter 0.3s ease, transform 0.3s ease; 
+}
+
+.copyright .social-icons ul li a.bale-icon:hover img {
+  filter: invert(49%) sepia(79%) saturate(655%) hue-rotate(4deg) brightness(101%) contrast(101%); 
+
 }
 
 /* -----------------------------------------------------------------------------

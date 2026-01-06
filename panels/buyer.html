@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل خریدار - بازانو</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="../assets/img/icon_bazano.png">
+
+    <!-- Persian Fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Zain:wght@700&display=swap" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Bootstrap & Theme CSS -->
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <!-- Buyer Panel CSS -->
+    <link rel="stylesheet" href="css/buyer-panel.css">
+</head>
+<body>
+
+    <!-- PreLoader -->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <!-- Header (copy from index.html) -->
+
+    <!-- Mobile Bottom Bar (copy from index.html) -->
+
+    <!-- Buyer Panel -->
+    <section class="panel-section pt-100 pb-100">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 col-md-4 mb-5 mb-md-0">
+                    <div class="panel-sidebar">
+                        <div class="user-info text-center mb-4">
+                            <i class="fas fa-user-circle" style="font-size: 80px; color: #db8b27;"></i>
+                            <h4 id="panel-username">در حال بارگذاری...</h4>
+                            <p id="panel-phone">در حال بارگذاری...</p>
+                        </div>
+                        <ul class="panel-menu">
+                            <li class="active" data-section="dashboard"><i class="fas fa-home"></i> داشبورد</li>
+                            <li data-section="orders"><i class="fas fa-shopping-bag"></i> سفارشات من</li>
+                            <li data-section="transactions"><i class="fas fa-exchange-alt"></i> تراکنش‌های من</li>
+                            <li data-section="requests"><i class="fas fa-file-alt"></i> درخواست‌های من</li>
+                            <li data-section="wallet"><i class="fas fa-wallet"></i> کیف پول</li>
+                            <li data-section="profile"><i class="fas fa-user"></i> پروفایل</li>
+                            <li id="panel-logout"><i class="fas fa-sign-out-alt"></i> خروج</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9 col-md-8">
+                    <div class="panel-content">
+
+                        <!-- Dashboard -->
+                        <div id="dashboard" class="panel-tab active">
+                            <h3>خوش آمدید!</h3>
+                            <div class="row mt-5">
+                                <div class="col-md-4 mb-4">
+                                    <div class="stat-card">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <h4 id="total-orders">0</h4>
+                                        <p>تعداد سفارشات</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="stat-card">
+                                        <i class="fas fa-wallet"></i>
+                                        <h4 id="wallet-balance">0 تومان</h4>
+                                        <p>موجودی کیف پول</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="stat-card">
+                                        <i class="fas fa-star"></i>
+                                        <h4 id="buyer-credits">0</h4>
+                                        <p>امتیازات شما</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Orders (Product Requests) -->
+                        <div id="orders" class="panel-tab">
+                            <h3>سفارشات من</h3>
+                            <div id="orders-list" class="mt-4">
+                                <p class="text-center">در حال بارگذاری...</p>
+                            </div>
+                        </div>
+
+                        <!-- Transactions -->
+                        <div id="transactions" class="panel-tab">
+                            <h3>تراکنش‌های من</h3>
+                            <div id="transactions-list" class="mt-4">
+                                <p class="text-center">در حال بارگذاری...</p>
+                            </div>
+                        </div>
+
+                        <!-- Requests -->
+                        <div id="requests" class="panel-tab">
+                            <h3>درخواست‌های من</h3>
+                            <div id="requests-list" class="mt-4">
+                                <p class="text-center">در حال بارگذاری...</p>
+                            </div>
+                        </div>
+
+                        <!-- Wallet -->
+                        <div id="wallet" class="panel-tab">
+                            <h3>کیف پول</h3>
+                            <div class="wallet-info">
+                                <h4>موجودی: <span id="wallet-amount">0 تومان</span></h4>
+                            </div>
+                        </div>
+
+                        <!-- Profile -->
+                        <div id="profile" class="panel-tab">
+                            <h3>پروفایل</h3>
+                            <ul class="list-group mt-4">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>نام</span>
+                                    <strong id="buyer-firstname">-</strong>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>نام خانوادگی</span>
+                                    <strong id="buyer-lastname">-</strong>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>شماره تلفن</span>
+                                    <strong id="buyer-phone">-</strong>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>ایمیل</span>
+                                    <strong id="buyer-email">-</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/jquery.meanmenu.min.js"></script>
+    <script src="../assets/js/sticker.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+    <script src="../assets/js/utils.js"></script>
+
+    <!-- Buyer Panel JS -->
+    <script src="js/buyer-panel.js"></script>
+</body>
+</html>

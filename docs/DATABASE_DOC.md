@@ -234,9 +234,9 @@ transactions
   • status (TEXT)
   • total_price (REAL)
   • profit (REAL)
+  • offer (REAL)
   • fee (REAL)
   • sector (TEXT)
-  • buyer_is_member (INTEGER)
   ↳ FK: seller_id → users.id
   ↳ FK: buyer_id → users.id
 

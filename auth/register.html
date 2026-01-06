@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ثبت نام - بازانو</title>
 
-    <!-- Favicon -->
+    
     <link rel="shortcut icon" type="image/png" href="../assets/img/icon_bazano.png">
 
-    <!-- Persian Fonts -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+	<!-- Persian Fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Zain:wght@700&display=swap" rel="stylesheet"/>
 
     <!-- Font Awesome -->
@@ -25,87 +25,107 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 
-    <!-- Same style as login (green card) -->
-    <link rel="stylesheet" href="css/otp-login.css">
+
 </head>
 <body>
 
-    <!-- PreLoader -->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
+<!-- PreLoader -->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
     </div>
+</div>
 
-    <!-- Header (کپی از index.html) -->
+<!-- Header (کپی از index.html) -->
 
-    <!-- Register Section -->
-    <section class="login-section pt-150 pb-150">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-8">
-                    <div class="login-card">
-                        <div class="text-center mb-4">
-                            <div class="user-icon-circle">
-                                <i class="fas fa-user-plus"></i>
-                            </div>
-                            <h3 class="mt-3">ثبت نام</h3>
-                            <p class="text-muted">اطلاعات خود را وارد کنید</p>
+<!-- Register Section -->
+<section class="login-section pt-150 pb-150">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-8">
+                <div class="login-card text-center">
+                    <div class="text-center mb-4">
+                        <div class="user-icon-circle">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="mt-3">ثبت نام</h3>
+                        <p class="text-muted">اطلاعات خود را وارد کنید</p>
+                    </div>
+
+                    <form id="register-form">
+                        <div class="form-group mb-3">
+                        <label>نام</label>
+                        <input type="text" class="form-control" id="firstname" pattern="[آ-یa-zA-Z\s]+" required>
+                        <small class="text-muted">فقط حروف مجاز است</small>
+                        </div>
+                        <div class="form-group mb-3">
+                        <label>نام خانوادگی</label>
+                        <input type="text" class="form-control" id="lastname" pattern="[آ-یa-zA-Z\s]+" required>
+                        <small class="text-muted">فقط حروف مجاز است</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>شماره تلفن</label>
+                            <input type="text" class="form-control" id="phonenumber" readonly>
+                        </div>
+                        <div class="form-group mb-4">
+                        <label>ایمیل (اختیاری)</label>
+                        <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+                        <small class="text-muted"></small>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>رمز عبور</label>
+                            <input type="password" class="form-control" id="password" required>
                         </div>
 
-                        <form id="register-form">
-                            <div class="form-group mb-3">
-                                <label>نام</label>
-                                <input type="text" class="form-control" id="firstname" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>نام خانوادگی</label>
-                                <input type="text" class="form-control" id="lastname" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>شماره تلفن</label>
-                                <input type="text" class="form-control" id="phonenumber" readonly>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label>ایمیل (اختیاری)</label>
-                                <input type="email" class="form-control" id="email" placeholder="اختیاری">
-                            </div>
-                            <div class="form-group mb-4">
-                                <label>رمز عبور</label>
-                                <input type="password" class="form-control" id="password" required>
-                            </div>
+                        <button type="submit" class="btn boxed-btn w-100">
+                            <span class="btn-text">ثبت نام</span>
+                            <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> در حال ثبت...</span>
+                        </button>
 
-                            <button type="submit" class="btn boxed-btn w-100">
-                                <span class="btn-text">ثبت نام</span>
-                                <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> در حال ثبت...</span>
-                            </button>
+                        <div class="text-center mt-3">
+                            <a href="../index.html" class="text-muted small">بازگشت به خانه</a>
+                        </div>
+                    </form>
 
-                            <div class="text-center mt-3">
-                                <a href="../index.html" class="text-muted small">بازگشت به خانه</a>
-                            </div>
-                        </form>
-
-                        <div id="register-error" class="text-danger text-center mt-3" style="display:none;"></div>
-                    </div>
+                    <div id="register-error" class="text-danger text-center mt-3" style="display:none;"></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
+<!-- Footer -->
+<!-- copyright -->
+<div class="copyright">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-12">
+				<p>تمامی حقوق این سایت متعلق به بازانو است</p>
+			</div>
+			<div class="col-lg-6 text-right col-md-12">
+				<div class="social-icons">
+					<ul>
+						<li><a href="http://ble.ir/bazano" target="_blank" class="bale-icon"><img src="../assets/img/icon/bale.svg" alt="Bale"></a></li>
+						<li><a href="https://www.instagram.com/officialbazano/" target="https://www.instagram.com/officialbazano/"><i class="fab fa-instagram"></i></a></li>
+						<li><a href="#" target="_blank"><i class="fab fa-telegram"></i></a></li>
+					</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end copyright -->
+<!-- Scripts -->
+<script src="../assets/js/jquery-1.11.3.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/owl.carousel.min.js"></script>
+<script src="../assets/js/jquery.magnific-popup.min.js"></script>
+<script src="../assets/js/jquery.meanmenu.min.js"></script>
+<script src="../assets/js/sticker.js"></script>
+<script src="../assets/js/main.js"></script>
 
-    <!-- Scripts -->
-    <script src="../assets/js/jquery-1.11.3.min.js"></script>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/js/owl.carousel.min.js"></script>
-    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="../assets/js/jquery.meanmenu.min.js"></script>
-    <script src="../assets/js/sticker.js"></script>
-    <script src="../assets/js/main.js"></script>
+<script src="../assets/js/utils.js"></script>
 
-    <script src="../assets/js/utils.js"></script>
-
-    <!-- Custom Register JS -->
-    <script src="js/register.js"></script>
+<!-- Custom Register JS -->
+<script src="js/register.js"></script>
 </body>
 </html>

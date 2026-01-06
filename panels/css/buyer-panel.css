@@ -1,0 +1,64 @@
+.panel-section {
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.panel-sidebar {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.panel-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.panel-menu li {
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.panel-menu li.active,
+.panel-menu li:hover {
+  background: #db8b27;
+  color: white;
+}
+
+.panel-content {
+  background: #fff;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.panel-tab {
+  display: none;
+}
+
+.panel-tab.active {
+  display: block;
+}
+
+.stat-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.stat-card i {
+  font-size: 40px;
+  color: #db8b27;
+  margin-bottom: 15px;
+}
+
+.stat-card h4 {
+  font-size: 28px;
+  color: #2d3b2d;
+}

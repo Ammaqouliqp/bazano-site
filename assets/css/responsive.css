@@ -662,12 +662,6 @@
 
 /* Desktop search middle */
 @media (min-width: 992px) {
-  .search-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   .main-menu ul {
     display: flex;
     justify-content: flex-end;
@@ -700,5 +694,21 @@
 
   .main-menu ul {
     justify-content: space-between; /* Spread icons */
+  }
+}
+/* Fix content hidden behind mobile bottom bar */
+@media (max-width: 991px) {
+  body {
+    padding-bottom: 0x; /* Height of your mobile bottom bar + extra space */
+  }
+
+  .mobile-bottom-bar {
+    height: 70px; /* Adjust if your bar is different height */
+  }
+
+  /* Optional: Extra space for footer */
+  .copyright,
+  .footer-area {
+    padding-bottom: 70px;
   }
 }

@@ -23,7 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('لطفاً نام، نام خانوادگی و رمز عبور را وارد کنید');
       return;
     }
+    // Validate name/lastname (no digits)
+    if (!/^[آ-یa-zA-Z\s]+$/.test(firstname) || !/^[آ-یa-zA-Z\s]+$/.test(lastname)) {
+    alert('نام و نام خانوادگی فقط می‌تواند شامل حروف باشد');
+    return;
+    }
 
+    // Validate email if provided
+    if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+    alert('ایمیل وارد شده معتبر نیست');
+    return;
+    }
     try {
       const response = await fetch('/api/register', {
         method: 'POST',
