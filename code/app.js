@@ -109,7 +109,7 @@ app.post('/api/auth/verify-otp', (req, res) => {
   }
 });
 
-// Register
+// Register new user - automatically set role to 'buyer'
 app.post('/api/register', async (req, res) => {
   const { firstname, lastname, phonenumber, email, password } = req.body;
 
@@ -130,11 +130,21 @@ app.post('/api/register', async (req, res) => {
           return res.status(500).json({ error: 'خطا در ثبت نام' });
         }
 
-        db.run('INSERT INTO user_roles (user_id, role) VALUES (?, ?)', [this.lastID, 'buyer']);
-        db.run('INSERT INTO wallets (user_id, balance) VALUES (?, 0)', [this.lastID]);
+        const userId = this.lastID;
 
-        const token = jwt.sign({ id: this.lastID }, JWT_SECRET, { expiresIn: '24h' });
-        res.json({ token });
+        // Automatically set role to 'buyer'
+        db.run('INSERT INTO user_roles (user_id, role) VALUES (?, ?)', [userId, 'buyer'], (roleErr) => {
+          if (roleErr) {
+            console.error('Role insert error:', roleErr);
+            return res.status(500).json({ error: 'خطا در تنظیم نقش' });
+          }
+
+          // Initialize wallet
+          db.run('INSERT INTO wallets (user_id, balance) VALUES (?, 0)', [userId]);
+
+          const token = jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: '24h' });
+          res.json({ token });
+        });
       }
     );
   } catch (err) {
@@ -245,10 +255,10 @@ app.put('/api/transactions/:id/status', authenticate, checkRole(['seller', 'admi
   });
 });
 
-// Partners
-app.post('/api/partners', authenticate, checkRole(['seller', 'admin']), (req, res) => {
+// marketers
+app.post('/api/marketers', authenticate, checkRole(['seller', 'admin']), (req, res) => {
   const { user_id, details } = req.body;
-  db.run('INSERT INTO partners (user_id, details) VALUES (?, ?)', [user_id, details], function(err) {
+  db.run('INSERT INTO marketers (user_id, details) VALUES (?, ?)', [user_id, details], function(err) {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ id: this.lastID });
   });
@@ -263,10 +273,25 @@ app.post('/api/requests', authenticate, (req, res) => {
   });
 });
 
-app.get('/api/requests', authenticate, checkRole(['support', 'admin']), (req, res) => {
-  db.all('SELECT * FROM requests', [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
+app.get('/api/requests', authenticate, (req, res) => {
+  // Buyer: only their own requests
+  if (req.query.buyer === 'true') {
+    db.all('SELECT id, subject, message, type, status, date FROM requests WHERE user_id = ?', [req.user.id], (err, rows) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Server error' });
+      }
+      res.json(rows || []);
+    });
+    return;
+  }
+
+  // Support and Admin: all requests
+  checkRole(['support', 'admin'])(req, res, () => {
+    db.all('SELECT * FROM requests', [], (err, rows) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(rows || []);
+    });
   });
 });
 

@@ -1,28 +1,33 @@
 import sqlite3
 from pathlib import Path
 
-DB_PATH = r"C:\Users\Ammaq\Documents\BAZANO\website\Baza-no\code\data\database.db"
+# === CONFIGURATION ===
+DB_PATH = Path("database.db")  # change if needed
 
-# Ensure directory exists
-Path(DB_PATH).parent.mkdir(parents=True, exist_ok=True)
-
+# === CONNECT ===
 conn = sqlite3.connect(DB_PATH)
-cur = conn.cursor()
+cursor = conn.cursor()
 
-# IMPORTANT: enable FK enforcement
-cur.execute("PRAGMA foreign_keys = ON;")
+# Enable foreign key enforcement
+cursor.execute("PRAGMA foreign_keys = ON;")
 
-schema = """
+# === SCHEMA CREATION ===
+cursor.executescript("""
+-- =========================
 -- USERS
+-- =========================
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     firstname TEXT NOT NULL,
     lastname TEXT NOT NULL,
-    phonenumber TEXT UNIQUE NOT NULL,
+    phonenumber TEXT UNIQUE,
+    email TEXT UNIQUE,
     password TEXT NOT NULL
 );
 
+-- =========================
 -- USER ROLES
+-- =========================
 CREATE TABLE IF NOT EXISTS user_roles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
@@ -30,18 +35,21 @@ CREATE TABLE IF NOT EXISTS user_roles (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- PROFILES
+-- =========================
+-- PROFILES (EMAIL REMOVED)
+-- =========================
 CREATE TABLE IF NOT EXISTS profiles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
-    email TEXT UNIQUE,
     address TEXT,
     avatar TEXT,
     extra_info TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- =========================
 -- WALLETS
+-- =========================
 CREATE TABLE IF NOT EXISTS wallets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
@@ -50,7 +58,9 @@ CREATE TABLE IF NOT EXISTS wallets (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- =========================
 -- PRODUCTS
+-- =========================
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     seller_id INTEGER NOT NULL,
@@ -63,27 +73,31 @@ CREATE TABLE IF NOT EXISTS products (
     price_entry REAL NOT NULL,
     price_exit REAL NOT NULL,
     category TEXT,
-    FOREIGN KEY (seller_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (seller_id) REFERENCES users(id)
 );
 
+-- =========================
 -- TRANSACTIONS
+-- =========================
 CREATE TABLE IF NOT EXISTS transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     transaction_code TEXT UNIQUE NOT NULL,
     buyer_id INTEGER NOT NULL,
     seller_id INTEGER NOT NULL,
-    transaction_record_date DATETIME NOT NULL,
+    transaction_record_date DATETIME,
     status TEXT,
     total_price REAL,
     profit REAL,
-    fee REAL,
-    sector TEXT,
     offer REAL,
+    tax REAL,
+    sector TEXT,
     FOREIGN KEY (buyer_id) REFERENCES users(id),
     FOREIGN KEY (seller_id) REFERENCES users(id)
 );
 
+-- =========================
 -- TRANSACTION ITEMS
+-- =========================
 CREATE TABLE IF NOT EXISTS transaction_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     transaction_id INTEGER NOT NULL,
@@ -94,36 +108,42 @@ CREATE TABLE IF NOT EXISTS transaction_items (
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
--- PARTNERS
-CREATE TABLE IF NOT EXISTS partners (
+-- =========================
+-- marketerS
+-- =========================
+CREATE TABLE IF NOT EXISTS marketers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     details TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
--- PARTNER CALCULATIONS
-CREATE TABLE IF NOT EXISTS partner_calculations (
+-- =========================
+-- marketer CALCULATIONS
+-- =========================
+CREATE TABLE IF NOT EXISTS marketer_calculations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     transaction_id INTEGER NOT NULL,
-    partner_id INTEGER NOT NULL,
+    marketer_id INTEGER NOT NULL,
     deal_index INTEGER,
     base_share REAL,
     percentage_applied REAL,
-    partner_credit REAL,
+    marketer_credit REAL,
     remaining REAL,
-    FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE,
-    FOREIGN KEY (partner_id) REFERENCES partners(id) ON DELETE CASCADE
+    FOREIGN KEY (transaction_id) REFERENCES transactions(id),
+    FOREIGN KEY (marketer_id) REFERENCES marketers(id)
 );
 
+-- =========================
 -- TRANSACTION CALCULATIONS
+-- =========================
 CREATE TABLE IF NOT EXISTS transaction_calculations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     transaction_id INTEGER NOT NULL,
     net_profit REAL,
     seller_profit REAL,
     buyer_credit REAL,
-    partners_credit REAL,
+    marketers_credit REAL,
     dev_total REAL,
     fixed_development REAL,
     temporary_ip REAL,
@@ -134,10 +154,12 @@ CREATE TABLE IF NOT EXISTS transaction_calculations (
     temporary_selfdev REAL,
     temporary_consult REAL,
     payout_type TEXT,
-    FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE
+    FOREIGN KEY (transaction_id) REFERENCES transactions(id)
 );
 
+-- =========================
 -- REQUESTS
+-- =========================
 CREATE TABLE IF NOT EXISTS requests (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
@@ -145,20 +167,24 @@ CREATE TABLE IF NOT EXISTS requests (
     message TEXT,
     date DATETIME,
     status TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+-- =========================
 -- SUPPORT
+-- =========================
 CREATE TABLE IF NOT EXISTS support (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     message TEXT,
     date DATETIME,
     status TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+-- =========================
 -- FEEDBACKS
+-- =========================
 CREATE TABLE IF NOT EXISTS feedbacks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
@@ -166,20 +192,24 @@ CREATE TABLE IF NOT EXISTS feedbacks (
     rating INTEGER,
     message TEXT,
     date DATETIME,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(id)
 );
 
+-- =========================
 -- SUGGESTIONS
+-- =========================
 CREATE TABLE IF NOT EXISTS suggestions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     message TEXT,
     date DATETIME,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+-- =========================
 -- LOGS
+-- =========================
 CREATE TABLE IF NOT EXISTS logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
@@ -189,16 +219,10 @@ CREATE TABLE IF NOT EXISTS logs (
     ip_address TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-"""
+""")
 
-try:
-    cur.executescript(schema)
-    conn.commit()
-    print("Database built successfully.")
+# === COMMIT & CLOSE ===
+conn.commit()
+conn.close()
 
-except Exception as e:
-    conn.rollback()
-    raise RuntimeError(f"Database build failed: {e}")
-
-finally:
-    conn.close()
+print(f"Database created successfully at: {DB_PATH.resolve()}")

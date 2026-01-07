@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
           firstname,
           lastname,
           phonenumber,
-          email: email || null, // Save empty if not filled
+          email: email || null, 
           password
         })
       });

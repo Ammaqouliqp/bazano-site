@@ -1,7 +1,7 @@
 # 📘 Bazano Database Documentation
 
 ## 1. Overview
-This database powers the Bazano e‑commerce and partner system. It is designed with **MySQL** relational tables, strict foreign keys, and auditability.
+This database powers the Bazano e‑commerce and marketer system. It is designed with **MySQL** relational tables, strict foreign keys, and auditability.
 
 Key principles:
 - **Normalization**: no text blobs for lists; use linking tables.
@@ -28,7 +28,7 @@ Key principles:
 Stores all accounts. Each user can have multiple roles.
 
 Functions:
-- `createUser(firstname, lastname, phone, password)`
+- `createUser(firstname, lastname, phone, email, password)`
 - `getUserByPhone(phone)`
 - `updateUser(user_id, fields)`
 
@@ -81,15 +81,15 @@ Functions:
 Stores overall distribution per transaction.
 
 Functions:
-- `calculateTransaction(transaction_id)` → computes net profit, seller profit, buyer credit, partner totals, dev/team shares, payout type.
+- `calculateTransaction(transaction_id)` → computes net profit, seller profit, buyer credit, marketer totals, dev/team shares, payout type.
 - `getCalculation(transaction_id)`
 
-### Partner_Calculations
-Stores per‑partner breakdown.
+### marketer_Calculations
+Stores per‑marketer breakdown.
 
 Functions:
-- `calculatePartnerShares(transaction_id, partners[])` → inserts one row per partner with deal_index, base_share, percentage_applied, partner_credit, remaining.
-- `getPartnerCalculations(transaction_id)`
+- `calculatemarketerShares(transaction_id, marketers[])` → inserts one row per marketer with deal_index, base_share, percentage_applied, marketer_credit, remaining.
+- `getmarketerCalculations(transaction_id)`
 
 ### Requests / Support / Suggestions
 Communication channels.
@@ -105,6 +105,9 @@ Buyer feedback on transactions.
 Functions:
 - `addFeedback(user_id, transaction_id, rating, message)`
 - `getFeedbacks(transaction_id)`
+### Marketer 
+make a conversation or recommend buyers to buy product(s)
+transactions/marketer
 
 ### Logs
 Audit trail.
@@ -119,7 +122,7 @@ Functions:
 - **Net profit** = `profit − fee`
 - **Seller profit** = 15% of 45% of net profit
 - **Buyer credit** = 25% of 45% of net profit
-- **Partners total credit** = 45% of net profit
+- **marketers total credit** = 45% of net profit
 - **Development shares** = 55% of net profit
   - fixed_development = 25%
   - temporary_ip = 15%
@@ -129,8 +132,8 @@ Functions:
   - temporary_head = 10%
   - temporary_selfdev = 10%
   - temporary_consult = 5%
-- **Partner credit** = base_share × percentage (percentage depends on deal_index)
-- **Remaining** = base_share − partner_credit
+- **marketer credit** = base_share × percentage (percentage depends on deal_index)
+- **Remaining** = base_share − marketer_credit
 - **Payout type** = `"cash"` if buyer is Bazano member, else `"purchase_credit"`
 
 ---
@@ -171,16 +174,17 @@ Functions:
 1. Buyer places order → `createTransaction`
 2. Items added → `addItem`
 3. Transaction confirmed → `calculateTransaction`
-4. Partner shares computed → `calculatePartnerShares`
-5. Wallets updated → `creditWallet` for seller, buyer, partners
+4. marketer shares computed → `calculatemarketerShares`
+5. Wallets updated → `creditWallet` for seller, buyer, marketers
 6. Log entries created → `logAction`
-7. Admin queries `transaction_calculations` and `partner_calculations` for reports
+7. Admin queries `transaction_calculations` and `marketer_calculations` for reports
 
 --- 
 ## Diagram
 users
   • id (INTEGER)
   • firstname (TEXT)
+  • email (TEXT)
   • lastname (TEXT)
   • phonenumber (TEXT)
   • password (TEXT)
@@ -198,7 +202,6 @@ user_roles
 profiles
   • id (INTEGER)
   • user_id (INTEGER)
-  • email (TEXT)
   • address (TEXT)
   • avatar (TEXT)
   • extra_info (TEXT)
@@ -230,15 +233,19 @@ transactions
   • transaction_code (TEXT)
   • buyer_id (INTEGER)
   • seller_id (INTEGER)
+  • marketer_id
   • transaction_record_date (DATETIME)
+  • date (DATETIME)
   • status (TEXT)
-  • total_price (REAL)
+  • price_entry (REAL)
+  • price_exit (REAL)
   • profit (REAL)
   • offer (REAL)
-  • fee (REAL)
+  • tax (REAL)
   • sector (TEXT)
   ↳ FK: seller_id → users.id
   ↳ FK: buyer_id → users.id
+  ↳ FK: marketer_id → users.id
 
 transaction_items
   • id (INTEGER)
@@ -249,22 +256,22 @@ transaction_items
   ↳ FK: product_id → products.id
   ↳ FK: transaction_id → transactions.id
 
-partners
+marketers
   • id (INTEGER)
   • user_id (INTEGER)
   • details (TEXT)
   ↳ FK: user_id → users.id
 
-partner_calculations
+marketer_calculations
   • id (INTEGER)
   • transaction_id (INTEGER)
-  • partner_id (INTEGER)
+  • marketer_id (INTEGER)
   • deal_index (INTEGER)
   • base_share (REAL)
   • percentage_applied (REAL)
-  • partner_credit (REAL)
+  • marketer_credit (REAL)
   • remaining (REAL)
-  ↳ FK: partner_id → partners.id
+  ↳ FK: marketer_id → users.id
   ↳ FK: transaction_id → transactions.id
 
 transaction_calculations
@@ -273,7 +280,7 @@ transaction_calculations
   • net_profit (REAL)
   • seller_profit (REAL)
   • buyer_credit (REAL)
-  • partners_credit (REAL)
+  • marketers_credit (REAL)
   • dev_total (REAL)
   • fixed_development (REAL)
   • temporary_ip (REAL)

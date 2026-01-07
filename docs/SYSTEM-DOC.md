@@ -21,7 +21,7 @@ The system supports **multiple user roles**, **separate panels**, **auditable tr
 
 1. Buyer discovers a product on:
    - Main product pages
-   - Partner store pages
+   - seller shops panel
    - Blog/news sections
 2. Buyer submits a **purchase request** from the product detail page.
 3. Seller or support reviews the request.
@@ -84,7 +84,7 @@ The system supports **multiple user roles**, **separate panels**, **auditable tr
 
 ### 5.1 Public Pages
 - **Home**: banners, site news, navigation
-- **Partners List**: categorized stores
+- **marketers List**: categorized stores
 - **Store Page**: description, ads, products, contact
 - **Products Page**: global product list with filters
 - **Blog**:
@@ -141,7 +141,7 @@ The system supports **multiple user roles**, **separate panels**, **auditable tr
 ### 6.4 Infrastructure
 - Hosting (TBD)
 - CDN (TBD)
-- Email / SMS service
+- OTP sytem
 - SSL (TBD)
 - Backup:
   - Daily data backup
@@ -256,8 +256,8 @@ Line items per transaction.
 ### Transaction_Calculations
 Profit and distribution logic.
 
-### Partner_Calculations
-Per-partner revenue shares.
+### marketer_Calculations
+Per-marketer revenue shares.
 
 ### Requests / Support / Suggestions
 Communication channels.
@@ -273,7 +273,7 @@ Immutable audit trail.
 ## 13. Financial Calculation Rules
 
 - Net profit = profit − fee
-- Partner credit = 45% of net profit
+- marketer credit = 45% of net profit
 - Development shares = 55% of net profit
 - Buyer credit = 25% of 45%
 - Seller profit = 15% of 45%
@@ -310,4 +310,3 @@ Immutable audit trail.
 ## 16. Database Schema Diagram
 
 *(Full table structure as defined in DATABASE_DOC.md, unchanged and authoritative)*
-
