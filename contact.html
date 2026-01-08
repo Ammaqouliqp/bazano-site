@@ -39,275 +39,273 @@
 		</div>
 	</div>
 	<!--PreLoader Ends-->
-	<style>
-
-</style>
-<!-- header -->
-<div class="top-header-area" id="sticker">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- Logo -->
-      <div class="col-6 col-lg-3 text-right">
-        <div class="site-logo">
-          <a href="../index.html">
-            <img src="../assets/img/bazano-text-logo.png" alt="بازانو">
-          </a>
-        </div>
-      </div>
-
-      <!-- Icons -->
-      <div class="col-6 col-lg-9 text-left">
-        <nav class="main-menu">
-          <ul>
-            <!-- Notification Bell - Desktop only -->
-            <li class="notification d-none d-lg-inline-block" id="notif-desktop">
-              <a href="#" id="notif-desktop-btn">
-                <i class="fas fa-bell"></i>
-                <span class="badge" id="notif-count">0</span>
-              </a>
-            </li>
-
-            <!-- Cart - Desktop only -->
-            <li class="shopping-cart d-none d-lg-inline-block">
-              <a href="#" id="cart-desktop-btn">
-                <i class="fas fa-shopping-cart"></i>
-              </a>
-            </li>
-
-            <!-- Profile / Login - Desktop only -->
-            <li class="profile-login d-none d-lg-inline-block" id="profile-desktop">
-              <!-- Filled by JS -->
-            </li>
-
-            <!-- Search Icon - Desktop middle -->
-            <li class="search-center d-none d-lg-block">
-              <a class="search-bar-icon" href="#">
-                <i class="fas fa-search"></i>
-              </a>
-            </li>
-
-            <!-- Search Icon - Mobile top -->
-			<li class="search-mobile d-lg-none">
-			<a class="search-bar-icon" href="#">
-				<i class="fas fa-search"></i>
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+	<div class="container">
+		<div class="row align-items-center">
+		<!-- Logo -->
+		<div class="col-6 col-lg-3 text-right">
+			<div class="site-logo">
+			<a href="../index.html">
+				<img src="../assets/img/bazano-text-logo.png" alt="بازانو">
 			</a>
-			</li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end header -->
+			</div>
+		</div>
 
-<!-- Mobile Bottom Fixed Bar (always shown, same for logged in/not) -->
-<div class="mobile-bottom-bar d-lg-none">
-  <div class="container">
-    <ul>
-      <!-- Mobile Profile -->
-      <li id="mobile-profile">
-        <!-- Filled by JS (always profile icon, click behavior changes) -->
-      </li>
+		<!-- Icons -->
+		<div class="col-6 col-lg-9 text-left">
+			<nav class="main-menu">
+			<ul>
+				<!-- Notification Bell - Desktop only -->
+				<li class="notification d-none d-lg-inline-block" id="notif-desktop">
+				<a href="#" id="notif-desktop-btn">
+					<i class="fas fa-bell"></i>
+					<span class="badge" id="notif-count">0</span>
+				</a>
+				</li>
 
-      <!-- Mobile Notification -->
-      <li id="mobile-notif">
-        <a href="#" id="mobile-notif-btn">
-          <i class="fas fa-bell"></i>
-          <span class="badge" id="mobile-notif-count">0</span>
-        </a>
-      </li>
+				<!-- Cart - Desktop only -->
+				<li class="shopping-cart d-none d-lg-inline-block">
+				<a href="#" id="cart-desktop-btn">
+					<i class="fas fa-shopping-cart"></i>
+				</a>
+				</li>
 
-      <!-- Mobile Cart -->
-      <li>
-        <a href="#" id="mobile-cart-btn">
-          <i class="fas fa-shopping-cart"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
- 
-<!-- Full-Screen Search Overlay (your original) -->
-<!-- search area -->
-<div class="search-area">
+				<!-- Profile / Login - Desktop only -->
+				<li class="profile-login d-none d-lg-inline-block" id="profile-desktop">
+				<!-- Filled by JS -->
+				</li>
+
+				<!-- Search Icon - Desktop middle -->
+				<li class="search-center d-none d-lg-block">
+				<a class="search-bar-icon" href="#">
+					<i class="fas fa-search"></i>
+				</a>
+				</li>
+
+				<!-- Search Icon - Mobile top -->
+				<li class="search-mobile d-lg-none">
+				<a class="search-bar-icon" href="#">
+					<i class="fas fa-search"></i>
+				</a>
+				</li>
+			</ul>
+			</nav>
+		</div>
+		</div>
+	</div>
+	</div>
+	<!-- end header -->
+
+	<!-- Mobile Bottom Fixed Bar (always shown, same for logged in/not) -->
+	<div class="mobile-bottom-bar d-lg-none">
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<span class="close-btn"><i class="fas fa-window-close"></i></span>
-				<div class="search-bar">
-					<div class="search-bar-tablecell">
-						<h3>جست و جو :</h3>
-						<input type="text" placeholder="کالا  ، محصول و ...">
-						<button type="submit">جست و جو <i class="fas fa-search"></i></button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<ul>
+		<!-- Mobile Profile -->
+		<li id="mobile-profile">
+			<!-- Filled by JS (always profile icon, click behavior changes) -->
+		</li>
+
+		<!-- Mobile Notification -->
+		<li id="mobile-notif">
+			<a href="#" id="mobile-notif-btn">
+			<i class="fas fa-bell"></i>
+			<span class="badge" id="mobile-notif-count">0</span>
+			</a>
+		</li>
+
+		<!-- Mobile Cart -->
+		<li>
+			<a href="#" id="mobile-cart-btn">
+			<i class="fas fa-shopping-cart"></i>
+			</a>
+		</li>
+		</ul>
 	</div>
-</div>
-<!-- end search area -->
-
-<!-- breadcrumb-section -->
-<div class="breadcrumb-section breadcrumb-bg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 offset-lg-2 text-center">
-				<div class="breadcrumb-text">
-					<p>Get 24/7 Support</p>
-					<h1>درباره ما</h1>
-				</div>
-			</div>
-		</div>
 	</div>
-</div>
-<!-- end breadcrumb section -->
-
-<!-- contact form -->
-<div class="contact-from-section mt-150 mb-150 text-right">
-	<div class="container ">
-		<div class="row">
-			<div class="col-lg-8 mb-5 mb-lg-0">
-				<div class="form-title ">
-					<h2>سوالی دارید ؟</h2>
-					<p></p>
-				</div>
-				<div id="form_status"></div>
-				<div class="contact-form">
-					<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
-						<p>
-							<input type="text" placeholder="نام و نام خانوادگی" name="name" id="name">
-							<input type="email" placeholder="Email" name="email" id="email">
-						</p>
-						<p>
-							<input type="tel" placeholder="شماره تلفن" name="phone" id="phone">
-							<input type="text" placeholder="موضوع" name="subject" id="subject">
-						</p>
-						<p><textarea name="message" id="message" cols="30" rows="10" placeholder="متن پیام"></textarea></p>
-						<input type="hidden" name="token" value="FsWga4&@f6aw" />
-						<p><input type="submit" value="ثبت"></p>
-					</form>
-				</div>
-			</div>
-			<div class="col-lg-4 ">
-				<div class="contact-form-wrap">
-					<div class="contact-form-box ">
-						<h4><i class="fas fa-map"></i>آدرس ما</h4>
-						<p>adress1 <br>adress2 <br>adress3</p>
-					</div>
-					<div class="contact-form-box">
-						<h4><i class="far fa-clock"></i>ساعات کاری</h4>
-						<p>MON - FRIDAY: 8 to 9 PM <br> SAT - SUN: 10 to 8 PM </p>
-					</div>
-					<div class="contact-form-box">
-						<h4><i class="fas fa-address-book"></i> تماس با ما</h4>
-						<p>Phone: شبکه رسمی بازانو+ <br> Email: officialbazano@gmail.com</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end contact form -->
-
-<!-- find our location -->
-<div class="find-location green-bg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<p> <i class="fas fa-map-marker-alt"></i> لوکیشن ما </p>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end find our location -->
-
-<!-- google map section -->
-<div class="embed-responsive embed-responsive-21by9">
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26432.42324808999!2d-118.34398767954286!3d34.09378509738966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf07045279bf%3A0xf67a9a6797bdfae4!2sHollywood%2C%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1576846473265!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" class="embed-responsive-item"></iframe>
-</div>
-<!-- end google map section -->
-
-
-<!-- footer -->
-<div class="footer-area ">
-	<div class="container ">
-		<div class="row">
-			<div class="col-lg-3 col-md-6">
-				<div class="footer-box about-widget">
-					<h2 class="widget-title">در باره ما</h2>
-					<p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="footer-box get-in-touch">
-					<h2 class="widget-title">تماس با ما</h2>
-					<ul>
-						<li>Bazano_address</li>
-						<li>officialbazano@gmail.com</li>
-						<li>شبکه رسمی بازانو+</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="footer-box pages">
-					<h2 class="widget-title">منو ها</h2>
-					<ul>
-						<li><a href="../index.html">صفحه اصلی </a></li>
-						<li><a href="../products/products.html">محصولات</a></li>
-						<li><a href="../news/news.html">بلاگ</a></li>
-						<li><a href="../about.html">درباره ما</a></li>
-						<li><a href="../contact.html">تماس با ما</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="footer-box subscribe">
-					<h2 class="widget-title">!همراه ما باشید</h2>
-					<p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
-					<form action="../index.html">
-						<input type="email" placeholder="Email">
-						<button type="submit"><i class="fas fa-paper-plane"></i></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end footer -->
+	<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
 	
-<!-- copyright -->
-<div class="copyright">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 col-md-12">
-				<p>تمامی حقوق این سایت متعلق به بازانو است</p>
-			</div>
-			<div class="col-lg-6 text-right col-md-12">
-				<div class="social-icons">
-					<ul>
-						<li><a href="http://ble.ir/bazano" target="_blank" class="bale-icon"><img src="../assets/img/icon/bale.svg" alt="Bale"></a></li>
-						<li><a href="https://www.instagram.com/officialbazano/" target="https://www.instagram.com/officialbazano/"><i class="fab fa-instagram"></i></a></li>
-						<li><a href="#" target="_blank"><i class="fab fa-telegram"></i></a></li>
-					</ul>
+	<!-- Full-Screen Search Overlay (your original) -->
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>جست و جو :</h3>
+							<input type="text" placeholder="کالا  ، محصول و ...">
+							<button type="submit">جست و جو <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- end copyright -->
-	
-<script src="../assets/js/jquery-1.11.3.min.js"></script>
-    <script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/js/jquery.countdown.js"></script>
-<script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
-<script src="../assets/js/waypoints.js"></script>
-<script src="../assets/js/owl.carousel.min.js"></script>
-<script src="../assets/js/jquery.magnific-popup.min.js"></script>
-<script src="../assets/js/jquery.meanmenu.min.js"></script>
-<script src="../assets/js/sticker.js"></script>
-<script src="../assets/js/main.js"></script>
-<script src="../assets/js/utils.js"></script>
+	<!-- end search area -->
+
+	<!-- hero area -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Get 24/7 Support</p>
+						<h1>درباره ما</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end hero area -->
+
+	<!-- contact form -->
+	<div class="contact-from-section mt-150 mb-150 text-right">
+		<div class="container ">
+			<div class="row">
+				<div class="col-lg-8 mb-5 mb-lg-0">
+					<div class="form-title ">
+						<h2>سوالی دارید ؟</h2>
+						<p></p>
+					</div>
+					<div id="form_status"></div>
+					<div class="contact-form">
+						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+							<p>
+								<input type="text" placeholder="نام و نام خانوادگی" name="name" id="name">
+								<input type="email" placeholder="Email" name="email" id="email">
+							</p>
+							<p>
+								<input type="tel" placeholder="شماره تلفن" name="phone" id="phone">
+								<input type="text" placeholder="موضوع" name="subject" id="subject">
+							</p>
+							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="متن پیام"></textarea></p>
+							<input type="hidden" name="token" value="FsWga4&@f6aw" />
+							<p><input type="submit" value="ثبت"></p>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-4 ">
+					<div class="contact-form-wrap">
+						<div class="contact-form-box ">
+							<h4><i class="fas fa-map"></i>آدرس ما</h4>
+							<p>adress1 <br>adress2 <br>adress3</p>
+						</div>
+						<div class="contact-form-box">
+							<h4><i class="far fa-clock"></i>ساعات کاری</h4>
+							<p>MON - FRIDAY: 8 to 9 PM <br> SAT - SUN: 10 to 8 PM </p>
+						</div>
+						<div class="contact-form-box">
+							<h4><i class="fas fa-address-book"></i> تماس با ما</h4>
+							<p>Phone: شبکه رسمی بازانو+ <br> Email: officialbazano@gmail.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end contact form -->
+
+	<!-- find our location -->
+	<div class="find-location green-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<p> <i class="fas fa-map-marker-alt"></i> لوکیشن ما </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end find our location -->
+
+	<!-- google map section -->
+	<div class="embed-responsive embed-responsive-21by9">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26432.42324808999!2d-118.34398767954286!3d34.09378509738966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf07045279bf%3A0xf67a9a6797bdfae4!2sHollywood%2C%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1576846473265!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" class="embed-responsive-item"></iframe>
+	</div>
+	<!-- end google map section -->
+
+
+	<!-- footer -->
+	<div class="footer-area ">
+		<div class="container ">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">در باره ما</h2>
+						<p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">تماس با ما</h2>
+						<ul>
+							<li>Bazano_address</li>
+							<li>officialbazano@gmail.com</li>
+							<li>شبکه رسمی بازانو+</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">منو ها</h2>
+						<ul>
+							<li><a href="../index.html">صفحه اصلی </a></li>
+							<li><a href="../products/products.html">محصولات</a></li>
+							<li><a href="../news/news.html">بلاگ</a></li>
+							<li><a href="../about.html">درباره ما</a></li>
+							<li><a href="../contact.html">تماس با ما</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">!همراه ما باشید</h2>
+						<p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
+						<form action="../index.html">
+							<input type="email" placeholder="Email">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+		
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<p>تمامی حقوق این سایت متعلق به بازانو است</p>
+				</div>
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="http://ble.ir/bazano" target="_blank" class="bale-icon"><img src="../assets/img/icon/bale.svg" alt="Bale"></a></li>
+							<li><a href="https://www.instagram.com/officialbazano/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="https://t.me/baza_no" target="_blank"><i class="fab fa-telegram"></i></a></li>
+						</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+		
+	<script src="../assets/js/jquery-1.11.3.min.js"></script>
+		<script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../assets/js/jquery.countdown.js"></script>
+	<script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<script src="../assets/js/waypoints.js"></script>
+	<script src="../assets/js/owl.carousel.min.js"></script>
+	<script src="../assets/js/jquery.magnific-popup.min.js"></script>
+	<script src="../assets/js/jquery.meanmenu.min.js"></script>
+	<script src="../assets/js/sticker.js"></script>
+	<script src="../assets/js/main.js"></script>
+	<script src="../assets/js/utils.js"></script>
 
 </body>
 

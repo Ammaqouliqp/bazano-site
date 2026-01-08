@@ -5,15 +5,13 @@ const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const xlsx = require('xlsx');
 
 const app = express();
 const db = new sqlite3.Database(path.join(__dirname, 'data/database.db'));
 const PORT = 3000;
-const JWT_SECRET = 'your_secret_key'; // CHANGE THIS IN PRODUCTION
+const JWT_SECRET = 'your_secret_key'; // CHANGE IN PRODUCTION!
 const SALT_ROUNDS = 10;
 
-// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -60,7 +58,7 @@ app.get('/api/wallets/me', authenticate, (req, res) => {
   });
 });
 
-// OTP Store (testing)
+// OTP Store
 const otpStore = {};
 
 // Send OTP
@@ -70,7 +68,7 @@ app.post('/api/auth/send-otp', (req, res) => {
 
   const normalized = identifier.trim();
 
-  db.get('SELECT id FROM users WHERE phonenumber = ? OR email = ?', [normalized, normalized], (err, user) => {
+  db.get('SELECT id FROM users WHERE phonenumber = ?', [normalized], (err, user) => {
     if (err) return res.status(500).json({ error: 'خطا در سرور' });
 
     const testCode = '123456';
@@ -83,7 +81,7 @@ app.post('/api/auth/send-otp', (req, res) => {
 
     console.log(`OTP for ${normalized}: ${testCode} (exists: ${!!user})`);
 
-    res.json({ message: 'کد ارسال شد', testCode }); // Remove testCode in production
+    res.json({ message: 'کد ارسال شد', testCode });
   });
 });
 
@@ -109,7 +107,7 @@ app.post('/api/auth/verify-otp', (req, res) => {
   }
 });
 
-// Register new user - automatically set role to 'buyer'
+// Register - all users are buyers
 app.post('/api/register', async (req, res) => {
   const { firstname, lastname, phonenumber, email, password } = req.body;
 
@@ -132,19 +130,12 @@ app.post('/api/register', async (req, res) => {
 
         const userId = this.lastID;
 
-        // Automatically set role to 'buyer'
-        db.run('INSERT INTO user_roles (user_id, role) VALUES (?, ?)', [userId, 'buyer'], (roleErr) => {
-          if (roleErr) {
-            console.error('Role insert error:', roleErr);
-            return res.status(500).json({ error: 'خطا در تنظیم نقش' });
-          }
+        // All users are buyers
+        db.run('INSERT INTO user_roles (user_id, role) VALUES (?, ?)', [userId, 'buyer']);
+        db.run('INSERT INTO wallets (user_id, balance) VALUES (?, 0)', [userId]);
 
-          // Initialize wallet
-          db.run('INSERT INTO wallets (user_id, balance) VALUES (?, 0)', [userId]);
-
-          const token = jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: '24h' });
-          res.json({ token });
-        });
+        const token = jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: '24h' });
+        res.json({ token });
       }
     );
   } catch (err) {
@@ -152,7 +143,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// Password login (kept as backup)
+// Password login
 app.post('/api/login', (req, res) => {
   const { phonenumber, password } = req.body;
   db.get('SELECT * FROM users WHERE phonenumber = ?', [phonenumber], async (err, user) => {
@@ -165,7 +156,7 @@ app.post('/api/login', (req, res) => {
   });
 });
 
-// Products
+// Products (public view, seller manage)
 app.get('/api/products', (req, res) => {
   let query = 'SELECT * FROM products';
   let params = [];
@@ -175,40 +166,8 @@ app.get('/api/products', (req, res) => {
   }
   db.all(query, params, (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
+    res.json(rows || []);
   });
-});
-
-app.post('/api/products', authenticate, checkRole(['seller', 'admin']), (req, res) => {
-  const { brand, name, description, manufacture_date, expire_date, quantity, price_entry, price_exit, category } = req.body;
-  db.run('INSERT INTO products (seller_id, brand, name, description, manufacture_date, expire_date, quantity, price_entry, price_exit, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-    [req.user.id, brand, name, description, manufacture_date, expire_date, quantity, price_entry, price_exit, category], function(err) {
-      if (err) return res.status(500).json({ error: err.message });
-      logAction(req.user.id, 'add_product', `Product ID: ${this.lastID}`, req.ip);
-      res.json({ id: this.lastID });
-    });
-});
-
-app.put('/api/products/:id', authenticate, checkRole(['seller', 'admin']), (req, res) => {
-  const { brand, name, description, manufacture_date, expire_date, quantity, price_entry, price_exit, category } = req.body;
-  db.run('UPDATE products SET brand = ?, name = ?, description = ?, manufacture_date = ?, expire_date = ?, quantity = ?, price_entry = ?, price_exit = ?, category = ? WHERE id = ? AND seller_id = ?',
-    [brand, name, description, manufacture_date, expire_date, quantity, price_entry, price_exit, category, req.params.id, req.user.id], (err) => {
-      if (err) return res.status(500).json({ error: err.message });
-      logAction(req.user.id, 'update_product', `Product ID: ${req.params.id}`, req.ip);
-      res.json({ success: true });
-    });
-});
-
-app.delete('/api/products/:id', authenticate, checkRole(['seller', 'admin']), (req, res) => {
-  db.run('DELETE FROM products WHERE id = ? AND seller_id = ?', [req.params.id, req.user.id], (err) => {
-    if (err) return res.status(500).json({ error: err.message });
-    logAction(req.user.id, 'delete_product', `Product ID: ${req.params.id}`, req.ip);
-    res.json({ success: true });
-  });
-});
-
-app.post('/api/products/import', authenticate, checkRole(['seller', 'admin']), (req, res) => {
-  res.json({ success: true, message: 'Excel import placeholder' });
 });
 
 // Transactions
@@ -226,96 +185,32 @@ app.get('/api/transactions', authenticate, (req, res) => {
   }
   db.all(query, params, (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
+    res.json(rows || []);
   });
 });
 
-app.post('/api/transactions', authenticate, checkRole(['buyer']), (req, res) => {
-  const { seller_id, items, total_price, profit, fee, sector, buyer_is_member } = req.body;
-  const transactionCode = `TX-${Date.now()}`;
-  db.run('INSERT INTO transactions (transaction_code, buyer_id, seller_id, total_price, profit, fee, sector, buyer_is_member) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-    [transactionCode, req.user.id, seller_id, total_price, profit, fee, sector, buyer_is_member ? 1 : 0], function(err) {
-      if (err) return res.status(500).json({ error: err.message });
-      const txId = this.lastID;
-      items.forEach(item => {
-        db.run('INSERT INTO transaction_items (transaction_id, product_id, quantity, price) VALUES (?, ?, ?, ?)', [txId, item.product_id, item.quantity, item.price]);
-        db.run('UPDATE products SET quantity = quantity - ? WHERE id = ?', [item.quantity, item.product_id]);
-      });
-      logAction(req.user.id, 'create_transaction', `TX ID: ${txId}`, req.ip);
-      res.json({ id: txId });
-    });
-});
-
-app.put('/api/transactions/:id/status', authenticate, checkRole(['seller', 'admin']), (req, res) => {
-  const { status } = req.body;
-  db.run('UPDATE transactions SET status = ? WHERE id = ?', [status, req.params.id], (err) => {
-    if (err) return res.status(500).json({ error: err.message });
-    logAction(req.user.id, 'update_transaction_status', `TX ID: ${req.params.id} to ${status}`, req.ip);
-    res.json({ success: true });
-  });
-});
-
-// marketers
-app.post('/api/marketers', authenticate, checkRole(['seller', 'admin']), (req, res) => {
-  const { user_id, details } = req.body;
-  db.run('INSERT INTO marketers (user_id, details) VALUES (?, ?)', [user_id, details], function(err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ id: this.lastID });
-  });
-});
-
-// Requests
-app.post('/api/requests', authenticate, (req, res) => {
-  const { subject, message } = req.body;
-  db.run('INSERT INTO requests (user_id, subject, message) VALUES (?, ?, ?)', [req.user.id, subject, message], function(err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ id: this.lastID });
-  });
-});
-
+// Requests - buyer sees own
 app.get('/api/requests', authenticate, (req, res) => {
-  // Buyer: only their own requests
   if (req.query.buyer === 'true') {
-    db.all('SELECT id, subject, message, type, status, date FROM requests WHERE user_id = ?', [req.user.id], (err, rows) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Server error' });
-      }
+    db.all('SELECT * FROM requests WHERE user_id = ?', [req.user.id], (err, rows) => {
+      if (err) return res.status(500).json({ error: 'Server error' });
       res.json(rows || []);
     });
-    return;
+  } else {
+    checkRole(['support', 'admin'])(req, res, () => {
+      db.all('SELECT * FROM requests', [], (err, rows) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(rows || []);
+      });
+    });
   }
-
-  // Support and Admin: all requests
-  checkRole(['support', 'admin'])(req, res, () => {
-    db.all('SELECT * FROM requests', [], (err, rows) => {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json(rows || []);
-    });
-  });
 });
 
 // Logs (admin only)
 app.get('/api/logs', authenticate, checkRole(['admin']), (req, res) => {
   db.all('SELECT * FROM logs ORDER BY date DESC', [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-});
-
-// Messages (simple chat)
-app.post('/api/messages', authenticate, (req, res) => {
-  const { to_user_id, message } = req.body;
-  db.run('INSERT INTO support (user_id, message) VALUES (?, ?)', [to_user_id, message], (err) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ success: true });
-  });
-});
-
-app.get('/api/messages', authenticate, (req, res) => {
-  db.all('SELECT * FROM support WHERE user_id = ? OR status = "open"', [req.user.id], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
+    res.json(rows || []);
   });
 });
 

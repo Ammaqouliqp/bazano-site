@@ -1,66 +1,77 @@
 import sqlite3
 from pathlib import Path
 
-# === CONFIGURATION ===
-DB_PATH = Path("database.db")  # change if needed
+# =========================
+# Database Path
+# =========================
+DB_PATH = Path("database.db")
 
-# === CONNECT ===
+# =========================
+# Connection
+# =========================
 conn = sqlite3.connect(DB_PATH)
 cursor = conn.cursor()
 
-# Enable foreign key enforcement
+# Enable foreign keys
 cursor.execute("PRAGMA foreign_keys = ON;")
 
-# === SCHEMA CREATION ===
-cursor.executescript("""
--- =========================
--- USERS
--- =========================
+# =========================
+# USERS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     firstname TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
     lastname TEXT NOT NULL,
     phonenumber TEXT UNIQUE,
-    email TEXT UNIQUE,
     password TEXT NOT NULL
 );
+""")
 
--- =========================
--- USER ROLES
--- =========================
+# =========================
+# USER ROLES
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS user_roles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     role TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+""")
 
--- =========================
--- PROFILES (EMAIL REMOVED)
--- =========================
+# =========================
+# PROFILES
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS profiles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
+    user_id INTEGER UNIQUE NOT NULL,
     address TEXT,
     avatar TEXT,
     extra_info TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+""")
 
--- =========================
--- WALLETS
--- =========================
+# =========================
+# WALLETS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS wallets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    balance REAL DEFAULT 0,
-    last_update DATETIME,
+    user_id INTEGER UNIQUE NOT NULL,
+    balance REAL DEFAULT 0.0,
+    last_update DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+""")
 
--- =========================
--- PRODUCTS
--- =========================
+# =========================
+# PRODUCTS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     seller_id INTEGER NOT NULL,
@@ -69,35 +80,43 @@ CREATE TABLE IF NOT EXISTS products (
     description TEXT,
     manufacture_date DATE,
     expire_date DATE,
-    quantity INTEGER NOT NULL,
+    quantity INTEGER DEFAULT 0,
     price_entry REAL NOT NULL,
     price_exit REAL NOT NULL,
     category TEXT,
     FOREIGN KEY (seller_id) REFERENCES users(id)
 );
+""")
 
--- =========================
--- TRANSACTIONS
--- =========================
+# =========================
+# TRANSACTIONS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     transaction_code TEXT UNIQUE NOT NULL,
     buyer_id INTEGER NOT NULL,
     seller_id INTEGER NOT NULL,
-    transaction_record_date DATETIME,
+    marketer_id INTEGER,
+    transaction_record_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     status TEXT,
-    total_price REAL,
+    price_entry REAL,
+    price_exit REAL,
     profit REAL,
     offer REAL,
     tax REAL,
     sector TEXT,
     FOREIGN KEY (buyer_id) REFERENCES users(id),
-    FOREIGN KEY (seller_id) REFERENCES users(id)
+    FOREIGN KEY (seller_id) REFERENCES users(id),
+    FOREIGN KEY (marketer_id) REFERENCES users(id)
 );
+""")
 
--- =========================
--- TRANSACTION ITEMS
--- =========================
+# =========================
+# TRANSACTION ITEMS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS transaction_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     transaction_id INTEGER NOT NULL,
@@ -107,20 +126,24 @@ CREATE TABLE IF NOT EXISTS transaction_items (
     FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
+""")
 
--- =========================
--- marketerS
--- =========================
+# =========================
+# MARKETERS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS marketers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
+    user_id INTEGER UNIQUE NOT NULL,
     details TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+""")
 
--- =========================
--- marketer CALCULATIONS
--- =========================
+# =========================
+# MARKETER CALCULATIONS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS marketer_calculations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     transaction_id INTEGER NOT NULL,
@@ -130,16 +153,18 @@ CREATE TABLE IF NOT EXISTS marketer_calculations (
     percentage_applied REAL,
     marketer_credit REAL,
     remaining REAL,
-    FOREIGN KEY (transaction_id) REFERENCES transactions(id),
-    FOREIGN KEY (marketer_id) REFERENCES marketers(id)
+    FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE,
+    FOREIGN KEY (marketer_id) REFERENCES users(id)
 );
+""")
 
--- =========================
--- TRANSACTION CALCULATIONS
--- =========================
+# =========================
+# TRANSACTION CALCULATIONS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS transaction_calculations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    transaction_id INTEGER NOT NULL,
+    transaction_id INTEGER UNIQUE NOT NULL,
     net_profit REAL,
     seller_profit REAL,
     buyer_credit REAL,
@@ -154,75 +179,87 @@ CREATE TABLE IF NOT EXISTS transaction_calculations (
     temporary_selfdev REAL,
     temporary_consult REAL,
     payout_type TEXT,
-    FOREIGN KEY (transaction_id) REFERENCES transactions(id)
+    FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE
 );
+""")
 
--- =========================
--- REQUESTS
--- =========================
+# =========================
+# REQUESTS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS requests (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     subject TEXT,
     message TEXT,
-    date DATETIME,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     status TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+""")
 
--- =========================
--- SUPPORT
--- =========================
+# =========================
+# SUPPORT
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS support (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     message TEXT,
-    date DATETIME,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     status TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+""")
 
--- =========================
--- FEEDBACKS
--- =========================
+# =========================
+# FEEDBACKS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS feedbacks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     transaction_id INTEGER NOT NULL,
-    rating INTEGER,
+    rating INTEGER CHECK (rating BETWEEN 1 AND 5),
     message TEXT,
-    date DATETIME,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (transaction_id) REFERENCES transactions(id)
 );
+""")
 
--- =========================
--- SUGGESTIONS
--- =========================
+# =========================
+# SUGGESTIONS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS suggestions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     message TEXT,
-    date DATETIME,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+""")
 
--- =========================
--- LOGS
--- =========================
+# =========================
+# LOGS
+# =========================
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
     action TEXT,
     details TEXT,
-    date DATETIME,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     ip_address TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 """)
 
-# === COMMIT & CLOSE ===
+# =========================
+# Finalize
+# =========================
 conn.commit()
 conn.close()
 
-print(f"Database created successfully at: {DB_PATH.resolve()}")
+print("SQLite database successfully created.")

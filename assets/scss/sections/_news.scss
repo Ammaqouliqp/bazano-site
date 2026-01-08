@@ -309,9 +309,10 @@ span.comment-date {
 
 .recent-posts ul li:before, .archive-posts ul li:before {
   position: absolute;
-  left: 0;
+  right: 0;
+  left: auto;
   top: 2px;
-  content: "\f105";
+  content: "\f104";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }

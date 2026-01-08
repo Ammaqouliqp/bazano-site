@@ -488,7 +488,7 @@
 	    width: 100%;
 	    overflow-x: scroll;
 	}
-	transactions-table-wrap {
+	.transactions-table-wrap {
 	    width: 100%;
 	    overflow-x: scroll;
 	}

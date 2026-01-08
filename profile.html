@@ -28,252 +28,247 @@
 </head>
 <body>
 
-<!-- PreLoader -->
-<div class="loader">
-    <div class="loader-inner">
-        <div class="circle"></div>
-    </div>
-</div>
-<!-- PreLoader Ends -->
+  <!-- PreLoader -->
+  <div class="loader">
+      <div class="loader-inner">
+          <div class="circle"></div>
+      </div>
+  </div>
+  <!-- PreLoader Ends -->
 
-<!-- header -->
-<div class="top-header-area" id="sticker">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- Logo -->
-      <div class="col-6 col-lg-3 text-right">
-        <div class="site-logo">
-          <a href="../index.html">
-            <img src="../assets/img/bazano-text-logo.png" alt="بازانو">
-          </a>
+  <!-- header -->
+  <div class="top-header-area" id="sticker">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Logo -->
+        <div class="col-6 col-lg-3 text-right">
+          <div class="site-logo">
+            <a href="../index.html">
+              <img src="../assets/img/bazano-text-logo.png" alt="بازانو">
+            </a>
+          </div>
+        </div>
+
+        <!-- Icons -->
+        <div class="col-6 col-lg-9 text-left">
+          <nav class="main-menu">
+            <ul>
+              <!-- Notification Bell - Desktop only -->
+              <li class="notification d-none d-lg-inline-block" id="notif-desktop">
+                <a href="#" id="notif-desktop-btn">
+                  <i class="fas fa-bell"></i>
+                  <span class="badge" id="notif-count">0</span>
+                </a>
+              </li>
+
+              <!-- Cart - Desktop only -->
+              <li class="shopping-cart d-none d-lg-inline-block">
+                <a href="#" id="cart-desktop-btn">
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+              </li>
+
+              <!-- Profile / Login - Desktop only -->
+              <li class="profile-login d-none d-lg-inline-block" id="profile-desktop">
+                <!-- Filled by JS -->
+              </li>
+
+              <!-- Search Icon - Desktop middle -->
+              <li class="search-center d-none d-lg-block">
+                <a class="search-bar-icon" href="#">
+                  <i class="fas fa-search"></i>
+                </a>
+              </li>
+
+              <!-- Search Icon - Mobile top -->
+        <li class="search-mobile d-lg-none">
+        <a class="search-bar-icon" href="#">
+          <i class="fas fa-search"></i>
+        </a>
+        </li>
+            </ul>
+          </nav>
         </div>
       </div>
+    </div>
+  </div>
+  <!-- end header -->
 
-      <!-- Icons -->
-      <div class="col-6 col-lg-9 text-left">
-        <nav class="main-menu">
-          <ul>
-            <!-- Notification Bell - Desktop only -->
-            <li class="notification d-none d-lg-inline-block" id="notif-desktop">
-              <a href="#" id="notif-desktop-btn">
-                <i class="fas fa-bell"></i>
-                <span class="badge" id="notif-count">0</span>
-              </a>
-            </li>
+  <!-- Mobile Bottom Fixed Bar (always shown, same for logged in/not) -->
+  <div class="mobile-bottom-bar d-lg-none">
+    <div class="container">
+      <ul>
+        <!-- Mobile Profile -->
+        <li id="mobile-profile">
+          <!-- Filled by JS (always profile icon, click behavior changes) -->
+        </li>
 
-            <!-- Cart - Desktop only -->
-            <li class="shopping-cart d-none d-lg-inline-block">
-              <a href="#" id="cart-desktop-btn">
-                <i class="fas fa-shopping-cart"></i>
-              </a>
-            </li>
+        <!-- Mobile Notification -->
+        <li id="mobile-notif">
+          <a href="#" id="mobile-notif-btn">
+            <i class="fas fa-bell"></i>
+            <span class="badge" id="mobile-notif-count">0</span>
+          </a>
+        </li>
 
-            <!-- Profile / Login - Desktop only -->
-            <li class="profile-login d-none d-lg-inline-block" id="profile-desktop">
-              <!-- Filled by JS -->
-            </li>
-
-            <!-- Search Icon - Desktop middle -->
-            <li class="search-center d-none d-lg-block">
-              <a class="search-bar-icon" href="#">
-                <i class="fas fa-search"></i>
-              </a>
-            </li>
-
-            <!-- Search Icon - Mobile top -->
-			<li class="search-mobile d-lg-none">
-			<a class="search-bar-icon" href="#">
-				<i class="fas fa-search"></i>
-			</a>
-			</li>
-          </ul>
-        </nav>
+        <!-- Mobile Cart -->
+        <li>
+          <a href="#" id="mobile-cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
+  
+  <!-- Full-Screen Search Overlay (your original) -->
+  <!-- search area -->
+  <div class="search-area text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="close-btn"><i class="fas fa-window-close"></i></span>
+          <div class="search-bar">
+            <div class="search-bar-tablecell">
+              <h3>جست و جو :</h3>
+              <input type="text" placeholder="کالا  ، محصول و ...">
+              <button type="submit">جست و جو <i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- end header -->
+  <!-- end search area -->
+    
+  <!-- Profile Page Content -->
+  <div class="hero-area hero-bg" style="padding: 100px 0; min-height: 80vh;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+          <div class="card bordered-btn" style="padding: 40px; border-radius: 15px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <div class="text-center mb-4">
+              <i class="fas fa-user-circle" style="font-size: 100px; color: #db8b27;"></i>
+              <h2 class="mt-3" id="user-name">کاربر عزیز</h2>
+              <p id="user-phone">در حال بارگذاری...</p>
+            </div>
 
-<!-- Mobile Bottom Fixed Bar (always shown, same for logged in/not) -->
-<div class="mobile-bottom-bar d-lg-none">
-  <div class="container">
-    <ul>
-      <!-- Mobile Profile -->
-      <li id="mobile-profile">
-        <!-- Filled by JS (always profile icon, click behavior changes) -->
-      </li>
+            <div class="list-section text-center">
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>نام</span>
+                  <strong id="profile-firstname">-</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>نام خانوادگی</span>
+                  <strong id="profile-lastname">-</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>شماره تلفن</span>
+                  <strong id="profile-phonenumber">-</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>ایمیل</span>
+                  <strong id="profile-email">-</strong>
+                </li>
+              </ul>
+            </div>
 
-      <!-- Mobile Notification -->
-      <li id="mobile-notif">
-        <a href="#" id="mobile-notif-btn">
-          <i class="fas fa-bell"></i>
-          <span class="badge" id="mobile-notif-count">0</span>
-        </a>
-      </li>
-
-      <!-- Mobile Cart -->
-      <li>
-        <a href="#" id="mobile-cart-btn">
-          <i class="fas fa-shopping-cart"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
- 
-<!-- Full-Screen Search Overlay (your original) -->
-<!-- search area -->
-<div class="search-area text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<span class="close-btn"><i class="fas fa-window-close"></i></span>
-				<div class="search-bar">
-					<div class="search-bar-tablecell">
-						<h3>جست و جو :</h3>
-						<input type="text" placeholder="کالا  ، محصول و ...">
-						<button type="submit">جست و جو <i class="fas fa-search"></i></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end search area -->
-
-<!-- Profile Page Content -->
-<div class="hero-area hero-bg" style="padding: 100px 0; min-height: 80vh;">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10">
-        <div class="card bordered-btn" style="padding: 40px; border-radius: 15px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-          <div class="text-center mb-4">
-            <i class="fas fa-user-circle" style="font-size: 100px; color: #db8b27;"></i>
-            <h2 class="mt-3" id="user-name">کاربر عزیز</h2>
-            <p id="user-phone">در حال بارگذاری...</p>
+            <div class="text-center mt-5">
+              <a href="index.html" class="boxed-btn mr-5">بازگشت به خانه</a>
+              
+              <a href="#" id="logout-btn" class="boxed-btn mr-5"><i class="fas fa-sign-out-alt"></i> خروج از حساب</a>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <div class="list-section text-center">
-            <h4 class="mb-4">اطلاعات پروفایل</h4>
-            <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between">
-                <span>نام</span>
-                <strong id="profile-firstname">-</strong>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span>نام خانوادگی</span>
-                <strong id="profile-lastname">-</strong>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span>شماره تلفن</span>
-                <strong id="profile-phonenumber">-</strong>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span>ایمیل</span>
-                <strong id="profile-email">-</strong>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span>اعتبار کیف پول</span>
-                <strong id="profile-wallet">0 تومان</strong>
-              </li>
+  <!-- footer -->
+  <div class="footer-area text-right">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-box about-widget">
+            <h2 class="widget-title ">در باره ما</h2>
+            <p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-box get-in-touch">
+            <h2 class="widget-title">تماس با ما</h2>
+            <ul>
+              <li>Bazano_address</li>
+              <li>officialbazano@gmail.com</li>
+              <li>شبکه رسمی بازانو+</li>
             </ul>
           </div>
-
-          <div class="text-center mt-5">
-            <a href="index.html" class="boxed-btn mr-5">بازگشت به خانه</a>
-            
-            <a href="#" id="logout-btn" class="boxed-btn mr-5">خروج از حساب</a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-box pages">
+            <h2 class="widget-title">منو ها</h2>
+            <ul>
+              <li><a href="../index.html">صفحه اصلی </a></li>
+              <li><a href="../products/products.html">محصولات</a></li>
+              <li><a href="../news/news.html">بلاگ</a></li>
+              <li><a href="../about.html">درباره ما</a></li>
+              <li><a href="../contact.html">تماس با ما</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-box subscribe">
+            <h2 class="widget-title">!همراه ما باشید</h2>
+            <p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
+            <form action="index.html">
+              <input type="email" placeholder="Email">
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- end footer -->
 
-<!-- footer -->
-<div class="footer-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-box about-widget ">
-          <h2 class="widget-title ">در باره ما</h2>
-          <p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
+  <!-- copyright -->
+  <div class="copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <p>تمامی حقوق این سایت متعلق به بازانو است</p>
         </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-box get-in-touch">
-          <h2 class="widget-title">تماس با ما</h2>
-          <ul>
-            <li>Bazano_address</li>
-            <li>officialbazano@gmail.com</li>
-            <li>شبکه رسمی بازانو+</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-box pages">
-          <h2 class="widget-title">منو ها</h2>
-          <ul>
-            <li><a href="../index.html">صفحه اصلی </a></li>
-            <li><a href="../products/products.html">محصولات</a></li>
-            <li><a href="../news/news.html">بلاگ</a></li>
-            <li><a href="../about.html">درباره ما</a></li>
-            <li><a href="../contact.html">تماس با ما</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-box subscribe">
-          <h2 class="widget-title">!همراه ما باشید</h2>
-          <p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
-          <form action="index.html">
-            <input type="email" placeholder="Email">
-            <button type="submit"><i class="fas fa-paper-plane"></i></button>
-          </form>
+        <div class="col-lg-6 text-right col-md-12">
+          <div class="social-icons">
+            <ul>
+              <li><a href="http://ble.ir/bazano" target="_blank" class="bale-icon"><img src="../assets/img/icon/bale.svg" alt="Bale"></a></li>
+              <li><a href="https://www.instagram.com/officialbazano/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="https://t.me/baza_no" target="_blank"><i class="fab fa-telegram"></i></a></li>
+            </ul>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- end footer -->
+  <!-- end copyright -->
 
-<!-- copyright -->
-<div class="copyright">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 col-md-12">
-				<p>تمامی حقوق این سایت متعلق به بازانو است</p>
-			</div>
-			<div class="col-lg-6 text-right col-md-12">
-				<div class="social-icons">
-					<ul>
-						<li><a href="http://ble.ir/bazano" target="_blank" class="bale-icon"><img src="../assets/img/icon/bale.svg" alt="Bale"></a></li>
-						<li><a href="https://www.instagram.com/officialbazano/" target="https://www.instagram.com/officialbazano/"><i class="fab fa-instagram"></i></a></li>
-						<li><a href="#" target="_blank"><i class="fab fa-telegram"></i></a></li>
-					</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end copyright -->
+  <!-- Scripts -->
+  <script src="assets/js/jquery-1.11.3.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.countdown.js"></script>
+  <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+  <script src="assets/js/waypoints.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="assets/js/jquery.meanmenu.min.js"></script>
+  <script src="assets/js/sticker.js"></script>
+  <script src="assets/js/main.js"></script>
 
-<!-- Scripts -->
-<script src="assets/js/jquery-1.11.3.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.countdown.js"></script>
-<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-<script src="assets/js/waypoints.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.meanmenu.min.js"></script>
-<script src="assets/js/sticker.js"></script>
-<script src="assets/js/main.js"></script>
+  <!-- utils.js for header and token -->
+  <script src="../assets/js/utils.js"></script>
 
-<!-- utils.js for header and token -->
-<script src="../assets/js/utils.js"></script>
-
-<!-- Profile Protection + Data Load -->
-<script src="../profile/js/profile.js"></script>
+  <!-- Profile Protection + Data Load -->
+  <script src="../profile/js/profile.js"></script>
 </body>
 </html>

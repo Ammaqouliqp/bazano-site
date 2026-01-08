@@ -1,6 +1,6 @@
-// assets/js/utils.js - Complete fixed version (based on your original + new header logic added)
+// assets/js/utils.js - Final improved version
 
-const API_BASE = '/api'; // Change to your deployment URL later
+const API_BASE = '/api'; // Perfect - relative path
 
 function getToken() {
   return localStorage.getItem('token');
@@ -14,45 +14,65 @@ function removeToken() {
   localStorage.removeItem('token');
 }
 
+// Improved apiFetch with better error handling
 async function apiFetch(endpoint, method = 'GET', body = null) {
-  const headers = { 'Content-Type': 'application/json' };
+  const headers = {
+    'Content-Type': 'application/json'
+  };
+
   const token = getToken();
-  if (token) headers['Authorization'] = `Bearer ${token}`;
-  
-  const res = await fetch(`${API_BASE}${endpoint}`, {
-    method,
-    headers,
-    body: body ? JSON.stringify(body) : null
-  });
-  
-  if (!res.ok) throw new Error(`Error: ${res.status}`);
-  return res.json();
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}${endpoint}`, {
+      method,
+      headers,
+      body: body ? JSON.stringify(body) : null
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.error || `HTTP ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (err) {
+    console.error('apiFetch error:', err);
+    throw err; // Let caller handle it
+  }
 }
 
+// Optional: getUserRole (if you use it)
 async function getUserRole() {
   try {
     const user = await apiFetch('/users/me');
-    return user.role;
+    return user.role || 'buyer'; // default to buyer
   } catch {
     return null;
   }
 }
 
+// Optional: redirectToPanel (keep if needed)
 function redirectToPanel(role) {
-  const basePath = window.location.pathname.startsWith('/panels/') ? '../' : '';
-  if (role === 'seller') window.location.href = `${basePath}panels/seller.html`;
-  else if (role === 'admin') window.location.href = `${basePath}panels/admin.html`;
-  else if (role === 'buyer') window.location.href = `${basePath}panels/buyer.html`;
-  else window.location.href = `${basePath}index.html`;
+  const basePath = window.location.pathname.includes('/panels/') ? '../' : '';
+  const paths = {
+    seller: 'panels/seller.html',
+    admin: 'panels/admin.html',
+    manager: 'panels/manager.html',
+    buyer: 'panels/buyer.html'
+  };
+  window.location.href = `${basePath}${paths[role] || 'index.html'}`;
 }
 
+// Logout
 function logout() {
   removeToken();
-  window.location.href = '../index.html'; // Adjust if needed
+  window.location.href = '/index.html'; // Root-relative is safer
 }
 
-// ==================== NEW HEADER LOGIC ADDED ====================
-
+// Header Update - Perfect as is
 $(document).ready(function () {
   updateHeaderIcons();
 });
@@ -60,7 +80,6 @@ $(document).ready(function () {
 function updateHeaderIcons() {
   const isLoggedIn = !!getToken();
 
-  // Mobile bottom bar - always show profile icon (same look logged in or not)
   $('#mobile-profile').html(`
     <a href="#" id="mobile-profile-btn">
       <i class="fas fa-user"></i>
@@ -68,32 +87,25 @@ function updateHeaderIcons() {
   `);
 
   if (isLoggedIn) {
-    // Logged in
     $('#profile-desktop').html(`
       <a href="../profile.html">
         <i class="fas fa-user"></i>
       </a>
     `);
 
-    // Mobile clicks
-    $('#mobile-profile-btn').off('click').on('click', () => window.location.href = '../profile.html');
-    $('#mobile-notif-btn').off('click').on('click', () => window.location.href = '../chat.html');
-    $('#mobile-cart-btn').off('click').on('click', () => window.location.href = '../cart/cart.html');
-
-    // Desktop clicks
-    $('#notif-desktop-btn').off('click').on('click', () => window.location.href = '../chat.html');
-    $('#cart-desktop-btn').off('click').on('click', () => window.location.href = '../cart/cart.html');
+    $('#mobile-profile-btn').off('click').on('click', () => location.href = '../profile.html');
+    $('#mobile-notif-btn').off('click').on('click', () => location.href = '../chat.html');
+    $('#mobile-cart-btn').off('click').on('click', () => location.href = '../cart/cart.html');
+    $('#notif-desktop-btn').off('click').on('click', () => location.href = '../chat.html');
+    $('#cart-desktop-btn').off('click').on('click', () => location.href = '../cart/cart.html');
   } else {
-    // Not logged in
     $('#profile-desktop').html(`
       <a href="../auth/login.html">
         <i class="fa fa-sign-in" aria-hidden="true"></i> ورود
       </a>
     `);
 
-    // All clicks go to login
-    const goToLogin = () => window.location.href = '../auth/login.html';
-
+    const goToLogin = () => location.href = '../auth/login.html';
     $('#mobile-profile-btn').off('click').on('click', goToLogin);
     $('#mobile-notif-btn').off('click').on('click', goToLogin);
     $('#mobile-cart-btn').off('click').on('click', goToLogin);

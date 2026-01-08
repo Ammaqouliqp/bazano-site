@@ -300,6 +300,7 @@ requests
   • message (TEXT)
   • date (DATETIME)
   • status (TEXT)
+  • type (TEXT DEFAULT 'general')
   ↳ FK: user_id → users.id
 
 support
