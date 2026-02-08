@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta charset="utf-8">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزئیات محصول - بازانو</title>
 
-	<!-- title -->
-	<title>Single Product</title>
-
+    <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="../assets/img/icon_bazano.png">
-	<!-- Persian Fonts -->
+
+    <!-- Persian Fonts -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@30.1.0/dist/font-face.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Zain:wght@700&display=swap" rel="stylesheet"/>
-
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../assets/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    
     <!-- Bootstrap & Theme CSS -->
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/owl.carousel.css">
@@ -25,329 +25,108 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
 
-
+    <!-- Custom Single Product Style -->
+    <style>
+      .single-product-area {
+        padding: 100px 0;
+        background: #f8f9fa;
+      }
+      .product-images img {
+        width: 100%;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      }
+      .product-info {
+        background: #fff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      }
+      .product-price {
+        font-size: 28px;
+        color: #db8b27;
+        font-weight: bold;
+      }
+      .add-to-cart-btn {
+        background: #db8b27;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 18px;
+        transition: 0.3s;
+      }
+      .add-to-cart-btn:hover {
+        background: #2d3b2d;
+        transform: translateY(-3px);
+      }
+    </style>
 </head>
 <body>
-	
-	<!--PreLoader-->
+
+    <!-- PreLoader -->
     <div class="loader">
         <div class="loader-inner">
             <div class="circle"></div>
         </div>
     </div>
-    <!--PreLoader Ends-->
 
-	<!-- header -->
-	<div class="top-header-area" id="sticker">
-	<div class="container">
-		<div class="row align-items-center">
-		<!-- Logo -->
-		<div class="col-6 col-lg-3 text-right">
-			<div class="site-logo">
-			<a href="../index.html">
-				<img src="../assets/img/bazano-text-logo.png" alt="بازانو">
-			</a>
-			</div>
-		</div>
+    <!-- Header (copy from index.html) -->
+    <!-- Paste your full header code -->
 
-		<!-- Icons -->
-		<div class="col-6 col-lg-9 text-left">
-			<nav class="main-menu">
-			<ul>
-				<!-- Notification Bell - Desktop only -->
-				<li class="notification d-none d-lg-inline-block" id="notif-desktop">
-				<a href="#" id="notif-desktop-btn">
-					<i class="fas fa-bell"></i>
-					<span class="badge" id="notif-count">0</span>
-				</a>
-				</li>
+    <!-- Mobile Bottom Bar (copy from index.html) -->
+    <!-- Paste your full mobile bottom bar code -->
 
-				<!-- Cart - Desktop only -->
-				<li class="shopping-cart d-none d-lg-inline-block">
-				<a href="#" id="cart-desktop-btn">
-					<i class="fas fa-shopping-cart"></i>
-				</a>
-				</li>
+    <!-- Single Product Area -->
+    <section class="single-product-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <div class="product-images">
+              <img id="product-image" alt="محصول">
+            </div>
+          </div>
 
-				<!-- Profile / Login - Desktop only -->
-				<li class="profile-login d-none d-lg-inline-block" id="profile-desktop">
-				<!-- Filled by JS -->
-				</li>
+          <div class="col-lg-6">
+            <div class="product-info">
+              <h2 id="product-name">در حال بارگذاری...</h2>
+              <p id="product-description" class="text-muted mt-3">در حال بارگذاری...</p>
 
-				<!-- Search Icon - Desktop middle -->
-				<li class="search-center d-none d-lg-block">
-				<a class="search-bar-icon" href="#">
-					<i class="fas fa-search"></i>
-				</a>
-				</li>
+              <div class="mt-4">
+                <p class="product-price" id="product-price">0 تومان</p>
+              </div>
 
-				<!-- Search Icon - Mobile top -->
-				<li class="search-mobile d-lg-none">
-				<a class="search-bar-icon" href="#">
-					<i class="fas fa-search"></i>
-				</a>
-				</li>
-			</ul>
-			</nav>
-		</div>
-		</div>
-	</div>
-	</div>
-	<!-- end header -->
+              <div class="mt-4">
+                <p><strong>برند:</strong> <span id="product-brand">-</span></p>
+                <p><strong>دسته‌بندی:</strong> <span id="product-category">-</span></p>
+                <p><strong>موجودی:</strong> <span id="product-quantity">0</span></p>
+              </div>
 
-	<!-- Mobile Bottom Fixed Bar (always shown, same for logged in/not) -->
-	<div class="mobile-bottom-bar d-lg-none">
-	<div class="container">
-		<ul>
-		<!-- Mobile Profile -->
-		<li id="mobile-profile">
-			<!-- Filled by JS (always profile icon, click behavior changes) -->
-		</li>
+              <div class="mt-5 text-center">
+                <button class="add-to-cart-btn" id="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i> افزودن به سبد خرید
+                </button>
+              </div>
 
-		<!-- Mobile Notification -->
-		<li id="mobile-notif">
-			<a href="#" id="mobile-notif-btn">
-			<i class="fas fa-bell"></i>
-			<span class="badge" id="mobile-notif-count">0</span>
-			</a>
-		</li>
+              <div id="add-message" class="mt-3 text-center" style="display:none;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<!-- Mobile Cart -->
-		<li>
-			<a href="#" id="mobile-cart-btn">
-			<i class="fas fa-shopping-cart"></i>
-			</a>
-		</li>
-		</ul>
-	</div>
-	</div>
-	<!-- Mobile Bottom Bar - Only Profile, Notification, Cart (NO SEARCH) -->
-	
-	<!-- Full-Screen Search Overlay (your original) -->
-	<!-- search area -->
-	<div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>جست و جو :</h3>
-							<input type="text" placeholder="کالا  ، محصول و ...">
-							<button type="submit">جست و جو <i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end search area -->
-		
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<p>See more Details</p>
-						<h1>Single Product</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end breadcrumb section -->
+    <!-- Footer -->
+    <!-- Paste your footer -->
 
-	<!-- single product -->
-	<div class="single-product mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-5">
-					<div class="single-product-img">
-						<img src="../assets/img/products/product-img-5.jpg" alt="">
-					</div>
-				</div>
-				<div class="col-md-7">
-					<div class="single-product-content">
-						<h3>Green apples have polyphenols</h3>
-						<p class="single-product-pricing"><span>Per Kg</span> $50</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
-						<div class="single-product-form">
-							<form action="../index.html">
-								<input type="number" placeholder="0">
-							</form>
-							<a href="../cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-							<p><strong>Categories: </strong>Fruits, Organic</p>
-						</div>
-						<h4>Share:</h4>
-						<ul class="product-share">
-							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href=""><i class="fab fa-twitter"></i></a></li>
-							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
-							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end single product -->
-
-	<!-- more products -->
-	<div class="more-products mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="section-title">	
-						<h3><span class="orange-text">Related</span> Products</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="../products/single-product.html"><img src="../assets/img/products/product-img-1.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="../cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="../products/single-product.html"><img src="../assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="../cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="../products/single-product.html"><img src="../assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="../cart/cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> افزودن به سبد</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end more products -->
-
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="../assets/img/company-logos/1.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="../assets/img/company-logos/2.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="../assets/img/company-logos/3.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="../assets/img/company-logos/4.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="../assets/img/company-logos/5.png" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end logo carousel -->
-
-	<!-- footer -->
-	<div class="footer-area text-right">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box about-widget">
-						<h2 class="widget-title">در باره ما</h2>
-						<p>در بازانو، بهترین و حرفه‌ای‌ ترین اصناف رو معرفی می‌کنیم ؛ کسانی که با وجود فعالیت در مراکز تخصصی صنف خودشون ، از اهالی همین محل هستن و ریشه‌شون به خود ما برمی‌گرده.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">تماس با ما</h2>
-						<ul>
-							<li>Bazano_address</li>
-							<li>officialbazano@gmail.com</li>
-							<li>شبکه رسمی بازانو+</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box pages">
-						<h2 class="widget-title">منو ها</h2>
-						<ul>
-							<li><a href="../index.html">صفحه اصلی </a></li>
-							<li><a href="../products/products.html">محصولات</a></li>
-							<li><a href="../news/news.html">بلاگ</a></li>
-							<li><a href="../about.html">درباره ما</a></li>
-							<li><a href="../contact.html">تماس با ما</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
-						<h2 class="widget-title">!همراه ما باشید</h2>
-						<p>با ثبت ایمیل، از جدید‌ترین  اخبار ما مطلع شوید</p>
-						<form action="../index.html">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end footer -->
-
-	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<p>تمامی حقوق این سایت متعلق به بازانو است</p>
-				</div>
-				<div class="col-lg-6 text-right col-md-12">
-					<div class="social-icons">
-						<ul>
-							<li><a href="http://ble.ir/bazano" target="_blank" class="bale-icon"><img src="../assets/img/icon/bale.svg" alt="Bale"></a></li>
-							<li><a href="https://www.instagram.com/officialbazano/" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="https://t.me/baza_no" target="_blank"><i class="fab fa-telegram"></i></a></li>
-						</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end copyright -->
-
-	<script src="../assets/js/jquery-1.11.3.min.js"></script>
-	<script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../assets/js/jquery.countdown.js"></script>
-	<script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<script src="../assets/js/waypoints.js"></script>
-	<script src="../assets/js/owl.carousel.min.js"></script>
-	<script src="../assets/js/jquery.magnific-popup.min.js"></script>
-	<script src="../assets/js/jquery.meanmenu.min.js"></script>
-	<script src="../assets/js/sticker.js"></script>
-	<script src="../assets/js/main.js"></script>
-	<script src="../assets/js/utils.js"></script>
-
+    <!-- Scripts -->
+    <script src="../assets/js/jquery-1.11.3.min.js"></script>
+	  <script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/jquery.meanmenu.min.js"></script>
+    <script src="../assets/js/sticker.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/utils.js"></script>
+	<script src="../products/js/single-product.js"></script>
 </body>
-
 </html>

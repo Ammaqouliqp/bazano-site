@@ -169,7 +169,13 @@ app.get('/api/products', (req, res) => {
     res.json(rows || []);
   });
 });
-
+// Single product by ID
+app.get('/api/products/:id', (req, res) => {
+  db.get('SELECT * FROM products WHERE id = ?', [req.params.id], (err, row) => {
+    if (err || !row) return res.status(404).json({ error: 'محصول یافت نشد' });
+    res.json(row);
+  });
+});
 // Transactions
 app.get('/api/transactions', authenticate, (req, res) => {
   let query = 'SELECT * FROM transactions WHERE ';

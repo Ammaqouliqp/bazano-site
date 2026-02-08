@@ -229,7 +229,7 @@ Replace the old products section with this:
 				colDiv.innerHTML = `
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.html?id=${product.id}">
+							<a href="../products/single-product.html?id=${product.id}">
 								<img src="${product.image}" alt="${product.full_title}">
 							</a>
 						</div>
